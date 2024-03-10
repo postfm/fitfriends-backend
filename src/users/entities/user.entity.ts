@@ -42,29 +42,33 @@ export class User {
   @Column()
   image: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @Column('enum', { enum: ['новичок', 'любитель', 'профессионал'] })
-  level_of_train: string;
+  @Column('enum', {
+    enum: ['новичок', 'любитель', 'профессионал'],
+    name: 'level_of_train',
+  })
+  levelOfTrain: string;
 
-  @Column('simple-array')
-  type_of_training: string[];
+  @Column('simple-array', { name: 'type_of_training' })
+  typeOfTraining: string[];
 
   @Column('enum', {
     enum: ['10-30 мин', '30-50 мин', '50-80 мин', '80-100 мин'],
+    name: 'time_of_training',
   })
-  time_of_training: string;
+  timeOfTraining: string;
 
-  @Column()
-  calories_to_lose: number;
+  @Column({ name: 'calories_to_lose' })
+  caloriesToLose: number;
 
-  @Column()
-  calories_per_day: number;
+  @Column({ name: 'calories_per_day' })
+  caloriesPerDay: number;
 
-  @Column()
-  ready_to_train: boolean;
+  @Column({ name: 'ready_to_train' })
+  readyToTrain: boolean;
 }

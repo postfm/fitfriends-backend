@@ -81,33 +81,33 @@ export class CreateUserDto {
   @IsString()
   @IsEnum(LevelOfTrain)
   @IsNotEmpty()
-  level_of_train: string;
+  levelOfTrain: string;
 
   @IsArray()
   @IsNotEmpty()
   @ArrayMaxSize(3, {
     message: 'The number of workouts should not be more than 3',
   })
-  type_of_training: string[];
+  typeOfTraining: string[];
 
   @IsString()
   @IsNotEmpty()
   @IsEnum(TimeOfTraining)
-  time_of_training: string;
+  timeOfTraining: string;
 
   @IsInt()
   @IsNotEmpty()
   @Min(1000)
   @Max(5000)
-  calories_to_lose: number;
+  caloriesToLose: number;
 
   @IsInt()
   @IsNotEmpty()
   @Min(1000)
   @Max(5000)
-  calories_per_day: number;
+  caloriesPerDay: number;
 
   @IsBoolean()
   @IsNotEmpty()
-  ready_to_train: boolean;
+  readyToTrain: boolean;
 }

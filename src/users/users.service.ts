@@ -60,12 +60,12 @@ export class UsersService {
       description: entity.description,
       location: entity.location,
       image: entity.image,
-      level_of_train: entity.level_of_train,
-      type_of_training: entity.type_of_training,
-      time_of_training: entity.time_of_training,
-      calories_to_lose: entity.calories_to_lose,
-      calories_per_day: entity.calories_per_day,
-      ready_to_train: entity.ready_to_train,
+      levelOfTrain: entity.levelOfTrain,
+      typeOfTraining: entity.typeOfTraining,
+      timeOfTraining: entity.timeOfTraining,
+      caloriesToLose: entity.caloriesToLose,
+      caloriesPerDay: entity.caloriesPerDay,
+      readyToTrain: entity.readyToTrain,
     };
   }
 }

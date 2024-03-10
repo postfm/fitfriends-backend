@@ -38,20 +38,20 @@ export class UserRdo {
   updatedAt: Date;
 
   @Expose()
-  level_of_train: string;
+  levelOfTrain: string;
 
   @Expose()
-  type_of_training: string[];
+  typeOfTraining: string[];
 
   @Expose()
-  time_of_training: string;
+  timeOfTraining: string;
 
   @Expose()
-  calories_to_lose: number;
+  caloriesToLose: number;
 
   @Expose()
-  calories_per_day: number;
+  caloriesPerDay: number;
 
   @Expose()
-  ready_to_train: boolean;
+  readyToTrain: boolean;
 }
