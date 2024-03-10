@@ -22,19 +22,21 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
+  @Column('enum', { enum: ['женский', 'мужской', 'неважно'] })
   gender: string;
 
   @Column()
   birthday: Date;
 
-  @Column()
+  @Column('enum', { enum: ['тренер', 'пользователь'] })
   role: string;
 
   @Column()
   description: string;
 
-  @Column()
+  @Column('enum', {
+    enum: ['Пионерская', 'Петроградская', 'Удельная', 'Звёздная', 'Спортивная'],
+  })
   location: string;
 
   @Column()
@@ -46,13 +48,15 @@ export class User {
   @CreateDateColumn()
   updatedAt: Date;
 
-  @Column()
+  @Column('enum', { enum: ['новичок', 'любитель', 'профессионал'] })
   level_of_train: string;
 
-  @Column()
-  type_of_training: string;
+  @Column('simple-array')
+  type_of_training: string[];
 
-  @Column()
+  @Column('enum', {
+    enum: ['10-30 мин', '30-50 мин', '50-80 мин', '80-100 мин'],
+  })
   time_of_training: string;
 
   @Column()
