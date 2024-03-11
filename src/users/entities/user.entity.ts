@@ -25,7 +25,7 @@ export class User {
   @Column('enum', { enum: ['женский', 'мужской', 'неважно'] })
   gender: string;
 
-  @Column()
+  @Column('timestamp with time zone')
   birthday: Date;
 
   @Column('enum', { enum: ['тренер', 'пользователь'] })
@@ -42,10 +42,13 @@ export class User {
   @Column()
   image: string;
 
-  @CreateDateColumn({ name: 'created_at' })
+  @CreateDateColumn({
+    name: 'created_at',
+    type: 'timestamp with time zone',
+  })
   createdAt: Date;
 
-  @CreateDateColumn({ name: 'updated_at' })
+  @CreateDateColumn({ name: 'updated_at', type: 'timestamp with time zone' })
   updatedAt: Date;
 
   @Column('enum', {

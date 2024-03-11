@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -22,12 +26,7 @@ export class UsersService {
     });
     if (existsUser) throw new BadRequestException('This email already exists!');
 
-    const salt = await bcrypt.genSalt(+this.configService.get('PASSWORD_SALT'));
-    const passwordHash = await bcrypt.hash(createUserDto.password, salt);
-
-    const user = await this.userRepository.save(
-      this.toPOJO(createUserDto, passwordHash),
-    );
+    const user = await this.userRepository.save(this.toPOJO(createUserDto));
 
     return fillDto(UserRdo, user);
   }
@@ -48,12 +47,12 @@ export class UsersService {
     return `This action removes a #${id} user`;
   }
 
-  toPOJO(entity: CreateUserDto, passwordHash?: string) {
+  toPOJO(entity: CreateUserDto) {
     return {
       name: entity.name,
       email: entity.email,
       avatar: entity.avatar,
-      password: passwordHash,
+      password: String(this.getPasswordHash(entity.password)),
       gender: entity.gender,
       birthday: entity.birthday,
       role: entity.role,
@@ -67,5 +66,21 @@ export class UsersService {
       caloriesPerDay: entity.caloriesPerDay,
       readyToTrain: entity.readyToTrain,
     };
+  }
+
+  async getPasswordHash(password: string) {
+    const salt = await bcrypt.genSalt(+this.configService.get('PASSWORD_SALT'));
+    const passwordHash = await bcrypt.hash(password, salt);
+
+    return passwordHash;
+  }
+
+  async verifyPassword(password: string, passwordHash: string) {
+    const isCorrect = await bcrypt.compare(password, passwordHash);
+    if (!isCorrect) {
+      throw new ConflictException('Password is wrong');
+    }
+
+    return isCorrect;
   }
 }
