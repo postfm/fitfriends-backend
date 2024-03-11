@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TrainersModule } from './trainers/trainers.module';
+import { TrainingsModule } from './trainings/trainings.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { TrainersModule } from './trainers/trainers.module';
       inject: [ConfigService],
     }),
     TrainersModule,
+    TrainingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
