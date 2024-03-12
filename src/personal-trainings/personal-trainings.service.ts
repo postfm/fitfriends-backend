@@ -1,11 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePersonalTrainingDto } from './dto/create-personal-training.dto';
 import { UpdatePersonalTrainingDto } from './dto/update-personal-training.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { PersonalTraining } from './entities/personal-training.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PersonalTrainingsService {
-  create(createPersonalTrainingDto: CreatePersonalTrainingDto) {
-    return 'This action adds a new personalTraining';
+  constructor(
+    @InjectRepository(PersonalTraining)
+    private readonly personalTrainingRepository: Repository<PersonalTraining>,
+  ) {}
+
+  async create(createPersonalTrainingDto: CreatePersonalTrainingDto) {
+    const personalTraining = await this.personalTrainingRepository.save(
+      createPersonalTrainingDto,
+    );
+    return personalTraining;
   }
 
   findAll() {
@@ -22,5 +33,13 @@ export class PersonalTrainingsService {
 
   remove(id: number) {
     return `This action removes a #${id} personalTraining`;
+  }
+
+  toPOJO(entity: CreatePersonalTrainingDto) {
+    return {
+      initiator: entity.initiator,
+      user: entity.user,
+      status: entity.status,
+    };
   }
 }
