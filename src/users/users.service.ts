@@ -4,7 +4,6 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import { ConfigService } from '@nestjs/config';
 import { fillDto, getPasswordHash } from 'src/helpers/common';
 import { UserRdo } from './rdo/user.rdo';
 
@@ -12,7 +11,6 @@ import { UserRdo } from './rdo/user.rdo';
 export class UsersService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
-    private readonly configService: ConfigService,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
