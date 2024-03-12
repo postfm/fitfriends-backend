@@ -12,6 +12,7 @@ import { OrdersModule } from './orders/orders.module';
 import { PersonalTrainingsModule } from './personal-trainings/personal-trainings.module';
 import { AlertsModule } from './alerts/alerts.module';
 import { BalancesModule } from './balances/balances.module';
+import { FileStoreModule } from './file-store/file-store.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { BalancesModule } from './balances/balances.module';
     PersonalTrainingsModule,
     AlertsModule,
     BalancesModule,
+    FileStoreModule,
   ],
   controllers: [AppController],
   providers: [AppService],
