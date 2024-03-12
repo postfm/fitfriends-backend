@@ -15,13 +15,14 @@ export class FileStoreService {
 
   private getUploadDirectoryPath(): string {
     const [year, month] = dayjs().format('YYYY MM').split(' ');
-    const directory = this.configService.get('STORE_DIRECTORY_PATH');
+    const staticDirectory = this.configService.get('STATIC_ROOT');
 
-    return join(directory, year, month);
+    return join(staticDirectory, year, month);
   }
 
   private getDestinationFilePath(filename: string): string {
-    return join(this.getUploadDirectoryPath(), filename);
+    const directory = this.configService.get('UPLOAD_DIRECTORY_PATH');
+    return join(directory, this.getUploadDirectoryPath(), filename);
   }
 
   public async saveFile(file: Express.Multer.File): Promise<string> {
@@ -37,7 +38,7 @@ export class FileStoreService {
       await ensureDir(uploadDirectoryPath);
       await writeFile(destinationFile, file.buffer);
 
-      return destinationFile;
+      return `${this.getUploadDirectoryPath()}${filename}.${fileExtension}`;
     } catch (error) {
       throw new Error(`Can't save file`);
     }
