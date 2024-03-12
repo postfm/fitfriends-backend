@@ -1,11 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Review } from './entities/review.entity';
 
 @Injectable()
 export class ReviewsService {
-  create(createReviewDto: CreateReviewDto) {
-    return 'This action adds a new review';
+  constructor(
+    @InjectRepository(Review)
+    private readonly reviewRepository: Repository<Review>,
+  ) {}
+
+  async create(createReviewDto: CreateReviewDto) {
+    const review = await this.reviewRepository.save(
+      this.toPOJO(createReviewDto),
+    );
+    return review;
   }
 
   findAll() {
@@ -22,5 +33,14 @@ export class ReviewsService {
 
   remove(id: number) {
     return `This action removes a #${id} review`;
+  }
+
+  toPOJO(entity: CreateReviewDto) {
+    return {
+      author: entity.author,
+      training: entity.training,
+      grade: entity.grade,
+      text: entity.text,
+    };
   }
 }
