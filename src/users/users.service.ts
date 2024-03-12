@@ -1,16 +1,11 @@
-import {
-  BadRequestException,
-  ConflictException,
-  Injectable,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
-import { fillDto } from 'src/helpers/common';
+import { fillDto, getPasswordHash } from 'src/helpers/common';
 import { UserRdo } from './rdo/user.rdo';
 
 @Injectable()
@@ -52,7 +47,7 @@ export class UsersService {
       name: entity.name,
       email: entity.email,
       avatar: entity.avatar,
-      password: String(this.getPasswordHash(entity.password)),
+      password: String(getPasswordHash(entity.password)),
       gender: entity.gender,
       birthday: entity.birthday,
       role: entity.role,
@@ -66,21 +61,5 @@ export class UsersService {
       caloriesPerDay: entity.caloriesPerDay,
       readyToTrain: entity.readyToTrain,
     };
-  }
-
-  async getPasswordHash(password: string) {
-    const salt = await bcrypt.genSalt(+this.configService.get('PASSWORD_SALT'));
-    const passwordHash = await bcrypt.hash(password, salt);
-
-    return passwordHash;
-  }
-
-  async verifyPassword(password: string, passwordHash: string) {
-    const isCorrect = await bcrypt.compare(password, passwordHash);
-    if (!isCorrect) {
-      throw new ConflictException('Password is wrong');
-    }
-
-    return isCorrect;
   }
 }

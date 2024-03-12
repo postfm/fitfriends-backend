@@ -20,7 +20,7 @@ import {
   TimeOfTraining,
   UserLocation,
   UserRoles,
-} from '../constants/user.constants';
+} from '../../helpers/constants/user.constants';
 
 export class CreateUserDto {
   @IsString()
