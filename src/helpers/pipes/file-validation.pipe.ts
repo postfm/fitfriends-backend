@@ -11,6 +11,10 @@ export class FileTypeValidationPipe implements PipeTransform {
       throw new BadRequestException('Wrong file mimetype');
     }
 
+    if (value.fieldname === 'avatar' && value.size > 1000000) {
+      throw new BadRequestException('File size is very big');
+    }
+
     return value;
   }
 }

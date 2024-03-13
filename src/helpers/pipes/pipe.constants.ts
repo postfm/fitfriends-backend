@@ -1,1 +1,9 @@
-export const ALLOWED_EXTENSIONS = ['txt', 'jpeg', 'jpg', 'png'];
+export const ALLOWED_EXTENSIONS = [
+  'jpeg',
+  'jpg',
+  'png',
+  'mov',
+  'mp4',
+  'avi',
+  'pdf',
+];

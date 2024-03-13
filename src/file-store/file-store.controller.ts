@@ -16,9 +16,36 @@ import { FileTypeValidationPipe } from 'src/helpers/pipes/file-validation.pipe';
 export class FileStoreController {
   constructor(private readonly fileStoreService: FileStoreService) {}
 
-  @Post('/upload')
-  @UseInterceptors(FileInterceptor('photo'))
-  public async uploadFile(
+  @Post('/upload/avatar')
+  @UseInterceptors(FileInterceptor('avatar'))
+  public async uploadAvatar(
+    @UploadedFile(FileTypeValidationPipe)
+    file: Express.Multer.File,
+  ) {
+    return this.fileStoreService.saveFile(file);
+  }
+
+  @Post('/upload/image')
+  @UseInterceptors(FileInterceptor('image'))
+  public async uploadImage(
+    @UploadedFile(FileTypeValidationPipe)
+    file: Express.Multer.File,
+  ) {
+    return this.fileStoreService.saveFile(file);
+  }
+
+  @Post('/upload/video')
+  @UseInterceptors(FileInterceptor('video'))
+  public async uploadVideo(
+    @UploadedFile(FileTypeValidationPipe)
+    file: Express.Multer.File,
+  ) {
+    return this.fileStoreService.saveFile(file);
+  }
+
+  @Post('/upload/certificate')
+  @UseInterceptors(FileInterceptor('certificate'))
+  public async uploadCertificate(
     @UploadedFile(FileTypeValidationPipe)
     file: Express.Multer.File,
   ) {
