@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
 
 const DEFAULT_PORT = 3000;
 
@@ -9,6 +10,12 @@ async function bootstrap() {
 
   const port = process.env.PORT || DEFAULT_PORT;
   app.setGlobalPrefix('fitfriends');
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+    }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Fit Friends')
