@@ -1,26 +1,51 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { RegisterAuthDto } from './dto/register-auth.dto';
+import { fillDto, getPasswordHash } from 'src/helpers/common';
+import { UserRdo } from 'src/users/rdo/user.rdo';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/users/entities/user.entity';
+import { Repository } from 'typeorm';
+import { LoginAuthDto } from './dto/login-auth.dto';
 
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
+  constructor(
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+  ) {}
+
+  async register(registerAuthDto: RegisterAuthDto) {
+    const existsUser = await this.userRepository.findOneBy({
+      email: registerAuthDto.email,
+    });
+    if (existsUser) throw new BadRequestException('This email already exists!');
+
+    const user = await this.userRepository.save(this.toPOJO(registerAuthDto));
+
+    return fillDto(UserRdo, user);
+  }
+
+  async login(loginAuthDto: LoginAuthDto) {
     return 'This action adds a new auth';
   }
 
-  findAll() {
-    return `This action returns all auth`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+  toPOJO(entity: RegisterAuthDto) {
+    return {
+      name: entity.name,
+      email: entity.email,
+      avatar: entity.avatar,
+      password: String(getPasswordHash(entity.password)),
+      gender: entity.gender,
+      birthday: entity.birthday,
+      role: entity.role,
+      description: entity.description,
+      location: entity.location,
+      image: entity.image,
+      levelOfTrain: entity.levelOfTrain,
+      typeOfTraining: entity.typeOfTraining,
+      timeOfTraining: entity.timeOfTraining,
+      caloriesToLose: entity.caloriesToLose,
+      caloriesPerDay: entity.caloriesPerDay,
+      readyToTrain: entity.readyToTrain,
+    };
   }
 }
