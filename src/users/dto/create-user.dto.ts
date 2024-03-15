@@ -21,14 +21,12 @@ import {
   UserLocation,
   UserRoles,
 } from '../../helpers/constants/user.constants';
-import { ApiProperty } from '@nestjs/swagger';
 
-export class RegisterAuthDto {
+export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(1, { message: 'The name must not be less than 1 character' })
   @MaxLength(15, { message: 'The name must not be more than 15 characters' })
-  @ApiProperty({ example: 'Иван', description: 'Имя пользователя' })
   name: string;
 
   @IsEmail()

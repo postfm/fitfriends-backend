@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   CreateDateColumn,
@@ -8,7 +7,6 @@ import {
 
 @Entity()
 export class User {
-  @ApiProperty({ example: '1', description: 'Unique number' })
   @PrimaryGeneratedColumn()
   id: number;
 
