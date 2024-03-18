@@ -91,23 +91,35 @@ export class CreateUserDto {
   typeOfTraining: string[];
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @IsEnum(TimeOfTraining)
   timeOfTraining: string;
 
   @IsInt()
-  @IsNotEmpty()
+  @IsOptional()
   @Min(1000)
   @Max(5000)
   caloriesToLose: number;
 
   @IsInt()
-  @IsNotEmpty()
+  @IsOptional()
   @Min(1000)
   @Max(5000)
   caloriesPerDay: number;
 
   @IsBoolean()
-  @IsNotEmpty()
+  @IsOptional()
   readyToTrain: boolean;
+
+  @IsString()
+  @IsOptional()
+  certificates: string;
+
+  @IsString()
+  @IsOptional()
+  merits: string;
+
+  @IsBoolean()
+  @IsOptional()
+  personalTrainings: boolean;
 }

@@ -74,4 +74,16 @@ export class User {
 
   @Column({ name: 'ready_to_train' })
   readyToTrain: boolean;
+
+  @Column()
+  certificates: string;
+
+  @Column()
+  merits: string;
+
+  @Column({ name: 'personal_trainings' })
+  personalTrainings: boolean;
+
+  @Column({ name: 'refresh_token' })
+  refreshToken: string;
 }

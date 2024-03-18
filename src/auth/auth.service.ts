@@ -1,26 +1,35 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { fillDto, verifyPassword } from 'src/helpers/common';
+import { UserInterface } from 'src/helpers/types/user.interface';
+import { UserRdo } from 'src/users/rdo/user.rdo';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly jwtService: JwtService,
+  ) {}
+
+  async validateUser(email: string, password: string) {
+    const user = await this.usersService.findOneByEmail(email);
+
+    if (!(await verifyPassword(password, user.password)) && !user) {
+      throw new UnauthorizedException();
+    }
+
+    return fillDto(UserRdo, user);
   }
 
-  findAll() {
-    return `This action returns all auth`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+  async login(user: UserInterface) {
+    const { id, email, role } = user;
+    const payload = { email: user.email, id: user.id, role: user.role };
+    return {
+      id,
+      email,
+      role,
+      accessToken: this.jwtService.sign(payload),
+    };
   }
 }

@@ -5,7 +5,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TrainersModule } from './trainers/trainers.module';
 import { TrainingsModule } from './trainings/trainings.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { OrdersModule } from './orders/orders.module';
@@ -33,7 +32,6 @@ import { FileStoreModule } from './file-store/file-store.module';
       }),
       inject: [ConfigService],
     }),
-    TrainersModule,
     TrainingsModule,
     ReviewsModule,
     OrdersModule,

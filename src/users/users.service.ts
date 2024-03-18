@@ -19,13 +19,26 @@ export class UsersService {
     });
     if (existsUser) throw new BadRequestException('This email already exists!');
 
-    const user = await this.userRepository.save(this.toPOJO(createUserDto));
+    const user = await this.userRepository.save(
+      await this.toPOJO(createUserDto),
+    );
 
     return fillDto(UserRdo, user);
   }
 
   findAll() {
     return `This action returns all users`;
+  }
+
+  async findOneByEmail(email: string) {
+    const existsUser = await this.userRepository.findOneBy({
+      email: email,
+    });
+
+    if (!existsUser) {
+      throw new BadRequestException('User with this email not found!');
+    }
+    return existsUser;
   }
 
   findOne(id: number) {
@@ -40,12 +53,12 @@ export class UsersService {
     return `This action removes a #${id} user`;
   }
 
-  toPOJO(entity: CreateUserDto) {
+  async toPOJO(entity: CreateUserDto) {
     return {
       name: entity.name,
       email: entity.email,
       avatar: entity.avatar,
-      password: String(getPasswordHash(entity.password)),
+      password: String(await getPasswordHash(entity.password)),
       gender: entity.gender,
       birthday: entity.birthday,
       role: entity.role,
