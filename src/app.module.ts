@@ -12,6 +12,8 @@ import { PersonalTrainingsModule } from './personal-trainings/personal-trainings
 import { AlertsModule } from './alerts/alerts.module';
 import { BalancesModule } from './balances/balances.module';
 import { FileStoreModule } from './file-store/file-store.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './auth/guards/roles.guard';
 
 @Module({
   imports: [
@@ -41,6 +43,12 @@ import { FileStoreModule } from './file-store/file-store.module';
     FileStoreModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
 })
 export class AppModule {}
