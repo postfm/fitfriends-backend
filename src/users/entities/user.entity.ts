@@ -63,27 +63,28 @@ export class User {
   @Column('enum', {
     enum: ['10-30 мин', '30-50 мин', '50-80 мин', '80-100 мин'],
     name: 'time_of_training',
+    nullable: true,
   })
   timeOfTraining: string;
 
-  @Column({ name: 'calories_to_lose' })
+  @Column({ name: 'calories_to_lose', nullable: true })
   caloriesToLose: number;
 
-  @Column({ name: 'calories_per_day' })
+  @Column({ name: 'calories_per_day', nullable: true })
   caloriesPerDay: number;
 
-  @Column({ name: 'ready_to_train' })
+  @Column({ name: 'ready_to_train', nullable: true })
   readyToTrain: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   certificates: string;
 
-  @Column()
+  @Column({ nullable: true })
   merits: string;
 
-  @Column({ name: 'personal_trainings' })
+  @Column({ name: 'personal_trainings', nullable: true })
   personalTrainings: boolean;
 
-  @Column({ name: 'refresh_token' })
+  @Column({ name: 'refresh_token', nullable: true })
   refreshToken: string;
 }

@@ -26,7 +26,7 @@ export function fillDto<T, V>(
   });
 }
 
-export async function getPasswordHash(password: string) {
+export async function getHash(password: string) {
   const configService = new ConfigService();
   const salt = await bcrypt.genSalt(+configService.get('PASSWORD_SALT'));
   const passwordHash = await bcrypt.hash(password, salt);
@@ -34,7 +34,7 @@ export async function getPasswordHash(password: string) {
   return passwordHash;
 }
 
-export async function verifyPassword(password: string, passwordHash: string) {
+export async function verifyHash(password: string, passwordHash: string) {
   const isCorrect = await bcrypt.compare(password, passwordHash);
   if (!isCorrect) {
     throw new ConflictException('Password is wrong');

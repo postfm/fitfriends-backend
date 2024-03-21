@@ -4,7 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import { fillDto, getPasswordHash } from 'src/helpers/common';
+import { fillDto, getHash } from 'src/helpers/common';
 import { UserRdo } from './rdo/user.rdo';
 
 @Injectable()
@@ -12,19 +12,6 @@ export class UsersService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
-
-  async create(createUserDto: CreateUserDto) {
-    const existsUser = await this.userRepository.findOneBy({
-      email: createUserDto.email,
-    });
-    if (existsUser) throw new BadRequestException('This email already exists!');
-
-    const user = await this.userRepository.save(
-      await this.toPOJO(createUserDto),
-    );
-
-    return fillDto(UserRdo, user);
-  }
 
   findAll() {
     return `This action returns all users`;
@@ -41,12 +28,13 @@ export class UsersService {
     return existsUser;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    const user = await this.userRepository.findOneBy({ id: id });
+    return fillDto(UserRdo, user);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    return this.userRepository.update(id, updateUserDto);
   }
 
   remove(id: number) {
@@ -58,7 +46,7 @@ export class UsersService {
       name: entity.name,
       email: entity.email,
       avatar: entity.avatar,
-      password: String(await getPasswordHash(entity.password)),
+      password: String(await getHash(entity.password)),
       gender: entity.gender,
       birthday: entity.birthday,
       role: entity.role,

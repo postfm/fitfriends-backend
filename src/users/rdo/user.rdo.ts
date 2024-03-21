@@ -54,4 +54,7 @@ export class UserRdo {
 
   @Expose()
   readyToTrain: boolean;
+
+  @Expose()
+  refreshToken: string;
 }
