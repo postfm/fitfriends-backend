@@ -1,3 +1,5 @@
+import { SortDirection } from '../types/sort-direction.interface';
+
 export enum GenderTypes {
   'женский' = 'женский',
   'мужской' = 'мужской',
@@ -29,3 +31,10 @@ export enum TimeOfTraining {
   '50-80 мин' = '50-80 мин',
   '80-100 мин' = '80-100 мин',
 }
+
+export const DefaultValue = {
+  UsersCountLimit: 50,
+  SortDirection: SortDirection.Desc,
+  PageCount: 1,
+  SortType: 'role',
+};

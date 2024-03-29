@@ -13,8 +13,10 @@ export class UsersService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll() {
+    const [usersWithPagination, count] =
+      await this.userRepository.findAndCount();
+    return fillDto(UserRdo, usersWithPagination);
   }
 
   async findOneByEmail(email: string) {

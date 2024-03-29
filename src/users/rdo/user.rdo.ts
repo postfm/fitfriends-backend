@@ -56,5 +56,14 @@ export class UserRdo {
   readyToTrain: boolean;
 
   @Expose()
+  certificates: string;
+
+  @Expose()
+  merits: string;
+
+  @Expose()
+  personalTrainings: boolean;
+
+  @Expose()
   refreshToken: string;
 }
