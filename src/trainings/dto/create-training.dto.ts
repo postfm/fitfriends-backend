@@ -23,7 +23,7 @@ export class CreateTrainingDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(1, { message: '' })
-  @MaxLength(1, { message: '' })
+  @MaxLength(15, { message: '' })
   name: string;
 
   @IsString()

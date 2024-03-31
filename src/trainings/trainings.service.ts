@@ -4,6 +4,8 @@ import { UpdateTrainingDto } from './dto/update-training.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Training } from './entities/training.entity';
 import { Repository } from 'typeorm';
+import { fillDto } from 'src/helpers/common';
+import { TrainingRdo } from './rdo/training.rdo';
 
 @Injectable()
 export class TrainingsService {
@@ -20,15 +22,16 @@ export class TrainingsService {
   }
 
   findAll() {
-    return `This action returns all trainings`;
+    return this.trainingRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} training`;
+  async findOne(id: number) {
+    const training = await this.trainingRepository.findOneBy({ id: id });
+    return fillDto(TrainingRdo, training);
   }
 
-  update(id: number, updateTrainingDto: UpdateTrainingDto) {
-    return `This action updates a #${id} training`;
+  async update(id: number, updateTrainingDto: UpdateTrainingDto) {
+    return this.trainingRepository.update(id, updateTrainingDto);
   }
 
   remove(id: number) {
