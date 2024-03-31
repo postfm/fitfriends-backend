@@ -1,7 +1,9 @@
+import { Training } from 'src/trainings/entities/training.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -87,4 +89,7 @@ export class User {
 
   @Column({ name: 'refresh_token', nullable: true })
   refreshToken: string;
+
+  @OneToMany(() => Training, (training) => training.user)
+  trainings: Training[];
 }
