@@ -3,6 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -57,9 +58,6 @@ export class Training {
   @Column()
   rating: number;
 
-  @Column()
-  trainer: number;
-
   @Column({ name: 'special_offer' })
   specialOffer: boolean;
 
@@ -70,5 +68,6 @@ export class Training {
   updatedAt: Date;
 
   @ManyToOne(() => User, (user) => user.trainings)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 }

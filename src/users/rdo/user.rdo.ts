@@ -20,7 +20,7 @@ export class UserRdo {
   birthday: Date;
 
   @Expose()
-  role: string;
+  roles: string[];
 
   @Expose()
   description: string;

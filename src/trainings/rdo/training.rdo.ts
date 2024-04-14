@@ -38,8 +38,5 @@ export class TrainingRdo {
   rating: number;
 
   @Expose()
-  trainer: number;
-
-  @Expose()
   specialOffer: boolean;
 }

@@ -4,12 +4,12 @@ Content-Type: application/json
 
 {
   "name": "John",
-  "email": "john4@local.com",
+  "email": "john@user.com",
   "avatar": "/store/avatar.jpg",
   "password": "123456",
   "gender": "женский",
   "birthday": "2024-11-03",
-  "role": "пользователь",
+  "roles": ["пользователь"],
   "description": "Описание пользователя",
   "location": "Удельная",
   "image": "store/avatar.jpg",
@@ -28,12 +28,12 @@ Content-Type: application/json
 
 {
   "name": "John",
-  "email": "john6@local.com",
+  "email": "john@trainer.com",
   "avatar": "/store/avatar.jpg",
   "password": "123456",
   "gender": "женский",
   "birthday": "2024-11-03",
-  "role": "тренер",
+  "roles": ["тренер"],
   "description": "Описание пользователя",
   "location": "Удельная",
   "image": "store/avatar.jpg",

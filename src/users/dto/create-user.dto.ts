@@ -54,10 +54,10 @@ export class CreateUserDto {
   @IsOptional()
   birthday?: Date;
 
-  @IsString()
+  @IsArray()
   @IsNotEmpty()
-  @IsEnum(UserRoles)
-  role: string;
+  @IsEnum(UserRoles, { each: true })
+  roles: string[];
 
   @IsString()
   @IsNotEmpty()

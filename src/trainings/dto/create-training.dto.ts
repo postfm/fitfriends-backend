@@ -75,10 +75,6 @@ export class CreateTrainingDto {
   @IsNotEmpty()
   rating: number;
 
-  @IsInt()
-  @IsNotEmpty()
-  trainer: number;
-
   @IsBoolean()
   @IsNotEmpty()
   specialOffer: boolean;

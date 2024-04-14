@@ -47,7 +47,11 @@ export class AuthService {
       password: String(hashedPassword),
     });
 
-    const tokens = await this.getTokens(newUser.id, newUser.email);
+    const tokens = await this.getTokens(
+      newUser.id,
+      newUser.email,
+      newUser.roles,
+    );
     await this.updateRefreshToken(newUser.id, tokens.refreshToken);
 
     return fillDto(UserRdo, newUser);
@@ -55,7 +59,7 @@ export class AuthService {
 
   async login(data: AuthDto) {
     const user = await this.usersService.findOneByEmail(data.email);
-    const tokens = await this.getTokens(user.id, user.email);
+    const tokens = await this.getTokens(user.id, user.email, user.roles);
     await this.updateRefreshToken(user.id, tokens.refreshToken);
     return tokens;
   }
@@ -64,12 +68,13 @@ export class AuthService {
     return this.usersService.update(userId, { refreshToken: '' });
   }
 
-  async getTokens(userId: number, email: string) {
+  async getTokens(userId: number, email: string, roles: string[]) {
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(
         {
           sub: userId,
           email,
+          roles,
         },
         {
           secret: this.configService.get<string>('JWT_AT_SECRET'),
@@ -80,6 +85,7 @@ export class AuthService {
         {
           sub: userId,
           email,
+          roles,
         },
         {
           secret: this.configService.get<string>('JWT_RT_SECRET'),
@@ -110,7 +116,7 @@ export class AuthService {
       user.refreshToken,
     );
     if (!refreshTokenMatches) throw new ForbiddenException('Access Denied');
-    const tokens = await this.getTokens(user.id, user.email);
+    const tokens = await this.getTokens(user.id, user.email, user.roles);
     await this.updateRefreshToken(user.id, tokens.refreshToken);
     return tokens;
   }

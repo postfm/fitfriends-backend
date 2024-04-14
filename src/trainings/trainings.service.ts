@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateTrainingDto } from './dto/create-training.dto';
 import { UpdateTrainingDto } from './dto/update-training.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -14,11 +14,21 @@ export class TrainingsService {
     private readonly trainingRepository: Repository<Training>,
   ) {}
 
-  async create(createTrainingDto: CreateTrainingDto) {
-    const training = await this.trainingRepository.save(
-      this.toPOJO(createTrainingDto),
-    );
-    return training;
+  async create(createTrainingDto: CreateTrainingDto, id: number) {
+    const isExist = await this.trainingRepository.findBy({
+      user: { id },
+      name: createTrainingDto.name,
+    });
+
+    if (isExist.length) {
+      throw new BadRequestException('This training already exists!');
+    }
+    const newTraining = {
+      ...createTrainingDto,
+      user: { id },
+    };
+
+    return await this.trainingRepository.save(newTraining);
   }
 
   findAll() {
@@ -34,10 +44,6 @@ export class TrainingsService {
     return this.trainingRepository.update(id, updateTrainingDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} training`;
-  }
-
   toPOJO(entity: CreateTrainingDto) {
     return {
       name: entity.name,
@@ -51,7 +57,6 @@ export class TrainingsService {
       gender: entity.gender,
       video: entity.video,
       rating: entity.rating,
-      trainer: entity.trainer,
       specialOffer: entity.specialOffer,
     };
   }

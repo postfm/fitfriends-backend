@@ -31,7 +31,7 @@ export class User {
   birthday: Date;
 
   @Column('enum', { enum: ['тренер', 'пользователь'] })
-  role: string;
+  roles: string[];
 
   @Column()
   description: string;
@@ -90,6 +90,8 @@ export class User {
   @Column({ name: 'refresh_token', nullable: true })
   refreshToken: string;
 
-  @OneToMany(() => Training, (training) => training.user)
+  @OneToMany(() => Training, (training) => training.user, {
+    onDelete: 'CASCADE',
+  })
   trainings: Training[];
 }

@@ -51,7 +51,7 @@ export class UsersService {
       password: String(await getHash(entity.password)),
       gender: entity.gender,
       birthday: entity.birthday,
-      role: entity.role,
+      roles: entity.roles,
       description: entity.description,
       location: entity.location,
       image: entity.image,
