@@ -1,3 +1,4 @@
+import { Order } from 'src/orders/entities/order.entity';
 import { Training } from 'src/trainings/entities/training.entity';
 import {
   Column,
@@ -94,4 +95,9 @@ export class User {
     onDelete: 'CASCADE',
   })
   trainings: Training[];
+
+  @OneToMany(() => Order, (order) => order.user, {
+    onDelete: 'CASCADE',
+  })
+  orders: Order[];
 }

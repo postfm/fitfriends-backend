@@ -1,7 +1,12 @@
+import { Training } from 'src/trainings/entities/training.entity';
+import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -12,9 +17,6 @@ export class Order {
 
   @Column('enum', { enum: ['абонемент'] })
   type: string;
-
-  @Column()
-  training: number;
 
   @Column()
   price: number;
@@ -33,4 +35,13 @@ export class Order {
 
   @CreateDateColumn({ name: 'updated_at', type: 'timestamp with time zone' })
   updatedAt: Date;
+
+  @OneToMany(() => Training, (training) => training.order, {
+    onDelete: 'CASCADE',
+  })
+  trainings: Training[];
+
+  @ManyToOne(() => User, (user) => user.orders)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 }

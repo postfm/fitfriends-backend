@@ -6,6 +6,7 @@ import { Training } from './entities/training.entity';
 import { Repository } from 'typeorm';
 import { fillDto } from 'src/helpers/common';
 import { TrainingRdo } from './rdo/training.rdo';
+import { PaginateQuery, Paginated, paginate } from 'nestjs-paginate';
 
 @Injectable()
 export class TrainingsService {
@@ -31,8 +32,16 @@ export class TrainingsService {
     return await this.trainingRepository.save(newTraining);
   }
 
-  findAll() {
-    return this.trainingRepository.find();
+  findAll(query: PaginateQuery): Promise<Paginated<Training>> {
+    return paginate(query, this.trainingRepository, {
+      filterableColumns: {
+        price: true,
+        calories: true,
+        rating: true,
+        duration: true,
+      },
+      sortableColumns: ['createdAt'],
+    });
   }
 
   async findOne(id: number) {

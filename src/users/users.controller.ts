@@ -5,6 +5,8 @@ import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { Roles } from 'src/auth/roles/roles.decorator';
 import { Role } from 'src/auth/roles/role.enum';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Paginate, PaginateQuery, Paginated } from 'nestjs-paginate';
+import { User } from './entities/user.entity';
 
 @Controller('users')
 export class UsersController {
@@ -13,8 +15,8 @@ export class UsersController {
   @Get()
   @Roles(Role.User)
   @UseGuards(AccessTokenGuard, RolesGuard)
-  findAll() {
-    return this.usersService.findAll();
+  public findAll(@Paginate() query: PaginateQuery): Promise<Paginated<User>> {
+    return this.usersService.findAll(query);
   }
 
   @Get(':id')

@@ -36,7 +36,6 @@ export class OrdersService {
   toPOJO(entity: CreateOrderDto) {
     return {
       type: entity.type,
-      training: entity.training,
       price: entity.price,
       amount: entity.amount,
       sum: entity.sum,

@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { fillDto, getHash } from 'src/helpers/common';
 import { UserRdo } from './rdo/user.rdo';
+import { PaginateQuery, Paginated, paginate } from 'nestjs-paginate';
 
 @Injectable()
 export class UsersService {
@@ -13,10 +14,16 @@ export class UsersService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
 
-  async findAll() {
-    const [usersWithPagination, count] =
-      await this.userRepository.findAndCount();
-    return fillDto(UserRdo, usersWithPagination);
+  async findAll(query: PaginateQuery): Promise<Paginated<User>> {
+    return paginate(query, this.userRepository, {
+      relations: ['trainings'],
+      sortableColumns: ['roles'],
+      filterableColumns: {
+        location: true,
+        levelOfTrain: true,
+        'trainings.type': true,
+      },
+    });
   }
 
   async findOneByEmail(email: string) {

@@ -15,10 +15,6 @@ export class CreateOrderDto {
   @IsEnum(TypeOrder)
   type: string;
 
-  @IsInt()
-  @IsNotEmpty()
-  training: number;
-
   @IsNumber()
   @IsNotEmpty()
   price: number;
