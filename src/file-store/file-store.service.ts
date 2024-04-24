@@ -26,6 +26,8 @@ export class FileStoreService {
   }
 
   public async saveFile(file: Express.Multer.File): Promise<string> {
+    console.log(this.getUploadDirectoryPath());
+
     try {
       const uploadDirectoryPath = this.getUploadDirectoryPath();
       const filename = randomUUID();
