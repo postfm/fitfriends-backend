@@ -21,10 +21,10 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "name": "Утренняя",
+  "name": "Дневная",
   "image": "store/training.jpg",
   "level": "любитель",
-  "type": "бег",
+  "type": "бокс",
   "duration": "10-30 мин",
   "price": 150,
   "calories": 1500,

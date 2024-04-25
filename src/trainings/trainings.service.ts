@@ -44,29 +44,14 @@ export class TrainingsService {
     });
   }
 
-  async findOne(id: number) {
-    const training = await this.trainingRepository.findOneBy({ id: id });
+  async findOne(training_id: number) {
+    const training = await this.trainingRepository.findOneBy({
+      training_id: training_id,
+    });
     return fillDto(TrainingRdo, training);
   }
 
   async update(id: number, updateTrainingDto: UpdateTrainingDto) {
     return this.trainingRepository.update(id, updateTrainingDto);
-  }
-
-  toPOJO(entity: CreateTrainingDto) {
-    return {
-      name: entity.name,
-      image: entity.image,
-      level: entity.level,
-      type: entity.type,
-      duration: entity.duration,
-      price: entity.price,
-      calories: entity.calories,
-      description: entity.description,
-      gender: entity.gender,
-      video: entity.video,
-      rating: entity.rating,
-      specialOffer: entity.specialOffer,
-    };
   }
 }

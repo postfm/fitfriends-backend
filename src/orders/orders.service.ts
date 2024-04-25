@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,9 +12,27 @@ export class OrdersService {
     private readonly orderRepository: Repository<Order>,
   ) {}
 
-  async create(createOrderDto: CreateOrderDto) {
-    const order = await this.orderRepository.save(this.toPOJO(createOrderDto));
-    return order;
+  async create(
+    createOrderDto: CreateOrderDto,
+    id: number,
+    training_id: number,
+  ) {
+    const isExist = await this.orderRepository.findBy({
+      user: { id },
+      training: { training_id },
+    });
+
+    if (isExist.length) {
+      throw new BadRequestException('This order already exists!');
+    }
+    const sum = createOrderDto.amount * createOrderDto.price;
+    const newOrder = {
+      ...createOrderDto,
+      sum: sum,
+      user: { id },
+      training: { training_id },
+    };
+    return await this.orderRepository.save(newOrder);
   }
 
   findAll() {
@@ -38,7 +56,6 @@ export class OrdersService {
       type: entity.type,
       price: entity.price,
       amount: entity.amount,
-      sum: entity.sum,
       pay: entity.pay,
     };
   }

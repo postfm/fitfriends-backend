@@ -6,7 +6,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -33,13 +32,9 @@ export class Order {
   @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
   cratedAt: Date;
 
-  @CreateDateColumn({ name: 'updated_at', type: 'timestamp with time zone' })
-  updatedAt: Date;
-
-  @OneToMany(() => Training, (training) => training.order, {
-    onDelete: 'CASCADE',
-  })
-  trainings: Training[];
+  @ManyToOne(() => Training, (training) => training.orders)
+  @JoinColumn({ name: 'training_id' })
+  training: Training;
 
   @ManyToOne(() => User, (user) => user.orders)
   @JoinColumn({ name: 'user_id' })

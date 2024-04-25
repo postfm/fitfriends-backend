@@ -8,6 +8,7 @@ import {
   Min,
 } from 'class-validator';
 import { TypeOrder, TypePay } from 'src/helpers/constants/order.constants';
+import { AmountValue } from './create-order.constant';
 
 export class CreateOrderDto {
   @IsString()
@@ -21,12 +22,11 @@ export class CreateOrderDto {
 
   @IsInt()
   @IsNotEmpty()
-  @Min(1, { message: '' })
-  @Max(50, { message: '' })
+  @Min(AmountValue.minValue, { message: 'The value must not be less than 1' })
+  @Max(AmountValue.maxValue, {
+    message: 'The value should not be more than 50',
+  })
   amount: number;
-
-  @IsNumber()
-  sum: number;
 
   @IsString()
   @IsNotEmpty()

@@ -6,13 +6,14 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity()
 export class Training {
   @PrimaryGeneratedColumn()
-  id: number;
+  training_id: number;
 
   @Column()
   name: string;
@@ -72,7 +73,7 @@ export class Training {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @ManyToOne(() => Order, (order) => order.trainings)
+  @OneToMany(() => Order, (order) => order.training)
   @JoinColumn({ name: 'order_id' })
-  order: Order;
+  orders: Order[];
 }
