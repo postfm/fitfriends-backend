@@ -56,3 +56,9 @@ Authorization: Bearer {{AToken}}
 GET http://localhost:4000/fitfriends/trainings?sortBy=createdAt:DESC&filter.price=$btw:101,160 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{AToken}}
+
+###
+# Получение списка купленных тренировок с фильтрами и сортировкой
+GET http://localhost:4000/fitfriends/trainings/orders?sortBy=createdAt:DESC&filter.orders=$eq:[] HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
