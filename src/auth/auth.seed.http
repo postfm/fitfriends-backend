@@ -20,7 +20,8 @@ Content-Type: application/json
   "timeOfTraining": "10-30 мин",
   "caloriesToLose": 2000,
   "caloriesPerDay": 3000,
-  "readyToTrain": true
+  "readyToTrain": true,
+  "friends":[]
 }
 
 ###
@@ -45,7 +46,8 @@ Content-Type: application/json
   "timeOfTraining": "30-50 мин",
   "caloriesToLose": 2000,
   "caloriesPerDay": 3400,
-  "readyToTrain": true
+  "readyToTrain": true,
+  "friends":[]
 }
 
 ###
@@ -70,7 +72,8 @@ Content-Type: application/json
   "timeOfTraining": "10-30 мин",
   "caloriesToLose": 3000,
   "caloriesPerDay": 4500,
-  "readyToTrain": false
+  "readyToTrain": false,
+  "friends":[]
 }
 
 ###
@@ -94,7 +97,8 @@ Content-Type: application/json
   "typeOfTraining": ["стрейчинг","кроссфит"],
   "certificates": "/store/certificates.pdf",
   "merits": "Мастер спорта",
-  "personalTrainings": false
+  "personalTrainings": false,
+  "friends":[]
 }
 
 ###
@@ -118,7 +122,8 @@ Content-Type: application/json
   "typeOfTraining": ["аэробика","пилатес"],
   "certificates": "/store/certificates.pdf",
   "merits": "Чемпионка республики",
-  "personalTrainings": true
+  "personalTrainings": true,
+  "friends":[]
 }
 
 ###
@@ -142,5 +147,6 @@ Content-Type: application/json
   "typeOfTraining": ["бокс","кроссфит"],
   "certificates": "/store/certificates.pdf",
   "merits": "Чемпионка города",
-  "personalTrainings": true
+  "personalTrainings": true,
+    "friends":[]
 }

@@ -107,4 +107,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
 
   @IsOptional()
   refreshToken?: string;
+
+  @IsArray()
+  friends?: number[];
 }

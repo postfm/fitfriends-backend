@@ -18,7 +18,8 @@ Content-Type: application/json
   "timeOfTraining": "10-30 мин",
   "caloriesToLose": 2000,
   "caloriesPerDay": 2000,
-  "readyToTrain": true
+  "readyToTrain": true,
+  "friends":[]
 }
 
 ###
@@ -41,7 +42,8 @@ Content-Type: application/json
   "typeOfTraining": ["стрейчинг","кроссфит"],
   "certificates": "/store/certificates.pdf",
   "merits": "Кандидат в мастера спорта",
-  "personalTrainings": true
+  "personalTrainings": true,
+  "friends":[]
 }
 
 

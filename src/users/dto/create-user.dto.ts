@@ -122,4 +122,7 @@ export class CreateUserDto {
   @IsBoolean()
   @IsOptional()
   personalTrainings: boolean;
+
+  @IsArray()
+  friends: number[];
 }

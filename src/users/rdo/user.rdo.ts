@@ -66,4 +66,7 @@ export class UserRdo {
 
   @Expose()
   refreshToken: string;
+
+  @Expose()
+  friends: number[];
 }
