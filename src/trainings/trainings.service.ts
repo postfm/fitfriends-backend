@@ -19,6 +19,7 @@ export class TrainingsService {
     const isExist = await this.trainingRepository.findBy({
       user: { id },
       name: createTrainingDto.name,
+      type: createTrainingDto.type,
     });
 
     if (isExist.length) {

@@ -3,11 +3,11 @@ POST http://localhost:4000/fitfriends/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "John",
-  "email": "john@user.com",
+  "name": "Kelvin",
+  "email": "kelvin@user.com",
   "avatar": "/store/avatar.jpg",
   "password": "123456",
-  "gender": "женский",
+  "gender": "неважно",
   "birthday": "2024-11-03",
   "roles": ["пользователь"],
   "description": "Описание пользователя",
@@ -27,8 +27,8 @@ POST http://localhost:4000/fitfriends/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "John",
-  "email": "john@trainer.com",
+  "name": "Lora",
+  "email": "lora@trainer.com",
   "avatar": "/store/avatar.jpg",
   "password": "123456",
   "gender": "женский",
@@ -37,10 +37,10 @@ Content-Type: application/json
   "description": "Описание пользователя",
   "location": "Удельная",
   "image": "store/avatar.jpg",
-  "levelOfTrain": "новичок",
+  "levelOfTrain": "профессионал",
   "typeOfTraining": ["стрейчинг","кроссфит"],
   "certificates": "/store/certificates.pdf",
-  "merits": "Крутой",
+  "merits": "Кандидат в мастера спорта",
   "personalTrainings": true
 }
 
@@ -51,7 +51,7 @@ POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "john5@local.com",
+  "email": "john@local.com",
   "password": "123456"
 }
 
