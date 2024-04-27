@@ -37,14 +37,3 @@ Content-Type: application/json
 GET  http://localhost:4000/fitfriends/users?sortBy=roles:DESC&filter.location=Удельная&filter.levelOfTrain=новичок&filter.trainings.type=йога HTTP/1.1
 Authorization: Bearer {{AToken}}
 Content-Type: application/json
-
-###
-
-#Добавление пользователя в друзья
-PATCH  http://localhost:4000/fitfriends/users/friends/4 HTTP/1.1
-Authorization: Bearer {{AToken}}
-Content-Type: application/json
-
-{
-  "friends":[]
-}

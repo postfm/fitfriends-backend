@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Body,
-  Patch,
-  Param,
-  UseGuards,
-  Req,
-} from '@nestjs/common';
+import { Controller, Get, Body, Patch, Param, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
@@ -37,20 +29,5 @@ export class UsersController {
   @UseGuards(AccessTokenGuard)
   update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
-  }
-
-  @Patch('friends/:friend_id')
-  @Roles(Role.User)
-  @UseGuards(AccessTokenGuard, RolesGuard)
-  addFriend(
-    @Param('friend_id') friend_id: string,
-    @Req() req,
-    @Body() updateUserDto: UpdateUserDto,
-  ) {
-    return this.usersService.addFriend(
-      +req.user.sub,
-      +friend_id,
-      updateUserDto,
-    );
   }
 }

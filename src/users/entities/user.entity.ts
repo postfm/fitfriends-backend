@@ -91,9 +91,6 @@ export class User {
   @Column({ name: 'refresh_token', nullable: true })
   refreshToken: string;
 
-  @Column('simple-array')
-  friends: number[];
-
   @OneToMany(() => Training, (training) => training.user, {
     onDelete: 'CASCADE',
   })

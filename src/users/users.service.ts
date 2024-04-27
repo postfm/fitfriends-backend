@@ -70,34 +70,4 @@ export class UsersService {
       readyToTrain: entity.readyToTrain,
     };
   }
-
-  async addFriend(
-    user_id: number,
-    friend_id: number,
-    updateUserDto: UpdateUserDto,
-  ) {
-    console.log(updateUserDto.friends);
-    let user;
-    let friend;
-    const users = await this.userRepository.findOneBy({ id: user_id });
-    if (users) {
-      user = [...users.friends, friend_id];
-    }
-    const friends = await this.userRepository.findOneBy({ id: friend_id });
-    if (friends) {
-      friend = [...friends.friends, user_id];
-    }
-    const newUser = {
-      ...updateUserDto,
-      friends: user,
-    };
-    const newFriend = {
-      ...updateUserDto,
-      friends: friend,
-    };
-
-    await this.userRepository.update(user_id, newUser);
-
-    return this.userRepository.update(friend_id, newFriend);
-  }
 }
