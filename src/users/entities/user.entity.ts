@@ -1,3 +1,4 @@
+import { Friend } from 'src/friends/entities/friend.entity';
 import { Order } from 'src/orders/entities/order.entity';
 import { Training } from 'src/trainings/entities/training.entity';
 import {
@@ -5,6 +6,7 @@ import {
   CreateDateColumn,
   Entity,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -100,4 +102,7 @@ export class User {
     onDelete: 'CASCADE',
   })
   orders: Order[];
+
+  @OneToOne(() => Friend, (friend) => friend.friend)
+  friend: Friend;
 }
