@@ -22,6 +22,12 @@ import { Training } from './entities/training.entity';
 export class TrainingsController {
   constructor(private readonly trainingsService: TrainingsService) {}
 
+  @Get('catalog')
+  @UseGuards(AccessTokenGuard)
+  catalog(@Paginate() query: PaginateQuery): Promise<Paginated<Training>> {
+    return this.trainingsService.catalog(query);
+  }
+
   @Post()
   @Roles(Role.Admin)
   @UseGuards(AccessTokenGuard, RolesGuard)
