@@ -38,12 +38,6 @@ export class ReviewsService {
     // Сохраняем новый отзыв в БД
     const saveReview = this.reviewRepository.save(newReview);
 
-    await this.dataSource
-      .getRepository(Review)
-      .createQueryBuilder('review')
-      .where('review.training=:training_id', { training_id: training_id })
-      .getMany();
-
     // Считаем рейтинг с учетом добавленного
     const review = await this.dataSource
       .getRepository(Review)
