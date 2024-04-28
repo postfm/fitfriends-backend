@@ -105,7 +105,7 @@ export class User {
   orders: Order[];
 
   @OneToOne(() => Friend, (friend) => friend.friend)
-  friend: Friend;
+  friends: Friend[];
 
   @OneToMany(() => Review, (review) => review.user)
   reviews: Review[];

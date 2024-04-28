@@ -30,10 +30,18 @@ export class FriendsController {
   findAll(@Req() req) {
     return this.friendsService.findAll(+req.user.sub);
   }
+
   @Delete(':friend_id')
   @Roles(Role.User)
   @UseGuards(AccessTokenGuard, RolesGuard)
   remove(@Param('friend_id') friend_id: string, @Req() req) {
     return this.friendsService.remove(+req.user.sub, +friend_id);
+  }
+
+  @Get('trainer')
+  @Roles(Role.Admin)
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  trainerFindAll(@Req() req) {
+    return this.friendsService.findAll(+req.user.sub);
   }
 }

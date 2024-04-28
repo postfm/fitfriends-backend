@@ -15,7 +15,7 @@ export class Friend {
   @Column()
   user_id: number;
 
-  @OneToOne(() => User, (user) => user.friend)
+  @OneToOne(() => User, (user) => user.friends)
   @JoinColumn({ name: 'friend_id' })
   friend: User;
 }

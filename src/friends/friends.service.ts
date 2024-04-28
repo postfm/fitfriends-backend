@@ -1,13 +1,14 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Friend } from './entities/friend.entity';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 
 @Injectable()
 export class FriendsService {
   constructor(
     @InjectRepository(Friend)
     private readonly friendsRepository: Repository<Friend>,
+    private readonly dataSource: DataSource,
   ) {}
 
   async create(user_id: number, friend_id: number) {
