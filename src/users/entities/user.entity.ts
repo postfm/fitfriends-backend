@@ -1,5 +1,6 @@
 import { Friend } from 'src/friends/entities/friend.entity';
 import { Order } from 'src/orders/entities/order.entity';
+import { Review } from 'src/reviews/entities/review.entity';
 import { Training } from 'src/trainings/entities/training.entity';
 import {
   Column,
@@ -105,4 +106,7 @@ export class User {
 
   @OneToOne(() => Friend, (friend) => friend.friend)
   friend: Friend;
+
+  @OneToMany(() => Review, (review) => review.user)
+  reviews: Review[];
 }

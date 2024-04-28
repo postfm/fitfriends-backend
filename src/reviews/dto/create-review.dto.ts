@@ -11,14 +11,6 @@ import {
 export class CreateReviewDto {
   @IsInt()
   @IsNotEmpty()
-  author: number;
-
-  @IsInt()
-  @IsNotEmpty()
-  training: number;
-
-  @IsInt()
-  @IsNotEmpty()
   @Min(1, { message: 'The grade cannot be less than 1' })
   @Max(5, { message: 'The grade cannot be more than 5' })
   grade: number;

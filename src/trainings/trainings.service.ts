@@ -15,20 +15,6 @@ export class TrainingsService {
     private readonly trainingRepository: Repository<Training>,
   ) {}
 
-  catalog(query: PaginateQuery): Promise<Paginated<Training>> {
-    console.log(query);
-
-    return paginate(query, this.trainingRepository, {
-      filterableColumns: {
-        price: true,
-        calories: true,
-        rating: true,
-        type: true,
-      },
-      sortableColumns: ['price'],
-    });
-  }
-
   async create(createTrainingDto: CreateTrainingDto, id: number) {
     const isExist = await this.trainingRepository.findBy({
       user: { id },
@@ -56,6 +42,18 @@ export class TrainingsService {
         duration: true,
       },
       sortableColumns: ['createdAt'],
+    });
+  }
+
+  catalog(query: PaginateQuery): Promise<Paginated<Training>> {
+    return paginate(query, this.trainingRepository, {
+      filterableColumns: {
+        price: true,
+        calories: true,
+        rating: true,
+        type: true,
+      },
+      sortableColumns: ['price'],
     });
   }
 

@@ -1,4 +1,5 @@
 import { Order } from 'src/orders/entities/order.entity';
+import { Review } from 'src/reviews/entities/review.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Column,
@@ -57,7 +58,7 @@ export class Training {
   @Column()
   video: string;
 
-  @Column()
+  @Column({ type: 'real' })
   rating: number;
 
   @Column({ name: 'special_offer' })
@@ -73,7 +74,10 @@ export class Training {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @OneToMany(() => Order, (order) => order.training)
+  @OneToMany(() => Order, (order) => order.training, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'order_id' })
   orders: Order[];
+
+  @OneToMany(() => Review, (review) => review.training, { onDelete: 'CASCADE' })
+  reviews: Review[];
 }

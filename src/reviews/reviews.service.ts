@@ -1,46 +1,75 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';
-import { UpdateReviewDto } from './dto/update-review.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { Review } from './entities/review.entity';
+import { Training } from 'src/trainings/entities/training.entity';
 
 @Injectable()
 export class ReviewsService {
   constructor(
     @InjectRepository(Review)
     private readonly reviewRepository: Repository<Review>,
+    private readonly dataSource: DataSource,
   ) {}
 
-  async create(createReviewDto: CreateReviewDto) {
-    const review = await this.reviewRepository.save(
-      this.toPOJO(createReviewDto),
-    );
-    return review;
-  }
+  async create(
+    createReviewDto: CreateReviewDto,
+    user_id: number,
+    training_id: number,
+  ) {
+    const isExist = await this.reviewRepository.findBy({
+      training: { training_id: training_id },
+      user: { id: user_id },
+    });
 
-  findAll() {
-    return `This action returns all reviews`;
-  }
+    if (isExist.length) {
+      throw new BadRequestException(
+        'You have already written a review for this training!',
+      );
+    }
 
-  findOne(id: number) {
-    return `This action returns a #${id} review`;
-  }
-
-  update(id: number, updateReviewDto: UpdateReviewDto) {
-    return `This action updates a #${id} review`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} review`;
-  }
-
-  toPOJO(entity: CreateReviewDto) {
-    return {
-      author: entity.author,
-      training: entity.training,
-      grade: entity.grade,
-      text: entity.text,
+    const newReview = {
+      ...createReviewDto,
+      user: { id: user_id },
+      training: { training_id },
     };
+
+    // Сохраняем новый отзыв в БД
+    const saveReview = this.reviewRepository.save(newReview);
+
+    await this.dataSource
+      .getRepository(Review)
+      .createQueryBuilder('review')
+      .where('review.training=:training_id', { training_id: training_id })
+      .getMany();
+
+    // Считаем рейтинг с учетом добавленного
+    const review = await this.dataSource
+      .getRepository(Review)
+      .createQueryBuilder('review')
+      .select('AVG(review.grade)', 'avg')
+      .where('review.training=:training_id', { training_id: training_id })
+      .getRawOne();
+
+    // Обновляем рейтинг в таблице тренировок
+    await this.dataSource
+      .createQueryBuilder()
+      .update(Training)
+      .set({ rating: review.avg })
+      .where('training_id = :training_id', { training_id: training_id })
+      .execute();
+
+    return saveReview;
+  }
+
+  async findAll(training_id: number) {
+    const reviews = await this.dataSource
+      .getRepository(Review)
+      .createQueryBuilder('review')
+      .where('review.training=:training_id', { training_id: training_id })
+      .getMany();
+
+    return reviews;
   }
 }

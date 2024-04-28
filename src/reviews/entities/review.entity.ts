@@ -1,7 +1,11 @@
+import { Training } from 'src/trainings/entities/training.entity';
+import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -9,12 +13,6 @@ import {
 export class Review {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column()
-  author: number;
-
-  @Column()
-  training: number;
 
   @Column()
   grade: number;
@@ -25,6 +23,11 @@ export class Review {
   @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
   createdAt: Date;
 
-  @CreateDateColumn({ name: 'update_at', type: 'timestamp with time zone' })
-  updatedAt: Date;
+  @ManyToOne(() => User, (user) => user.reviews)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
+
+  @ManyToOne(() => Training, (training) => training.reviews)
+  @JoinColumn({ name: 'training_id' })
+  training: Training;
 }
