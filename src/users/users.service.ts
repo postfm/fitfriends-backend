@@ -16,7 +16,7 @@ export class UsersService {
 
   async findAll(query: PaginateQuery): Promise<Paginated<User>> {
     return paginate(query, this.userRepository, {
-      relations: ['trainings'],
+      relations: ['trainings', 'orders'],
       sortableColumns: ['roles'],
       filterableColumns: {
         location: true,

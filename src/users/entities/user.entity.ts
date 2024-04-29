@@ -1,3 +1,4 @@
+import { Balance } from 'src/balances/entities/balance.entity';
 import { Friend } from 'src/friends/entities/friend.entity';
 import { Order } from 'src/orders/entities/order.entity';
 import { Review } from 'src/reviews/entities/review.entity';
@@ -109,4 +110,7 @@ export class User {
 
   @OneToMany(() => Review, (review) => review.user)
   reviews: Review[];
+
+  @OneToOne(() => Balance, (balance) => balance.user)
+  balance: Balance;
 }

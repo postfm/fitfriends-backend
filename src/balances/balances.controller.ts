@@ -1,34 +1,42 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { BalancesService } from './balances.service';
 import { CreateBalanceDto } from './dto/create-balance.dto';
 import { UpdateBalanceDto } from './dto/update-balance.dto';
+import { Roles } from 'src/auth/roles/roles.decorator';
+import { Role } from 'src/auth/roles/role.enum';
+import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 @Controller('balances')
 export class BalancesController {
   constructor(private readonly balancesService: BalancesService) {}
 
   @Post()
-  create(@Body() createBalanceDto: CreateBalanceDto) {
-    return this.balancesService.create(createBalanceDto);
+  @Roles(Role.User)
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  create(@Body() createBalanceDto: CreateBalanceDto, @Req() req) {
+    return this.balancesService.create(createBalanceDto, +req.user.sub);
   }
 
   @Get()
-  findAll() {
-    return this.balancesService.findAll();
+  @Roles(Role.User)
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  findAll(@Req() req) {
+    return this.balancesService.findAll(+req.user.sub);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.balancesService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBalanceDto: UpdateBalanceDto) {
-    return this.balancesService.update(+id, updateBalanceDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.balancesService.remove(+id);
+  @Patch()
+  @Roles(Role.User)
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  update(@Req() req, @Body() updateBalanceDto: UpdateBalanceDto) {
+    return this.balancesService.update(updateBalanceDto, +req.user.sub);
   }
 }

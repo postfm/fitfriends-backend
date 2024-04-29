@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateBalanceDto } from './dto/create-balance.dto';
 import { UpdateBalanceDto } from './dto/update-balance.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,33 +12,53 @@ export class BalancesService {
     private readonly balanceRepository: Repository<Balance>,
   ) {}
 
-  async create(createBalanceDto: CreateBalanceDto) {
-    const balance = await this.balanceRepository.save(
-      this.toPOJO(createBalanceDto),
-    );
-    return balance;
-  }
+  async create(createBalanceDto: CreateBalanceDto, user_id: number) {
+    const isExist = await this.balanceRepository.findOneBy({
+      user: { id: user_id },
+    });
 
-  findAll() {
-    return `This action returns all balances`;
-  }
+    if (isExist) {
+      throw new BadRequestException('Your balance have already had exist');
+    }
 
-  findOne(id: number) {
-    return `This action returns a #${id} balance`;
-  }
-
-  update(id: number, updateBalanceDto: UpdateBalanceDto) {
-    return `This action updates a #${id} balance`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} balance`;
-  }
-
-  toPOJO(entity: CreateBalanceDto) {
-    return {
-      training: entity.training,
-      amount: entity.amount,
+    const newBalance = {
+      ...createBalanceDto,
+      user: { id: user_id },
     };
+
+    return await this.balanceRepository.save(newBalance);
+  }
+
+  async findAll(user_id: number) {
+    const isExist = await this.balanceRepository.findOneBy({
+      user: { id: user_id },
+    });
+
+    if (!isExist) {
+      throw new BadRequestException("You don't have balance");
+    }
+
+    return this.balanceRepository.find({
+      relations: { user: true },
+      where: { user: { id: user_id } },
+    });
+  }
+
+  async update(updateBalanceDto: UpdateBalanceDto, user_id: number) {
+    const isExist = await this.balanceRepository.findOneBy({
+      user: { id: user_id },
+    });
+
+    if (!isExist) {
+      throw new BadRequestException("You don't have balance");
+    }
+
+    const balance_id = isExist.id;
+
+    const newBalance = {
+      ...updateBalanceDto,
+      user: { id: user_id },
+    };
+    return this.balanceRepository.update(balance_id, newBalance);
   }
 }

@@ -1,7 +1,10 @@
+import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -9,19 +12,6 @@ import {
 export class Balance {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column('enum', {
-    enum: [
-      'йога',
-      'бег',
-      'бокс',
-      'стретчинг',
-      'кроссфит',
-      'аэробика',
-      'пилатес',
-    ],
-  })
-  training: string;
 
   @Column()
   amount: number;
@@ -37,4 +27,8 @@ export class Balance {
     type: 'timestamp with time zone',
   })
   updatedAt: Date;
+
+  @OneToOne(() => User, (user) => user.balance)
+  @JoinColumn({ name: 'user_id ' })
+  user: User;
 }
