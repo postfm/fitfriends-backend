@@ -22,6 +22,13 @@ import { Training } from './entities/training.entity';
 export class TrainingsController {
   constructor(private readonly trainingsService: TrainingsService) {}
 
+  @Get()
+  @Roles(Role.Admin)
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  findAll(@Paginate() query: PaginateQuery): Promise<Paginated<Training>> {
+    return this.trainingsService.findAll(query);
+  }
+
   @Get('catalog')
   @UseGuards(AccessTokenGuard)
   catalog(@Paginate() query: PaginateQuery): Promise<Paginated<Training>> {
@@ -33,13 +40,6 @@ export class TrainingsController {
   @UseGuards(AccessTokenGuard, RolesGuard)
   create(@Body() createTrainingDto: CreateTrainingDto, @Req() req) {
     return this.trainingsService.create(createTrainingDto, +req.user.sub);
-  }
-
-  @Get()
-  @Roles(Role.Admin)
-  @UseGuards(AccessTokenGuard, RolesGuard)
-  findAll(@Paginate() query: PaginateQuery): Promise<Paginated<Training>> {
-    return this.trainingsService.findAll(query);
   }
 
   @Get(':id')

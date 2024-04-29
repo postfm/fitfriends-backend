@@ -42,6 +42,7 @@ export class TrainingsService {
         duration: true,
       },
       sortableColumns: ['createdAt'],
+      relations: ['orders'],
     });
   }
 
