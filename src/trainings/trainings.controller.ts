@@ -7,6 +7,7 @@ import {
   Param,
   UseGuards,
   Req,
+  Query,
 } from '@nestjs/common';
 import { TrainingsService } from './trainings.service';
 import { CreateTrainingDto } from './dto/create-training.dto';
@@ -17,15 +18,16 @@ import { Role } from 'src/auth/roles/role.enum';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { Paginate, PaginateQuery, Paginated } from 'nestjs-paginate';
 import { Training } from './entities/training.entity';
+import { TrainingQuery } from 'src/helpers/query/training-query';
 
 @Controller('trainings')
 export class TrainingsController {
   constructor(private readonly trainingsService: TrainingsService) {}
   @Get('ordered')
-  @Roles(Role.User)
+  @Roles(Role.Admin)
   @UseGuards(AccessTokenGuard, RolesGuard)
-  getMyOrders(@Req() req) {
-    return this.trainingsService.getMyOrders(+req.user.sub);
+  getMyOrders(@Req() req, @Query() query: TrainingQuery) {
+    return this.trainingsService.getMyOrders(+req.user.sub, query);
   }
 
   @Get()

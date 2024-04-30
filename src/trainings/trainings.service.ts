@@ -3,16 +3,23 @@ import { CreateTrainingDto } from './dto/create-training.dto';
 import { UpdateTrainingDto } from './dto/update-training.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Training } from './entities/training.entity';
-import { MoreThan, Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { fillDto } from 'src/helpers/common';
 import { TrainingRdo } from './rdo/training.rdo';
 import { PaginateQuery, Paginated, paginate } from 'nestjs-paginate';
+import { Order } from 'src/orders/entities/order.entity';
+import { TrainingQuery } from 'src/helpers/query/training-query';
+import {
+  DEFAULT_SORTING_TYPE,
+  DEFAULT_SORT_DIRECTION,
+} from 'src/helpers/constants/training.constants';
 
 @Injectable()
 export class TrainingsService {
   constructor(
     @InjectRepository(Training)
     private readonly trainingRepository: Repository<Training>,
+    private readonly dataSource: DataSource,
   ) {}
 
   async create(createTrainingDto: CreateTrainingDto, id: number) {
@@ -46,18 +53,34 @@ export class TrainingsService {
     });
   }
 
-  async getMyOrders(user_id: number) {
-    console.log(user_id);
+  async getMyOrders(user_id: number, query?: TrainingQuery) {
+    let sortingType = DEFAULT_SORTING_TYPE;
+    let sortDirection = DEFAULT_SORT_DIRECTION;
 
-    const myOrders = await this.trainingRepository.find({
-      relations: {
-        orders: true,
-      },
-      where: {
-        user: { id: user_id },
-        orders: MoreThan([].length > 0),
-      },
-    });
+    if (query?.sortingType) {
+      sortingType = query.sortingType;
+    }
+
+    if (query?.sortDirection) {
+      sortDirection = query.sortDirection;
+    }
+
+    const myOrders = await this.dataSource
+      .createQueryBuilder()
+      .select('training.*')
+      .addSelect('SUM(order.amount)', 'quantity')
+      .addSelect('SUM(order.sum)', 'cost')
+      .from(Order, 'order')
+      .innerJoin(
+        Training,
+        'training',
+        'order.training_id = training.training_id',
+      )
+      .where('training.user_id = :userId', { userId: user_id })
+      .groupBy('training.training_id, training.type')
+      .orderBy(sortingType, sortDirection)
+      .getRawMany();
+
     return myOrders;
   }
 

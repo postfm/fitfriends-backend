@@ -1,3 +1,5 @@
+import { SortDirection } from './sort-direction.enum';
+
 export enum TypeTraining {
   'йога' = 'йога',
   'бег' = 'бег',
@@ -13,3 +15,6 @@ export enum TrainingGender {
   'для мужчин' = 'для мужчин',
   'для всех' = 'для всех',
 }
+
+export const DEFAULT_SORT_DIRECTION = SortDirection.Desc;
+export const DEFAULT_SORTING_TYPE = 'quantity';
