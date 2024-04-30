@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreatePersonalTrainingDto } from './dto/create-personal-training.dto';
 import { UpdatePersonalTrainingDto } from './dto/update-personal-training.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,34 +12,34 @@ export class PersonalTrainingsService {
     private readonly personalTrainingRepository: Repository<PersonalTraining>,
   ) {}
 
-  async create(createPersonalTrainingDto: CreatePersonalTrainingDto) {
-    const personalTraining = await this.personalTrainingRepository.save(
-      createPersonalTrainingDto,
-    );
+  async create(
+    createPersonalTrainingDto: CreatePersonalTrainingDto,
+    initiator: number,
+    user: number,
+  ) {
+    if (initiator === user) {
+      throw new BadRequestException(
+        'You cannot invite yourself to training, you can only force it.',
+      );
+    }
+
+    const newPersonalTraining = {
+      ...createPersonalTrainingDto,
+      initiator,
+      user,
+    };
+    const personalTraining =
+      await this.personalTrainingRepository.save(newPersonalTraining);
     return personalTraining;
   }
 
-  findAll() {
-    return `This action returns all personalTrainings`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} personalTraining`;
-  }
-
-  update(id: number, updatePersonalTrainingDto: UpdatePersonalTrainingDto) {
-    return `This action updates a #${id} personalTraining`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} personalTraining`;
-  }
-
-  toPOJO(entity: CreatePersonalTrainingDto) {
-    return {
-      initiator: entity.initiator,
-      user: entity.user,
-      status: entity.status,
-    };
+  async update(
+    id: number,
+    updatePersonalTrainingDto: UpdatePersonalTrainingDto,
+  ) {
+    return this.personalTrainingRepository.update(
+      id,
+      updatePersonalTrainingDto,
+    );
   }
 }

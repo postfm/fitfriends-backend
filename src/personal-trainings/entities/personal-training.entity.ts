@@ -19,9 +19,9 @@ export class PersonalTraining {
   @Column('enum', { enum: ['на рассмотрении', 'отклонён', 'принят'] })
   status: string;
 
-  @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   cratedAt: Date;
 
-  @CreateDateColumn({ name: 'updated_at', type: 'timestamptz' })
+  @CreateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: Date;
 }
