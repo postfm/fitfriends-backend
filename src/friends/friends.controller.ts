@@ -12,11 +12,28 @@ import { Roles } from 'src/auth/roles/roles.decorator';
 import { Role } from 'src/auth/roles/role.enum';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { Friend } from './dto/friend.api';
+import { UserRdo } from 'src/users/rdo/user.rdo';
 
+@ApiTags('friends')
 @Controller('friends')
 export class FriendsController {
   constructor(private readonly friendsService: FriendsService) {}
 
+  @ApiCreatedResponse({
+    description: 'The user has been successfully added as a friend',
+    type: Friend,
+  })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
+  @ApiBadRequestResponse({
+    description: 'This user already is your friend!',
+  })
   @Post(':friend_id')
   @Roles(Role.User)
   @UseGuards(AccessTokenGuard, RolesGuard)
@@ -24,6 +41,10 @@ export class FriendsController {
     return this.friendsService.create(+req.user.sub, +friend_id);
   }
 
+  @ApiBadRequestResponse({
+    description: 'You are not have friends!',
+    type: UserRdo,
+  })
   @Get()
   @Roles(Role.User)
   @UseGuards(AccessTokenGuard, RolesGuard)
@@ -31,6 +52,9 @@ export class FriendsController {
     return this.friendsService.findAll(+req.user.sub);
   }
 
+  @ApiBadRequestResponse({
+    description: 'You are not have friends!',
+  })
   @Delete(':friend_id')
   @Roles(Role.User)
   @UseGuards(AccessTokenGuard, RolesGuard)
@@ -38,6 +62,13 @@ export class FriendsController {
     return this.friendsService.remove(+req.user.sub, +friend_id);
   }
 
+  @ApiCreatedResponse({
+    type: UserRdo,
+  })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
+  @ApiBadRequestResponse({
+    description: 'You are not have friends!',
+  })
   @Get('trainer')
   @Roles(Role.Admin)
   @UseGuards(AccessTokenGuard, RolesGuard)

@@ -6,6 +6,10 @@ import { PersonalTrainingType } from 'src/helpers/constants/personal-training.co
 export class UpdatePersonalTrainingDto extends PartialType(
   CreatePersonalTrainingDto,
 ) {
+  /**
+   * Personal training application status
+   * @example 'отклонён'
+   */
   @IsString()
   @IsNotEmpty()
   @IsEnum(PersonalTrainingType)

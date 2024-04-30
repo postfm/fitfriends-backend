@@ -71,6 +71,14 @@ export class FriendsService {
   }
 
   async remove(user_id: number, friend_id: number) {
+    const isExist = await this.friendsRepository.find({
+      where: { user_id: user_id },
+    });
+
+    if (!isExist) {
+      throw new BadRequestException('You are not have friends!');
+    }
+
     const friend = await this.friendsRepository.findBy({
       user_id: user_id,
       friend_id: friend_id,

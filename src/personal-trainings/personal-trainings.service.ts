@@ -37,6 +37,13 @@ export class PersonalTrainingsService {
     id: number,
     updatePersonalTrainingDto: UpdatePersonalTrainingDto,
   ) {
+    const isExist = await this.personalTrainingRepository.findOneBy({
+      id: id,
+    });
+
+    if (isExist) {
+      throw new BadRequestException('No such application exists');
+    }
     return this.personalTrainingRepository.update(
       id,
       updatePersonalTrainingDto,

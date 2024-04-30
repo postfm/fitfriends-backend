@@ -1,11 +1,9 @@
 import {
   Controller,
-  Get,
   Post,
   Body,
   Patch,
   Param,
-  Delete,
   UseGuards,
   Req,
 } from '@nestjs/common';
@@ -16,13 +14,29 @@ import { Roles } from 'src/auth/roles/roles.decorator';
 import { Role } from 'src/auth/roles/role.enum';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { PersonalTraining } from './dto/personal-training.api';
 
+@ApiTags('personal-training')
 @Controller('personal-trainings')
 export class PersonalTrainingsController {
   constructor(
     private readonly personalTrainingsService: PersonalTrainingsService,
   ) {}
 
+  @ApiCreatedResponse({
+    description: 'The record has been successfully created.',
+  })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
+  @ApiBadRequestResponse({
+    description:
+      'You cannot invite yourself to training, you can only force it.',
+  })
   @Post(':user_id')
   @Roles(Role.User)
   @UseGuards(AccessTokenGuard, RolesGuard)
@@ -38,6 +52,13 @@ export class PersonalTrainingsController {
     );
   }
 
+  @ApiCreatedResponse({
+    description: 'The record has been successfully updated.',
+    type: PersonalTraining,
+  })
+  @ApiBadRequestResponse({
+    description: 'No such application exists',
+  })
   @Patch(':id')
   update(
     @Param('id') id: string,
