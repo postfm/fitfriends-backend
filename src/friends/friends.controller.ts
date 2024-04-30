@@ -16,6 +16,7 @@ import {
   ApiBadRequestResponse,
   ApiCreatedResponse,
   ApiForbiddenResponse,
+  ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
 import { Friend } from './dto/friend.api';
@@ -41,9 +42,12 @@ export class FriendsController {
     return this.friendsService.create(+req.user.sub, +friend_id);
   }
 
+  @ApiOkResponse({
+    type: UserRdo,
+  })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
   @ApiBadRequestResponse({
     description: 'You are not have friends!',
-    type: UserRdo,
   })
   @Get()
   @Roles(Role.User)
@@ -62,7 +66,7 @@ export class FriendsController {
     return this.friendsService.remove(+req.user.sub, +friend_id);
   }
 
-  @ApiCreatedResponse({
+  @ApiOkResponse({
     type: UserRdo,
   })
   @ApiForbiddenResponse({ description: 'Forbidden.' })
