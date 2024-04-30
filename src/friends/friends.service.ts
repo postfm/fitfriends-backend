@@ -14,7 +14,7 @@ export class FriendsService {
 
   async create(user_id: number, friend_id: number) {
     if (user_id === friend_id) {
-      throw new BadRequestException('You are the best yourself!');
+      throw new BadRequestException('You are the best friend yourself!');
     }
 
     const isExist = await this.friendsRepository.findBy({
@@ -45,19 +45,16 @@ export class FriendsService {
 
     const friends = await this.dataSource.manager
       .createQueryBuilder(User, 'user')
-      .innerJoinAndSelect(
-        Friend,
-        'friend',
-        'user.id = friend.friend_id AND friend.user_id=user_id',
-      )
+      .innerJoinAndSelect(Friend, 'friend', 'user.id = friend.friend_id')
+      .where('friend.user_id=:user_id', { user_id: user_id })
       .getMany();
 
     return friends;
   }
 
-  async trainerFindAll(user_id: number) {
+  async trainerFindAll(friend_id: number) {
     const isExist = await this.friendsRepository.find({
-      where: { friend_id: user_id },
+      where: { friend_id: friend_id },
     });
 
     if (!isExist) {
@@ -67,7 +64,7 @@ export class FriendsService {
     const friends = await this.dataSource.manager
       .createQueryBuilder(User, 'user')
       .innerJoinAndSelect(Friend, 'friend', 'user.id = friend.user_id')
-      .where('friend.user_id = user_id', { user_id: user_id })
+      .where('friend.friend_id=:friend_id', { friend_id: friend_id })
       .getMany();
 
     return friends;
@@ -83,6 +80,12 @@ export class FriendsService {
       throw new BadRequestException("Friend did't find");
     }
 
-    return this.friendsRepository.delete(user_id);
+    return await this.dataSource
+      .createQueryBuilder()
+      .delete()
+      .from(Friend)
+      .where('user_id = :user_id', { user_id: user_id })
+      .where('friend_id = :friend_id', { friend_id: friend_id })
+      .execute();
   }
 }

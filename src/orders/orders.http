@@ -26,3 +26,4 @@ Authorization: Bearer {{AToken}}
   "amount": 2,
   "pay": "mir"
 }
+

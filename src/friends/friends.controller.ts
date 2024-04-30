@@ -42,6 +42,6 @@ export class FriendsController {
   @Roles(Role.Admin)
   @UseGuards(AccessTokenGuard, RolesGuard)
   trainerFindAll(@Req() req) {
-    return this.friendsService.findAll(+req.user.sub);
+    return this.friendsService.trainerFindAll(+req.user.sub);
   }
 }

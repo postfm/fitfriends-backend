@@ -21,6 +21,12 @@ import { Training } from './entities/training.entity';
 @Controller('trainings')
 export class TrainingsController {
   constructor(private readonly trainingsService: TrainingsService) {}
+  @Get('ordered')
+  @Roles(Role.User)
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  getMyOrders(@Req() req) {
+    return this.trainingsService.getMyOrders(+req.user.sub);
+  }
 
   @Get()
   @Roles(Role.Admin)

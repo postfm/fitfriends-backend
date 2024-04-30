@@ -3,7 +3,7 @@ import { CreateTrainingDto } from './dto/create-training.dto';
 import { UpdateTrainingDto } from './dto/update-training.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Training } from './entities/training.entity';
-import { Repository } from 'typeorm';
+import { MoreThan, Repository } from 'typeorm';
 import { fillDto } from 'src/helpers/common';
 import { TrainingRdo } from './rdo/training.rdo';
 import { PaginateQuery, Paginated, paginate } from 'nestjs-paginate';
@@ -44,6 +44,21 @@ export class TrainingsService {
       sortableColumns: ['createdAt'],
       relations: ['orders'],
     });
+  }
+
+  async getMyOrders(user_id: number) {
+    console.log(user_id);
+
+    const myOrders = await this.trainingRepository.find({
+      relations: {
+        orders: true,
+      },
+      where: {
+        user: { id: user_id },
+        orders: MoreThan([].length > 0),
+      },
+    });
+    return myOrders;
   }
 
   catalog(query: PaginateQuery): Promise<Paginated<Training>> {

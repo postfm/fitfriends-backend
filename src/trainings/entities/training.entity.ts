@@ -75,7 +75,6 @@ export class Training {
   user: User;
 
   @OneToMany(() => Order, (order) => order.training, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'order_id' })
   orders: Order[];
 
   @OneToMany(() => Review, (review) => review.training, { onDelete: 'CASCADE' })
