@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Alert } from './entities/alert.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
+import { LIMIT_ALERTS_PER_PAGE } from './alert-constants';
 
 @Injectable()
 export class AlertsService {
@@ -12,12 +13,25 @@ export class AlertsService {
   ) {}
 
   async findAll(user_id: number) {
-    return this.alertRepository.findBy({
-      user: user_id,
-    });
+    return this.dataSource
+      .getRepository(Alert)
+      .createQueryBuilder('alert')
+      .where('alert.user=:id', { id: user_id })
+      .limit(LIMIT_ALERTS_PER_PAGE)
+      .orderBy({
+        created_at: 'DESC',
+      })
+      .getMany();
   }
 
   async remove(id: number) {
+    const isExist = await this.alertRepository.findOneBy({
+      id: id,
+    });
+
+    if (!isExist) {
+      throw new BadRequestException("Alert didn't found");
+    }
     return this.dataSource
       .createQueryBuilder()
       .delete()

@@ -7,6 +7,10 @@ import {
 } from 'class-validator';
 
 export class CreateAlertDto {
+  /**
+   * Message alert
+   * @example `The user Karin changed the status of your application to принят`
+   */
   @IsString()
   @IsNotEmpty()
   @MinLength(10, {
