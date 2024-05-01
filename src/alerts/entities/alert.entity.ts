@@ -18,7 +18,4 @@ export class Alert {
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
   createdAt: Date;
-
-  @CreateDateColumn({ name: 'updated_at', type: 'timestamp with time zone' })
-  updatedAt: Date;
 }

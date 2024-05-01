@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Friend } from './entities/friend.entity';
 import { DataSource, Repository } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
+import { Alert } from 'src/alerts/entities/alert.entity';
 
 @Injectable()
 export class FriendsService {
@@ -31,7 +32,31 @@ export class FriendsService {
       friend_id: friend_id,
     };
 
-    return this.friendsRepository.save(newFriends);
+    const addedFriend = await this.friendsRepository.save(newFriends);
+
+    if (!addedFriend.id) {
+      throw new BadRequestException("User haven't added friends");
+    }
+
+    const userName = await this.dataSource
+      .getRepository(User)
+      .createQueryBuilder('user')
+      .where('user.id = :id', { id: user_id })
+      .getOne();
+
+    const newAlert = {
+      text: `The user ${userName?.name} added you as a friend`,
+      user: friend_id,
+    };
+
+    await this.dataSource
+      .createQueryBuilder()
+      .insert()
+      .into(Alert)
+      .values([newAlert])
+      .execute();
+
+    return addedFriend;
   }
 
   async findAll(user_id: number) {

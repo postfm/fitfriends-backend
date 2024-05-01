@@ -60,10 +60,16 @@ export class PersonalTrainingsController {
     description: 'No such application exists',
   })
   @Patch(':id')
+  @UseGuards(AccessTokenGuard)
   update(
     @Param('id') id: string,
+    @Req() req,
     @Body() updatePersonalTrainingDto: UpdatePersonalTrainingDto,
   ) {
-    return this.personalTrainingsService.update(+id, updatePersonalTrainingDto);
+    return this.personalTrainingsService.update(
+      +id,
+      +req.user.sub,
+      updatePersonalTrainingDto,
+    );
   }
 }
