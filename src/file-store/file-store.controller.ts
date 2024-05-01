@@ -11,7 +11,9 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { FileStoreService } from './file-store.service';
 import { FileDeleteDto } from './dto/delete-file.dto';
 import { FileTypeValidationPipe } from 'src/helpers/pipes/file-validation.pipe';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('file-store')
 @Controller('files')
 export class FileStoreController {
   constructor(private readonly fileStoreService: FileStoreService) {}

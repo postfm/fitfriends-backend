@@ -5,5 +5,9 @@ import { IsInt, IsNotEmpty } from 'class-validator';
 export class UpdateBalanceDto extends PartialType(CreateBalanceDto) {
   @IsInt()
   @IsNotEmpty()
+  /**
+   * 'Number of purchased workouts'
+   * @example '5'
+   */
   amount: number;
 }
