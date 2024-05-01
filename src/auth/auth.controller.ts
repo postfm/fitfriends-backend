@@ -1,3 +1,4 @@
+import { TokenResponse } from './dto/auth.api.';
 import {
   Body,
   Controller,
@@ -14,19 +15,30 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthDto } from './dto/auth.dto';
 import { AccessTokenGuard } from './guards/access-token.guard';
 import { RefreshTokenGuard } from './guards/refresh-token.guard';
+import { ApiBadRequestResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { UserRdo } from 'src/users/rdo/user.rdo';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
   @UsePipes(new ValidationPipe())
+  @ApiOkResponse({
+    type: UserRdo,
+  })
+  @ApiBadRequestResponse()
   async register(@Body() createUserDto: CreateUserDto) {
     return this.authService.register(createUserDto);
   }
 
-  @UseGuards(LocalAuthGuard)
   @Post('login')
+  @UseGuards(LocalAuthGuard)
+  @ApiOkResponse({
+    type: TokenResponse,
+  })
+  @ApiBadRequestResponse()
   async login(@Body() data: AuthDto) {
     return this.authService.login(data);
   }
@@ -37,8 +49,12 @@ export class AuthController {
     this.authService.logout(req.user['sub']);
   }
 
-  @UseGuards(RefreshTokenGuard)
   @Get('refresh')
+  @UseGuards(RefreshTokenGuard)
+  @ApiOkResponse({
+    type: TokenResponse,
+  })
+  @ApiBadRequestResponse()
   refreshTokens(@Req() req) {
     const userId = req.user['sub'];
     const refreshToken = req.user['refreshToken'];

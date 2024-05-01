@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Alert } from './entities/alert.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
-import { LIMIT_ALERTS_PER_PAGE } from './alert-constants';
+import { LIMIT_ALERTS_PER_PAGE } from 'src/helpers/constants/common.constant';
 
 @Injectable()
 export class AlertsService {
