@@ -15,6 +15,8 @@ import { FileStoreModule } from './file-store/file-store.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './auth/guards/roles.guard';
 import { FriendsModule } from './friends/friends.module';
+import { MailModule } from './notify/mail/mail.module';
+import { EmailSubscriberModule } from './notify/email-subscriber/email-subscriber.module';
 
 @Module({
   imports: [
@@ -43,6 +45,8 @@ import { FriendsModule } from './friends/friends.module';
     BalancesModule,
     FileStoreModule,
     FriendsModule,
+    MailModule,
+    EmailSubscriberModule,
   ],
   controllers: [AppController],
   providers: [

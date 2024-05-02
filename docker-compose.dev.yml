@@ -38,7 +38,7 @@ services:
       - fitfriends
 
   fitfriends.notify.fakesmtp:
-    image: gessnerfl/fake-smtp-server:2.2.0
+    image: gessnerfl/fake-smtp-server:latest
     container_name: 'fitfriends.notify.fakesmtp'
     hostname: 'fitfriends.notify.fakesmtp'
     ports:
@@ -54,8 +54,8 @@ services:
       - '5672:5672'
 
     environment:
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+      RABBITMQ_DEFAULT_USER: ${RABBIT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_PASSWORD}
 
     healthcheck:
       test: rabbitmq-diagnostics -q ping
