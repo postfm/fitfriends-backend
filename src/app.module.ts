@@ -17,6 +17,7 @@ import { RolesGuard } from './auth/guards/roles.guard';
 import { FriendsModule } from './friends/friends.module';
 import { MailModule } from './notify/mail/mail.module';
 import { EmailSubscriberModule } from './notify/email-subscriber/email-subscriber.module';
+import { NotifyConfigModule } from './notify/notify-config.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { EmailSubscriberModule } from './notify/email-subscriber/email-subscribe
     FileStoreModule,
     FriendsModule,
     MailModule,
+    NotifyConfigModule,
     EmailSubscriberModule,
   ],
   controllers: [AppController],
