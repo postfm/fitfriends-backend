@@ -42,3 +42,12 @@ export async function verifyHash(password: string, passwordHash: string) {
 
   return isCorrect;
 }
+
+export function getRabbitMQConnectionString({
+  user,
+  password,
+  host,
+  port,
+}): string {
+  return `amqp://${user}:${password}@${host}:${port}`;
+}
