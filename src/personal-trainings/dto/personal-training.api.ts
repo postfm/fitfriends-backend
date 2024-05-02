@@ -1,21 +1,40 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class PersonalTraining {
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Primary key',
+    example: '1',
+  })
   id: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Initiator primary key',
+    example: '1',
+  })
   initiator: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'User primary key',
+    example: '1',
+  })
   user: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Personal training application status',
+    example: 'принят',
+  })
   status: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Date of creation of the request for personal training',
+    example: '2024-14-04',
+  })
   cratedAt: Date;
 
-  @ApiProperty()
+  @ApiProperty({
+    description:
+      'Date of update of the application status for personal training',
+    example: '2024-14-04',
+  })
   updatedAt: Date;
 }

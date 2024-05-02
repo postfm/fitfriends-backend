@@ -58,6 +58,13 @@ export class ReviewsService {
   }
 
   async findAll(training_id: number) {
+    const isExist = await this.reviewRepository.findOneBy({
+      id: training_id,
+    });
+
+    if (!isExist) {
+      throw new BadRequestException("Training didn't find");
+    }
     const reviews = await this.dataSource
       .getRepository(Review)
       .createQueryBuilder('review')

@@ -16,6 +16,7 @@ import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiForbiddenResponse,
   ApiTags,
@@ -23,6 +24,7 @@ import {
 import { PersonalTraining } from './dto/personal-training.api';
 
 @ApiTags('personal-training')
+@ApiBearerAuth()
 @Controller('personal-trainings')
 export class PersonalTrainingsController {
   constructor(

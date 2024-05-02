@@ -15,7 +15,12 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthDto } from './dto/auth.dto';
 import { AccessTokenGuard } from './guards/access-token.guard';
 import { RefreshTokenGuard } from './guards/refresh-token.guard';
-import { ApiBadRequestResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { UserRdo } from 'src/users/rdo/user.rdo';
 
 @ApiTags('auth')
@@ -39,18 +44,21 @@ export class AuthController {
     type: TokenResponse,
   })
   @ApiBadRequestResponse()
+  @ApiBearerAuth()
   async login(@Body() data: AuthDto) {
     return this.authService.login(data);
   }
 
   @Get('logout')
   @UseGuards(AccessTokenGuard)
+  @ApiBearerAuth()
   logout(@Req() req) {
     this.authService.logout(req.user['sub']);
   }
 
   @Get('refresh')
   @UseGuards(RefreshTokenGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({
     type: TokenResponse,
   })

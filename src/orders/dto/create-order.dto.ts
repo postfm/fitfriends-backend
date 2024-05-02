@@ -11,15 +11,27 @@ import { TypeOrder, TypePay } from 'src/helpers/constants/order.constants';
 import { AmountValue } from './create-order.constant';
 
 export class CreateOrderDto {
+  /**
+   * Training type
+   * @example 'бег'
+   */
   @IsString()
   @IsNotEmpty()
   @IsEnum(TypeOrder)
   type: string;
 
+  /**
+   * Training price
+   * @example '120'
+   */
   @IsNumber()
   @IsNotEmpty()
   price: number;
 
+  /**
+   * Number of purchased workouts
+   * @example '10'
+   */
   @IsInt()
   @IsNotEmpty()
   @Min(AmountValue.minValue, { message: 'The value must not be less than 1' })
@@ -31,5 +43,9 @@ export class CreateOrderDto {
   @IsString()
   @IsNotEmpty()
   @IsEnum(TypePay)
+  /**
+   * Payment system type
+   * @example 'mir'
+   */
   pay: string;
 }

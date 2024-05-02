@@ -16,12 +16,14 @@ import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiForbiddenResponse,
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
 
 @ApiTags('balance')
+@ApiBearerAuth()
 @Controller('balances')
 export class BalancesController {
   constructor(private readonly balancesService: BalancesService) {}

@@ -14,6 +14,7 @@ import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiForbiddenResponse,
   ApiOkResponse,
@@ -23,6 +24,7 @@ import { Friend } from './dto/friend.api';
 import { UserRdo } from 'src/users/rdo/user.rdo';
 
 @ApiTags('friends')
+@ApiBearerAuth()
 @Controller('friends')
 export class FriendsController {
   constructor(private readonly friendsService: FriendsService) {}
