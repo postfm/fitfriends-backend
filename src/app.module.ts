@@ -1,4 +1,3 @@
-import { ConfigTrainingModule } from './trainings/notify/config-training.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -49,7 +48,6 @@ import { NotifyConfigModule } from './notify/notify-config.module';
     FriendsModule,
     MailModule,
     NotifyConfigModule,
-    ConfigTrainingModule,
     EmailSubscriberModule,
   ],
   controllers: [AppController],

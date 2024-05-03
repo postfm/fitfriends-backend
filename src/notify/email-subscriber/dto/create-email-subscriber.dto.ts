@@ -1,25 +1,10 @@
-import { IsEmail, IsInt, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 import {
   EMAIL_NOT_VALID,
   FIRST_NAME_IS_EMPTY,
 } from '../email-subscriber.constant';
 
 export class CreateEmailSubscriberDto {
-  /**
-   * User primary key
-   * @example '4'
-   */
-  @IsInt()
-  @IsNotEmpty()
-  public user_id: number;
-
-  /**
-   * Trainer primary key
-   * @example '8'
-   */
-  @IsInt()
-  @IsNotEmpty()
-  public trainer_id: number;
   /**
    * User email,
    * @example 'user@mail.com`
