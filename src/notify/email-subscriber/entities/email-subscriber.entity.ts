@@ -7,6 +7,12 @@ export class EmailSubscriber {
   public id: number;
 
   @Column()
+  public user_id: number;
+
+  @Column()
+  public trainer_id: number;
+
+  @Column()
   public email: string;
 
   @Column()

@@ -2,9 +2,9 @@ import { IsEmail, IsInt, IsNotEmpty } from 'class-validator';
 import {
   EMAIL_NOT_VALID,
   FIRST_NAME_IS_EMPTY,
-} from '../email-subscriber.constant';
+} from 'src/notify/email-subscriber/email-subscriber.constant';
 
-export class CreateEmailSubscriberDto {
+export class CreateSubscriberDto {
   /**
    * User primary key
    * @example '4'

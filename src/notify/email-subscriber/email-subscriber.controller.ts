@@ -19,6 +19,6 @@ export class EmailSubscriberController {
   })
   public async create(subscriber: CreateEmailSubscriberDto) {
     this.emailSubscriberService.addSubscriber(subscriber);
-    this.emailSubscriberService.addSubscriber(subscriber);
+    this.mailService.sendNotifyNewSubscriber(subscriber);
   }
 }
