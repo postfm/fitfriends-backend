@@ -1,10 +1,15 @@
-import { Subscriber } from 'src/helpers/types/subscriber.interface';
-import { Entity } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { CreateEmailSubscriberDto } from '../dto/create-email-subscriber.dto';
 
 @Entity()
-export class EmailSubscriber implements Subscriber {
-  public id?: string;
+export class EmailSubscriber {
+  @PrimaryGeneratedColumn()
+  public id: number;
+
+  @Column()
   public email: string;
+
+  @Column()
   public name: string;
 
   public toPOJO() {
@@ -15,15 +20,14 @@ export class EmailSubscriber implements Subscriber {
     };
   }
 
-  public populate(data: Subscriber): EmailSubscriber {
-    this.id = data.id ?? undefined;
+  public populate(data: CreateEmailSubscriberDto): EmailSubscriber {
     this.email = data.email;
     this.name = data.name;
 
     return this;
   }
 
-  static fromObject(data: Subscriber): EmailSubscriber {
+  static fromObject(data: CreateEmailSubscriberDto): EmailSubscriber {
     return new EmailSubscriber().populate(data);
   }
 }

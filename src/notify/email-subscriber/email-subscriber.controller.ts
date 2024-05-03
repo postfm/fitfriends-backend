@@ -8,7 +8,7 @@ import { MailService } from '../mail/mail.service';
 @Controller()
 export class EmailSubscriberController {
   constructor(
-    private readonly subscriberService: EmailSubscriberService,
+    private readonly emailSubscriberService: EmailSubscriberService,
     private readonly mailService: MailService,
   ) {}
 
@@ -18,7 +18,7 @@ export class EmailSubscriberController {
     queue: 'fitfriends.notify.income',
   })
   public async create(subscriber: CreateEmailSubscriberDto) {
-    this.subscriberService.addSubscriber(subscriber);
-    this.mailService.sendNotifyNewSubscriber(subscriber);
+    this.emailSubscriberService.addSubscriber(subscriber);
+    this.emailSubscriberService.addSubscriber(subscriber);
   }
 }

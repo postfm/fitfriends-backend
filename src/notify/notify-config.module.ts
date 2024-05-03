@@ -4,7 +4,7 @@ import { EmailSubscriberModule } from './email-subscriber/email-subscriber.modul
 
 import notifyConfig from './notify.config';
 
-const ENV_FILE_PATH = 'apps/notify/notify.env';
+const ENV_FILE_PATH = '../../.env';
 
 @Module({
   imports: [

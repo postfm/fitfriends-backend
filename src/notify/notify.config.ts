@@ -1,9 +1,9 @@
 import { registerAs } from '@nestjs/config';
 import * as Joi from 'joi';
 
+const DEFAULT_PORT = 4000;
 const ENVIRONMENTS = ['development', 'production', 'stage'] as const;
 const DEFAULT_RABBIT_PORT = 5672;
-const DEFAULT_PORT = 4000;
 
 type Environment = (typeof ENVIRONMENTS)[number];
 
@@ -11,11 +11,11 @@ export interface NotifyConfig {
   environment: string;
   port: number;
   rabbit: {
-    host: string;
-    password: string;
-    user: string;
-    queue: string;
-    exchange: string;
+    host: string | undefined;
+    password: string | undefined;
+    user: string | undefined;
+    queue: string | undefined;
+    exchange: string | undefined;
     port: number;
   };
 }
