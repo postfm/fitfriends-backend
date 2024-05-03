@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import {
   IsBoolean,
   IsEnum,
@@ -21,74 +20,115 @@ import {
 } from 'src/helpers/constants/user.constants';
 
 export class CreateTrainingDto {
+  /**
+   * Training name
+   * @example 'Дневная'
+   */
   @IsString()
   @IsNotEmpty()
   @MinLength(1, { message: '' })
   @MaxLength(15, { message: '' })
-  @ApiProperty()
   name: string;
 
+  /**
+   * Background image
+   * @example 'upload/photo.jpg'
+   */
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
   image: string;
 
+  /**
+   * User level
+   * @example 'любитель'
+   */
   @IsString()
   @IsNotEmpty()
   @IsEnum(LevelOfTrain)
-  @ApiProperty()
   level: string;
 
+  /**
+   * Training type
+   * @example 'бокс'
+   */
   @IsString()
   @IsNotEmpty()
   @IsEnum(TypeTraining)
-  @ApiProperty()
   type: string;
 
+  /**
+   * Training duration
+   * @example 80-100 мин
+   */
   @IsString()
   @IsNotEmpty()
   @IsEnum(TimeOfTraining)
-  @ApiProperty()
   duration: string;
 
+  /**
+   * Training price
+   * @example '120'
+   */
   @IsInt()
   @IsNotEmpty()
   @Min(0, { message: '' })
-  @ApiProperty()
   price: number;
 
+  /**
+   * Number of calories
+   * @example '2500'
+   * @minimum '1000'
+   * @maximum '5000'
+   */
   @IsInt()
   @IsNotEmpty()
   @Min(1000, { message: '' })
   @Max(5000, { message: '' })
-  @ApiProperty()
   calories: number;
 
+  /**
+   * Training description
+   * @example 'Утренняя пробежка'
+   * @minimum '10'
+   * @maximum '140'
+   */
   @IsString()
   @IsNotEmpty()
   @MinLength(10, { message: '' })
-  @ApiProperty()
   @MaxLength(140, { message: '' })
   description: string;
 
+  /**
+   * Gender of the user for whom the training is intended
+   * @example 'для всех'
+   */
   @IsString()
   @IsNotEmpty()
   @IsEnum(TrainingGender)
-  @ApiProperty()
   gender: string;
 
+  /**
+   * Video file demonstrating training
+   * @example 'upload/video.mp4'
+   */
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
   video: string;
 
+  /**
+   * Training Rating
+   * @example '4,6'
+   * @default '0'
+   */
   @IsNumber()
   @IsNotEmpty()
-  @ApiProperty()
   rating: number;
 
+  /**
+   * Special offer sign
+   * @example 'true'
+   */
   @IsBoolean()
   @IsNotEmpty()
-  @ApiProperty()
   specialOffer: boolean;
 }

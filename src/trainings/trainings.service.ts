@@ -40,7 +40,7 @@ export class TrainingsService {
     return await this.trainingRepository.save(newTraining);
   }
 
-  findAll(query: PaginateQuery): Promise<Paginated<Training>> {
+  async findAll(query: PaginateQuery): Promise<Paginated<Training>> {
     return paginate(query, this.trainingRepository, {
       filterableColumns: {
         price: true,
@@ -84,7 +84,7 @@ export class TrainingsService {
     return myOrders;
   }
 
-  catalog(query: PaginateQuery): Promise<Paginated<Training>> {
+  async catalog(query: PaginateQuery): Promise<Paginated<Training>> {
     return paginate(query, this.trainingRepository, {
       filterableColumns: {
         price: true,
@@ -100,10 +100,23 @@ export class TrainingsService {
     const training = await this.trainingRepository.findOneBy({
       training_id: training_id,
     });
+
+    if (!training) {
+      throw new BadRequestException(
+        `Training with this ${training_id} does not exist`,
+      );
+    }
     return fillDto(TrainingRdo, training);
   }
 
   async update(id: number, updateTrainingDto: UpdateTrainingDto) {
+    const isExist = await this.trainingRepository.findOneBy({
+      training_id: id,
+    });
+
+    if (!isExist) {
+      throw new BadRequestException(`Training with this ${id} does not exist`);
+    }
     return this.trainingRepository.update(id, updateTrainingDto);
   }
 }

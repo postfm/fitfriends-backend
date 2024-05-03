@@ -19,7 +19,15 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { Paginate, PaginateQuery, Paginated } from 'nestjs-paginate';
 import { Training } from './entities/training.entity';
 import { TrainingQuery } from 'src/helpers/query/training-query';
+import {
+  ApiBadRequestResponse,
+  ApiForbiddenResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { TrainingRdo } from './rdo/training.rdo';
 
+@ApiTags('trainings')
 @Controller('trainings')
 export class TrainingsController {
   constructor(private readonly trainingsService: TrainingsService) {}
@@ -33,12 +41,20 @@ export class TrainingsController {
   @Get()
   @Roles(Role.Admin)
   @UseGuards(AccessTokenGuard, RolesGuard)
+  @ApiOkResponse({
+    type: TrainingRdo,
+  })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
   findAll(@Paginate() query: PaginateQuery): Promise<Paginated<Training>> {
     return this.trainingsService.findAll(query);
   }
 
   @Get('catalog')
   @UseGuards(AccessTokenGuard)
+  @ApiOkResponse({
+    type: TrainingRdo,
+  })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
   catalog(@Paginate() query: PaginateQuery): Promise<Paginated<Training>> {
     return this.trainingsService.catalog(query);
   }
@@ -46,12 +62,23 @@ export class TrainingsController {
   @Post()
   @Roles(Role.Admin)
   @UseGuards(AccessTokenGuard, RolesGuard)
+  @ApiOkResponse({
+    type: TrainingRdo,
+  })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
   create(@Body() createTrainingDto: CreateTrainingDto, @Req() req) {
     return this.trainingsService.create(createTrainingDto, +req.user.sub);
   }
 
   @Get(':id')
   @UseGuards(AccessTokenGuard)
+  @ApiOkResponse({
+    type: TrainingRdo,
+  })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
+  @ApiBadRequestResponse({
+    description: 'Training with this ID does not exist',
+  })
   findOne(@Param('id') id: string) {
     return this.trainingsService.findOne(+id);
   }
@@ -59,6 +86,10 @@ export class TrainingsController {
   @Patch(':id')
   @Roles(Role.Admin)
   @UseGuards(AccessTokenGuard, RolesGuard)
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
+  @ApiBadRequestResponse({
+    description: 'Training with this ${training_id} does not exis',
+  })
   update(
     @Param('id') id: string,
     @Body() updateTrainingDto: UpdateTrainingDto,
