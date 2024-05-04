@@ -3,12 +3,14 @@ import { CreateSubscriberDto } from './dto/create-subscriber.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Subscriber } from './entities/subscriber.entity';
+import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class SubscriberService {
   constructor(
     @InjectRepository(Subscriber)
     private readonly subscriberRepository: Repository<Subscriber>,
+    private readonly mailService: MailService,
   ) {}
   async create(
     subscriber_id: number,
@@ -29,6 +31,8 @@ export class SubscriberService {
       subscriber_id,
       trainer_id,
     };
+
+    this.mailService.example();
 
     return this.subscriberRepository.save(newSubscriber);
   }

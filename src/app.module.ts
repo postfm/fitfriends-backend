@@ -1,3 +1,4 @@
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -16,6 +17,8 @@ import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './auth/guards/roles.guard';
 import { FriendsModule } from './friends/friends.module';
 import { SubscriberModule } from './notify/subscriber/subscriber.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { MailModule } from './notify/mail/mail.module';
 
 @Module({
   imports: [
@@ -36,6 +39,32 @@ import { SubscriberModule } from './notify/subscriber/subscriber.module';
       }),
       inject: [ConfigService],
     }),
+    MailerModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        transport: {
+          host: configService.get('MAIL_SMTP_HOST'),
+          port: configService.get('MAIL_SMTP_PORT'),
+          ignoreTLS: true,
+          secure: false,
+        },
+        auth: {
+          user: configService.get('MAIL_USER_NAME'),
+          pass: configService.get('MAIL_USER_PASSWORD'),
+        },
+        defaults: {
+          from: configService.get('MAIL_FROM'),
+        },
+        template: {
+          dir: __dirname + '/notify/assets',
+          adapter: new HandlebarsAdapter(),
+          options: {
+            strict: true,
+          },
+        },
+      }),
+      inject: [ConfigService],
+    }),
     TrainingsModule,
     ReviewsModule,
     OrdersModule,
@@ -45,6 +74,7 @@ import { SubscriberModule } from './notify/subscriber/subscriber.module';
     FileStoreModule,
     FriendsModule,
     SubscriberModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [
