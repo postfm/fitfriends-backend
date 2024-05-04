@@ -19,6 +19,8 @@ import { FriendsModule } from './friends/friends.module';
 import { SubscriberModule } from './notify/subscriber/subscriber.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { MailModule } from './notify/mail/mail.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'node:path';
 
 @Module({
   imports: [
@@ -64,6 +66,9 @@ import { MailModule } from './notify/mail/mail.module';
         },
       }),
       inject: [ConfigService],
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '/notify/assets'),
     }),
     TrainingsModule,
     ReviewsModule,
