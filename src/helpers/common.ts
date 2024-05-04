@@ -43,7 +43,7 @@ export async function verifyHash(password: string, passwordHash: string) {
   return isCorrect;
 }
 
-export function getRabbitMQConnectionString({
+export function getRabbitmqConnectionString({
   user,
   password,
   host,

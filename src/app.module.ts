@@ -19,8 +19,9 @@ import { FriendsModule } from './friends/friends.module';
 import { SubscriberModule } from './notify/subscriber/subscriber.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { MailModule } from './notify/mail/mail.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'node:path';
+import { RabbitmqModule } from './notify/rabbitmq/rabbitmq.module';
+import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
+import { getRabbitmqConnectionString } from './helpers/common';
 
 @Module({
   imports: [
@@ -67,8 +68,25 @@ import { join } from 'node:path';
       }),
       inject: [ConfigService],
     }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '/notify/assets'),
+    RabbitMQModule.forRootAsync(RabbitMQModule, {
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        exchanges: [
+          {
+            name: configService.get('RABBIT_QUEUE') as string,
+            type: 'direct',
+          },
+        ],
+        uri: getRabbitmqConnectionString({
+          host: configService.get('RABBIT_HOST'),
+          password: configService.get('RABBIT_PASSWORD'),
+          user: configService.get('RABBIT_USER'),
+          port: configService.get('RABBIT_PORT'),
+        }),
+        connectionInitOptions: { wait: true },
+        enableControllerDiscovery: true,
+      }),
+      inject: [ConfigService],
     }),
     TrainingsModule,
     ReviewsModule,
@@ -80,6 +98,7 @@ import { join } from 'node:path';
     FriendsModule,
     SubscriberModule,
     MailModule,
+    RabbitmqModule,
   ],
   controllers: [AppController],
   providers: [
