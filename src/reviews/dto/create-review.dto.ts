@@ -7,6 +7,7 @@ import {
   Min,
   MinLength,
 } from 'class-validator';
+import { LengthParameter } from 'src/helpers/constants/common.constant';
 
 export class CreateReviewDto {
   /**
@@ -17,8 +18,12 @@ export class CreateReviewDto {
    */
   @IsInt()
   @IsNotEmpty()
-  @Min(1, { message: 'The grade cannot be less than 1' })
-  @Max(5, { message: 'The grade cannot be more than 5' })
+  @Min(LengthParameter.minGrade, {
+    message: `The grade cannot be less than ${LengthParameter.minGrade}`,
+  })
+  @Max(LengthParameter.maxGrade, {
+    message: `The grade cannot be more than ${LengthParameter.maxGrade}`,
+  })
   grade: number;
 
   /**
@@ -27,7 +32,11 @@ export class CreateReviewDto {
    */
   @IsString()
   @IsNotEmpty()
-  @MinLength(100, { message: 'Review text cannot be less than 100' })
-  @MaxLength(1024, { message: 'Review text cannot be larger than 1024' })
+  @MinLength(LengthParameter.minText, {
+    message: `Review text cannot be less than ${LengthParameter.minText}`,
+  })
+  @MaxLength(LengthParameter.maxText, {
+    message: `Review text cannot be larger than ${LengthParameter.maxText}`,
+  })
   text: string;
 }

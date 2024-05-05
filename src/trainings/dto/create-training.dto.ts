@@ -10,6 +10,7 @@ import {
   Min,
   MinLength,
 } from 'class-validator';
+import { LengthParameter } from 'src/helpers/constants/common.constant';
 import {
   TrainingGender,
   TypeTraining,
@@ -26,8 +27,12 @@ export class CreateTrainingDto {
    */
   @IsString()
   @IsNotEmpty()
-  @MinLength(1, { message: '' })
-  @MaxLength(15, { message: '' })
+  @MinLength(LengthParameter.minName, {
+    message: `The name cannot be less than ${LengthParameter.minName} characters`,
+  })
+  @MaxLength(LengthParameter.maxName, {
+    message: `The name cannot be less than ${LengthParameter.maxName} characters`,
+  })
   name: string;
 
   /**
@@ -71,7 +76,6 @@ export class CreateTrainingDto {
    */
   @IsInt()
   @IsNotEmpty()
-  @Min(0, { message: '' })
   price: number;
 
   /**
@@ -82,8 +86,12 @@ export class CreateTrainingDto {
    */
   @IsInt()
   @IsNotEmpty()
-  @Min(1000, { message: '' })
-  @Max(5000, { message: '' })
+  @Min(LengthParameter.minCalories, {
+    message: `The number of calories cannot be less than ${LengthParameter.minCalories}`,
+  })
+  @Max(LengthParameter.maxCalories, {
+    message: `The number of calories cannot be more than ${LengthParameter.maxCalories}`,
+  })
   calories: number;
 
   /**
@@ -94,8 +102,12 @@ export class CreateTrainingDto {
    */
   @IsString()
   @IsNotEmpty()
-  @MinLength(10, { message: '' })
-  @MaxLength(140, { message: '' })
+  @MinLength(LengthParameter.minMessage, {
+    message: `The description cannot be less than ${LengthParameter.minMessage} characters`,
+  })
+  @MaxLength(LengthParameter.maxMessage, {
+    message: `The name cannot be less than ${LengthParameter.maxMessage} characters`,
+  })
   description: string;
 
   /**

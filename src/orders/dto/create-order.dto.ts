@@ -34,9 +34,11 @@ export class CreateOrderDto {
    */
   @IsInt()
   @IsNotEmpty()
-  @Min(AmountValue.minValue, { message: 'The value must not be less than 1' })
+  @Min(AmountValue.minValue, {
+    message: `The value must not be less than ${AmountValue.minValue}`,
+  })
   @Max(AmountValue.maxValue, {
-    message: 'The value should not be more than 50',
+    message: `The value should not be more than ${AmountValue.maxValue}`,
   })
   amount: number;
 

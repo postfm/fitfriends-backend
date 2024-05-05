@@ -20,6 +20,7 @@ import {
   TimeOfTraining,
   UserLocation,
 } from 'src/helpers/constants/user.constants';
+import { LengthParameter } from 'src/helpers/constants/common.constant';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   /**
@@ -28,8 +29,12 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
    */
   @IsString()
   @IsOptional()
-  @MinLength(1, { message: 'The name must not be less than 1 character' })
-  @MaxLength(15, { message: 'The name must not be more than 15 characters' })
+  @MinLength(LengthParameter.minName, {
+    message: `The name must not be less than ${LengthParameter.minName} character`,
+  })
+  @MaxLength(LengthParameter.maxName, {
+    message: `The name must not be more than ${LengthParameter.maxName} characters`,
+  })
   name?: string;
 
   /**
@@ -65,11 +70,11 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
    */
   @IsString()
   @IsOptional()
-  @MinLength(10, {
-    message: 'Description should not be less than 10 characters',
+  @MinLength(LengthParameter.minMessage, {
+    message: `Description should not be less than ${LengthParameter.minMessage} characters`,
   })
-  @MaxLength(140, {
-    message: 'Description should not be more than 140 characters',
+  @MaxLength(LengthParameter.maxMessage, {
+    message: `Description should not be more than ${LengthParameter.maxMessage} characters`,
   })
   description?: string;
 
@@ -127,8 +132,12 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
    */
   @IsInt()
   @IsOptional()
-  @Min(1000)
-  @Max(5000)
+  @Min(LengthParameter.minCalories, {
+    message: `The number of calories cannot be less than ${LengthParameter.minCalories}`,
+  })
+  @Max(LengthParameter.maxCalories, {
+    message: `The number of calories cannot be more than ${LengthParameter.maxCalories}`,
+  })
   caloriesToLose?: number;
 
   /**
@@ -139,8 +148,12 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
    */
   @IsInt()
   @IsOptional()
-  @Min(1000)
-  @Max(5000)
+  @Min(LengthParameter.minCalories, {
+    message: `The number of calories cannot be less than ${LengthParameter.minCalories}`,
+  })
+  @Max(LengthParameter.maxCalories, {
+    message: `The number of calories cannot be more than ${LengthParameter.maxCalories}`,
+  })
   caloriesPerDay?: number;
 
   /**

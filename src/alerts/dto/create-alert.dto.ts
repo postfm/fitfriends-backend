@@ -5,6 +5,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import { LengthParameter } from 'src/helpers/constants/common.constant';
 
 export class CreateAlertDto {
   /**
@@ -13,11 +14,11 @@ export class CreateAlertDto {
    */
   @IsString()
   @IsNotEmpty()
-  @MinLength(10, {
-    message: 'Text should not be less than 10 characters',
+  @MinLength(LengthParameter.minMessage, {
+    message: `Text should not be less than ${LengthParameter.minMessage} characters`,
   })
-  @MaxLength(140, {
-    message: 'Text should not be more than 140 characters',
+  @MaxLength(LengthParameter.maxMessage, {
+    message: `Text should not be more than ${LengthParameter.maxMessage} characters`,
   })
   text: string;
 
