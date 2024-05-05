@@ -50,7 +50,7 @@ export class ReviewsService {
     await this.dataSource
       .createQueryBuilder()
       .update(Training)
-      .set({ rating: review.avg })
+      .set({ rating: +review.avg })
       .where('training_id = :training_id', { training_id: training_id })
       .execute();
 

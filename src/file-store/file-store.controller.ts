@@ -18,7 +18,7 @@ import { ApiTags } from '@nestjs/swagger';
 export class FileStoreController {
   constructor(private readonly fileStoreService: FileStoreService) {}
 
-  @Post('/upload/avatar')
+  @Post('upload/avatar')
   @UseInterceptors(FileInterceptor('avatar'))
   public async uploadAvatar(
     @UploadedFile(FileTypeValidationPipe)

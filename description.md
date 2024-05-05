@@ -81,3 +81,7 @@ $ docker compose -f "docker-compose.dev.yml" up -d --build
 # user
 
 Реализует сценарии Кабинет пользователя и Кабинет тренера
+
+# Документация OpenAI
+
+http://localhost:4000/spec
