@@ -14,7 +14,6 @@ import {
   DEFAULT_SORT_DIRECTION,
 } from 'src/helpers/constants/training.constants';
 import { MailService } from 'src/notify/mail/mail.service';
-import { Subscriber } from 'src/notify/subscriber/entities/subscriber.entity';
 
 @Injectable()
 export class TrainingsService {
@@ -39,14 +38,6 @@ export class TrainingsService {
       ...createTrainingDto,
       user: { id },
     };
-
-    const subscriber = await this.dataSource
-      .getRepository(Subscriber)
-      .createQueryBuilder('subscriber')
-      .where('subscriber.trainer_id=:id', { id: id })
-      .getMany();
-
-    this.mailService.newsletter(subscriber as Subscriber[], id);
 
     return await this.trainingRepository.save(newTraining);
   }

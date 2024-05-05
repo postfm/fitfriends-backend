@@ -26,15 +26,19 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { TrainingRdo } from './rdo/training.rdo';
+import { NotifyService } from 'src/notify/notify.service';
 
 @ApiTags('trainings')
 @Controller('trainings')
 export class TrainingsController {
-  constructor(private readonly trainingsService: TrainingsService) {}
+  constructor(
+    private readonly trainingsService: TrainingsService,
+    private readonly notifyService: NotifyService,
+  ) {}
   @Get('ordered')
   @Roles(Role.Admin)
   @UseGuards(AccessTokenGuard, RolesGuard)
-  getMyOrders(@Req() req, @Query() query: TrainingQuery) {
+  async getMyOrders(@Req() req, @Query() query: TrainingQuery) {
     return this.trainingsService.getMyOrders(+req.user.sub, query);
   }
 
@@ -45,7 +49,9 @@ export class TrainingsController {
     type: TrainingRdo,
   })
   @ApiForbiddenResponse({ description: 'Forbidden.' })
-  findAll(@Paginate() query: PaginateQuery): Promise<Paginated<Training>> {
+  async findAll(
+    @Paginate() query: PaginateQuery,
+  ): Promise<Paginated<Training>> {
     return this.trainingsService.findAll(query);
   }
 
@@ -55,7 +61,9 @@ export class TrainingsController {
     type: TrainingRdo,
   })
   @ApiForbiddenResponse({ description: 'Forbidden.' })
-  catalog(@Paginate() query: PaginateQuery): Promise<Paginated<Training>> {
+  async catalog(
+    @Paginate() query: PaginateQuery,
+  ): Promise<Paginated<Training>> {
     return this.trainingsService.catalog(query);
   }
 
@@ -66,7 +74,8 @@ export class TrainingsController {
     type: TrainingRdo,
   })
   @ApiForbiddenResponse({ description: 'Forbidden.' })
-  create(@Body() createTrainingDto: CreateTrainingDto, @Req() req) {
+  async create(@Body() createTrainingDto: CreateTrainingDto, @Req() req) {
+    await this.notifyService.createTraining(+req.user.sub);
     return this.trainingsService.create(createTrainingDto, +req.user.sub);
   }
 
@@ -79,7 +88,7 @@ export class TrainingsController {
   @ApiBadRequestResponse({
     description: 'Training with this ID does not exist',
   })
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.trainingsService.findOne(+id);
   }
 
@@ -88,9 +97,9 @@ export class TrainingsController {
   @UseGuards(AccessTokenGuard, RolesGuard)
   @ApiForbiddenResponse({ description: 'Forbidden.' })
   @ApiBadRequestResponse({
-    description: 'Training with this ${training_id} does not exis',
+    description: 'Training with this ${training_id} does not exist',
   })
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updateTrainingDto: UpdateTrainingDto,
   ) {

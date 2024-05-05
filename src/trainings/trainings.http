@@ -24,7 +24,7 @@ Authorization: Bearer {{AToken}}
   "name": "Утренняя",
   "image": "store/training.jpg",
   "level": "новичок",
-  "type": "аэробика",
+  "type": "бокс",
   "duration": "10-30 мин",
   "price": 150,
   "calories": 1500,

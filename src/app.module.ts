@@ -19,9 +19,9 @@ import { FriendsModule } from './friends/friends.module';
 import { SubscriberModule } from './notify/subscriber/subscriber.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { MailModule } from './notify/mail/mail.module';
-import { RabbitmqModule } from './notify/rabbitmq/rabbitmq.module';
 import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
 import { getRabbitmqConnectionString } from './helpers/common';
+import { NotifyModule } from './notify/notify.module';
 
 @Module({
   imports: [
@@ -98,7 +98,7 @@ import { getRabbitmqConnectionString } from './helpers/common';
     FriendsModule,
     SubscriberModule,
     MailModule,
-    RabbitmqModule,
+    NotifyModule,
   ],
   controllers: [AppController],
   providers: [
