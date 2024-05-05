@@ -59,7 +59,7 @@ import { getRabbitmqConnectionString } from './helpers/common';
           from: configService.get('MAIL_FROM'),
         },
         template: {
-          dir: __dirname + '/notify/assets',
+          dir: __dirname + '/assets',
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,

@@ -14,7 +14,7 @@ export class MailService {
     const subscriberList = subscribers.join(',');
     this.mailerService
       .sendMail({
-        to: 'test@nestjs.com',
+        to: `${subscriberList}`,
         from: 'noreply@nestjs.com',
         subject: EMAIL_ADD_TRAINING_SUBJECT,
         template: '/add-training', // The `.pug`, `.ejs` or `.hbs` extension is appended automatically.
