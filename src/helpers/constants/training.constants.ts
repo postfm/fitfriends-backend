@@ -16,5 +16,10 @@ export enum TrainingGender {
   'для всех' = 'для всех',
 }
 
+export const TrainingError = {
+  TrainingAlreadyExists: 'This training already exists!',
+  TrainingNotExists: `Such training does not exist`,
+} as const;
+
 export const DEFAULT_SORT_DIRECTION = SortDirection.Desc;
 export const DEFAULT_SORTING_TYPE = 'quantity';

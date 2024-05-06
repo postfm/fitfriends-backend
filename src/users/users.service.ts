@@ -6,6 +6,7 @@ import { User } from './entities/user.entity';
 import { fillDto } from 'src/helpers/common';
 import { UserRdo } from './rdo/user.rdo';
 import { PaginateQuery, Paginated, paginate } from 'nestjs-paginate';
+import { UserError } from 'src/helpers/constants/user.constants';
 
 @Injectable()
 export class UsersService {
@@ -31,7 +32,7 @@ export class UsersService {
     });
 
     if (!existsUser) {
-      throw new BadRequestException('User with this email not found!');
+      throw new BadRequestException(UserError.EmailNotFound);
     }
     return existsUser;
   }
@@ -42,7 +43,7 @@ export class UsersService {
     });
 
     if (!existsUser) {
-      throw new BadRequestException('User with this id not found!');
+      throw new BadRequestException(UserError.UserNotFound);
     }
 
     const user = await this.userRepository.findOneBy({ id: id });
@@ -55,7 +56,7 @@ export class UsersService {
     });
 
     if (!existsUser) {
-      throw new BadRequestException('User with this id not found!');
+      throw new BadRequestException(UserError.UserNotFound);
     }
 
     return this.userRepository.update(id, updateUserDto);

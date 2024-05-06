@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { Review } from './entities/review.entity';
 import { Training } from 'src/trainings/entities/training.entity';
+import { ReviewError } from 'src/helpers/constants/review.constant';
 
 @Injectable()
 export class ReviewsService {
@@ -24,9 +25,7 @@ export class ReviewsService {
     });
 
     if (isExist.length) {
-      throw new BadRequestException(
-        'You have already written a review for this training!',
-      );
+      throw new BadRequestException(ReviewError.ReviewExists);
     }
 
     const newReview = {
@@ -63,7 +62,7 @@ export class ReviewsService {
     });
 
     if (!isExist) {
-      throw new BadRequestException("Training didn't find");
+      throw new BadRequestException(ReviewError.TrainingNotFound);
     }
     const reviews = await this.dataSource
       .getRepository(Review)

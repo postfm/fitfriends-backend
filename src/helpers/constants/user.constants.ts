@@ -38,3 +38,8 @@ export const DefaultValue = {
   PageCount: 1,
   SortType: 'role',
 };
+
+export const UserError = {
+  EmailNotFound: 'User with this email not found!',
+  UserNotFound: 'User with this id not found!',
+} as const;

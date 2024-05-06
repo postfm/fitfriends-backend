@@ -7,3 +7,5 @@ export enum TypePay {
   'mir' = 'mir',
   'umoney' = 'umoney',
 }
+
+export const ORDER_ALREADY_EXISTS = 'This order already exists!';

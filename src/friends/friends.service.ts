@@ -1,3 +1,7 @@
+import {
+  ADDED_AS_FRIEND,
+  FriendError,
+} from './../helpers/constants/friends.constants';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Friend } from './entities/friend.entity';
@@ -15,7 +19,7 @@ export class FriendsService {
 
   async create(user_id: number, friend_id: number) {
     if (user_id === friend_id) {
-      throw new BadRequestException('You are the best friend yourself!');
+      throw new BadRequestException(FriendError.FriendYourself);
     }
 
     const isExist = await this.friendsRepository.findBy({
@@ -24,7 +28,7 @@ export class FriendsService {
     });
 
     if (isExist.length) {
-      throw new BadRequestException('This user already is your friend!');
+      throw new BadRequestException(FriendError.UserNotAdded);
     }
 
     const newFriends = {
@@ -35,7 +39,7 @@ export class FriendsService {
     const addedFriend = await this.friendsRepository.save(newFriends);
 
     if (!addedFriend.id) {
-      throw new BadRequestException("User haven't added friends");
+      throw new BadRequestException(FriendError.UserNotAdded);
     }
 
     const userName = await this.dataSource
@@ -45,7 +49,7 @@ export class FriendsService {
       .getOne();
 
     const newAlert = {
-      text: `The user ${userName?.name} added you as a friend`,
+      text: ADDED_AS_FRIEND + userName?.name,
       user: friend_id,
     };
 
@@ -65,7 +69,7 @@ export class FriendsService {
     });
 
     if (!isExist) {
-      throw new BadRequestException('You are not have friends!');
+      throw new BadRequestException(FriendError.NotHaveFriends);
     }
 
     const friends = await this.dataSource.manager
@@ -83,7 +87,7 @@ export class FriendsService {
     });
 
     if (!isExist) {
-      throw new BadRequestException('You are not have friends!');
+      throw new BadRequestException(FriendError.NotHaveFriends);
     }
 
     const friends = await this.dataSource.manager
@@ -101,7 +105,7 @@ export class FriendsService {
     });
 
     if (!isExist) {
-      throw new BadRequestException('You are not have friends!');
+      throw new BadRequestException(FriendError.NotHaveFriends);
     }
 
     const friend = await this.friendsRepository.findBy({
@@ -110,7 +114,7 @@ export class FriendsService {
     });
 
     if (!friend) {
-      throw new BadRequestException("Friend did't find");
+      throw new BadRequestException();
     }
 
     return await this.dataSource

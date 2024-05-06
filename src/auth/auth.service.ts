@@ -1,3 +1,4 @@
+import { AuthError } from './../helpers/constants/auth.constant';
 import {
   BadRequestException,
   ForbiddenException,
@@ -38,7 +39,7 @@ export class AuthService {
     const existsUser = await this.userRepository.findOneBy({
       email: createUserDto.email,
     });
-    if (existsUser) throw new BadRequestException('This email already exists!');
+    if (existsUser) throw new BadRequestException(AuthError.EmailAlreadyExists);
 
     const hashedPassword = await getHash(createUserDto.password);
 
@@ -110,12 +111,13 @@ export class AuthService {
   async refreshTokens(userId: number, refreshToken: string) {
     const user = await this.usersService.findOne(userId);
     if (!user || !user.refreshToken)
-      throw new ForbiddenException('Access Denied');
+      throw new ForbiddenException(AuthError.AccessDenied);
     const refreshTokenMatches = await verifyHash(
       refreshToken,
       user.refreshToken,
     );
-    if (!refreshTokenMatches) throw new ForbiddenException('Access Denied');
+    if (!refreshTokenMatches)
+      throw new ForbiddenException(AuthError.AccessDenied);
     const tokens = await this.getTokens(user.id, user.email, user.roles);
     await this.updateRefreshToken(user.id, tokens.refreshToken);
     return tokens;

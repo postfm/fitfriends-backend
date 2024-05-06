@@ -3,6 +3,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Order } from './entities/order.entity';
 import { Repository } from 'typeorm';
+import { ORDER_ALREADY_EXISTS } from 'src/helpers/constants/order.constants';
 
 @Injectable()
 export class OrdersService {
@@ -22,7 +23,7 @@ export class OrdersService {
     });
 
     if (isExist.length) {
-      throw new BadRequestException('This order already exists!');
+      throw new BadRequestException(ORDER_ALREADY_EXISTS);
     }
     const sum = createOrderDto.amount * createOrderDto.price;
     const newOrder = {

@@ -3,6 +3,7 @@ import { Alert } from './entities/alert.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { LIMIT_ALERTS_PER_PAGE } from 'src/helpers/constants/common.constant';
+import { ALERT_NOT_FOUND } from 'src/helpers/constants/alert.constants';
 
 @Injectable()
 export class AlertsService {
@@ -30,7 +31,7 @@ export class AlertsService {
     });
 
     if (!isExist) {
-      throw new BadRequestException("Alert didn't found");
+      throw new BadRequestException(ALERT_NOT_FOUND);
     }
     return this.dataSource
       .createQueryBuilder()

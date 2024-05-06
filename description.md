@@ -6,7 +6,7 @@
 
 # Установка зависимостей:
 
-npm install
+npm install --force
 
 # Запуск контейнеров Docker с помощью файла
 

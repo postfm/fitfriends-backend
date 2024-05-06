@@ -1,3 +1,4 @@
+import { BalanceError } from './../helpers/constants/balance.constant';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateBalanceDto } from './dto/create-balance.dto';
 import { UpdateBalanceDto } from './dto/update-balance.dto';
@@ -18,7 +19,7 @@ export class BalancesService {
     });
 
     if (isExist) {
-      throw new BadRequestException('Your balance have already had exist');
+      throw new BadRequestException(BalanceError.BalanceAlreadyExists);
     }
 
     const newBalance = {
@@ -35,7 +36,7 @@ export class BalancesService {
     });
 
     if (!isExist) {
-      throw new BadRequestException("You don't have balance");
+      throw new BadRequestException(BalanceError.DontHaveBalance);
     }
 
     return this.balanceRepository.find({
@@ -50,7 +51,7 @@ export class BalancesService {
     });
 
     if (!isExist) {
-      throw new BadRequestException("You don't have balance");
+      throw new BadRequestException(BalanceError.DontHaveBalance);
     }
 
     const balance_id = isExist.id;

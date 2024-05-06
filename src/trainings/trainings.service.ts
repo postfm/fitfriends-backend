@@ -12,6 +12,7 @@ import { TrainingQuery } from 'src/helpers/query/training-query';
 import {
   DEFAULT_SORTING_TYPE,
   DEFAULT_SORT_DIRECTION,
+  TrainingError,
 } from 'src/helpers/constants/training.constants';
 import { MailService } from 'src/notify/mail/mail.service';
 
@@ -32,7 +33,7 @@ export class TrainingsService {
     });
 
     if (isExist.length) {
-      throw new BadRequestException('This training already exists!');
+      throw new BadRequestException(TrainingError.TrainingAlreadyExists);
     }
     const newTraining = {
       ...createTrainingDto,
@@ -104,9 +105,7 @@ export class TrainingsService {
     });
 
     if (!training) {
-      throw new BadRequestException(
-        `Training with this ${training_id} does not exist`,
-      );
+      throw new BadRequestException(TrainingError.TrainingNotExists);
     }
     return fillDto(TrainingRdo, training);
   }
@@ -117,7 +116,7 @@ export class TrainingsService {
     });
 
     if (!isExist) {
-      throw new BadRequestException(`Training with this ${id} does not exist`);
+      throw new BadRequestException(TrainingError.TrainingNotExists);
     }
     return this.trainingRepository.update(id, updateTrainingDto);
   }

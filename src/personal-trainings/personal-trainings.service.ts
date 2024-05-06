@@ -6,6 +6,11 @@ import { PersonalTraining } from './entities/personal-training.entity';
 import { DataSource, Repository } from 'typeorm';
 import { Alert } from 'src/alerts/entities/alert.entity';
 import { User } from 'src/users/entities/user.entity';
+import {
+  CHANGE_STATUS,
+  PersonalTrainingError,
+  REQUEST_PERSONAL_TRAINING,
+} from 'src/helpers/constants/personal-training.constants';
 
 @Injectable()
 export class PersonalTrainingsService {
@@ -21,9 +26,7 @@ export class PersonalTrainingsService {
     user: number,
   ) {
     if (initiator === user) {
-      throw new BadRequestException(
-        'You cannot invite yourself to training, you can only force it.',
-      );
+      throw new BadRequestException(PersonalTrainingError.CanNotInvite);
     }
 
     const newPersonalTraining = {
@@ -36,7 +39,7 @@ export class PersonalTrainingsService {
       await this.personalTrainingRepository.save(newPersonalTraining);
 
     if (!personalTraining.id) {
-      throw new BadRequestException('Personal training request not created');
+      throw new BadRequestException(PersonalTrainingError.RequestNotCreated);
     }
 
     const userInitiator = await this.dataSource
@@ -46,7 +49,7 @@ export class PersonalTrainingsService {
       .getOne();
 
     const newAlert = {
-      text: `The user ${userInitiator?.name} submitted a request for personal (joint) training`,
+      text: userInitiator?.name + REQUEST_PERSONAL_TRAINING,
       user,
     };
     await this.dataSource
@@ -74,7 +77,7 @@ export class PersonalTrainingsService {
     }
 
     if (!isExist) {
-      throw new BadRequestException('No such application exists');
+      throw new BadRequestException(PersonalTrainingError.TrainingNotExists);
     }
 
     const inviter = await this.dataSource
@@ -84,7 +87,7 @@ export class PersonalTrainingsService {
       .getOne();
 
     const newAlert = {
-      text: `The user ${inviter?.name} changed the status of your application to ${updatePersonalTrainingDto.status}`,
+      text: inviter?.name + CHANGE_STATUS + updatePersonalTrainingDto.status,
       user: isExist.initiator,
     };
 
