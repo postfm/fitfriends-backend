@@ -1,6 +1,11 @@
 import { extension } from 'mime-types';
 import { PipeTransform, Injectable, BadRequestException } from '@nestjs/common';
-import { ALLOWED_EXTENSIONS } from './pipe.constants';
+import {
+  ALLOWED_EXTENSIONS,
+  FIELD_NAME,
+  MAX_FILE_SIZE,
+  PipeError,
+} from '../constants/pipe.constants';
 
 @Injectable()
 export class FileTypeValidationPipe implements PipeTransform {
@@ -8,11 +13,11 @@ export class FileTypeValidationPipe implements PipeTransform {
     const fileExtension = extension(value.mimetype);
 
     if (!fileExtension || !ALLOWED_EXTENSIONS.includes(fileExtension)) {
-      throw new BadRequestException('Wrong file mimetype');
+      throw new BadRequestException(PipeError.WrongFileMimetype);
     }
 
-    if (value.fieldname === 'avatar' && value.size > 1000000) {
-      throw new BadRequestException('File size is very big');
+    if (value.fieldname === FIELD_NAME && value.size > MAX_FILE_SIZE) {
+      throw new BadRequestException(PipeError.FileSizeBig);
     }
 
     return value;

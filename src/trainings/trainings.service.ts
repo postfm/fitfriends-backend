@@ -14,7 +14,6 @@ import {
   DEFAULT_SORT_DIRECTION,
   TrainingError,
 } from 'src/helpers/constants/training.constants';
-import { MailService } from 'src/notify/mail/mail.service';
 
 @Injectable()
 export class TrainingsService {
@@ -22,7 +21,6 @@ export class TrainingsService {
     @InjectRepository(Training)
     private readonly trainingRepository: Repository<Training>,
     private readonly dataSource: DataSource,
-    private readonly mailService: MailService,
   ) {}
 
   async create(createTrainingDto: CreateTrainingDto, id: number) {
