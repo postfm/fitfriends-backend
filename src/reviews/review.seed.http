@@ -19,30 +19,9 @@ Authorization: Bearer {{AToken}}
 
 {
   "grade": 2,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. Это очень хорошая тренировка отличного тренера."
 }
 
-###
-# Новый отзыв
-POST http://localhost:4000/fitfriends/reviews/2 HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{AToken}}
-
-{
-  "grade": 2,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
-}
-
-###
-# Новый отзыв
-POST http://localhost:4000/fitfriends/reviews/3 HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{AToken}}
-
-{
-  "grade": 3,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
-}
 ###
 # Новый отзыв
 POST http://localhost:4000/fitfriends/reviews/4 HTTP/1.1
@@ -50,19 +29,51 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "grade": 4,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
+  "grade": 2,
+  "text": "Спасибо, классная тренировка! Понятная и интересная, с акцентом на правильную технику, как я люблю. Мне очень понравилось."
+}
+
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/7 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 3,
+  "text": "Хорошая тренировка, но все же не хватило немного динамики. Для меня оказалась слишком легкой. Хочу больше нагрузку."
 }
 ###
 # Новый отзыв
-POST http://localhost:4000/fitfriends/reviews/8 HTTP/1.1
+POST http://localhost:4000/fitfriends/reviews/10 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 4,
+  "text": "Регулярно выполняю эту тренировку дома и вижу результат! Спина стала прямее, появилось больше сил и гибкость тоже стала лучше, хотя упражнения довольно простые."
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/13 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
   "grade": 5,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
+  "text": "Ну какой же кайф! Спасибо, крутая программа. С музыкой вообще супер! Действительно, Energy! Буду и дальше заниматься"
 }
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/16 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 5,
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. И чувствовать себя бодрым весть день."
+}
+
 ###########################################################################################################
 #Аутентификация пользователя
 # @name login
@@ -81,31 +92,10 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "grade": 1,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
-}
-
-###
-# Новый отзыв
-POST http://localhost:4000/fitfriends/reviews/3 HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{AToken}}
-
-{
   "grade": 2,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. Это очень хорошая тренировка отличного тренера"
 }
 
-###
-# Новый отзыв
-POST http://localhost:4000/fitfriends/reviews/4 HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{AToken}}
-
-{
-  "grade": 3,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
-}
 ###
 # Новый отзыв
 POST http://localhost:4000/fitfriends/reviews/5 HTTP/1.1
@@ -113,20 +103,50 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "grade": 4,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
+  "grade": 2,
+  "text": "Спасибо, классная тренировка! Понятная и интересная, с акцентом на правильную технику, как я люблю. Мне очень понравилось"
+}
+
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/8 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 3,
+  "text": "Хорошая тренировка, но все же не хватило немного динамики. Для меня оказалась слишком легкой. Хочу больше нагрузку."
 }
 ###
 # Новый отзыв
-POST http://localhost:4000/fitfriends/reviews/6 HTTP/1.1
+POST http://localhost:4000/fitfriends/reviews/11 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 4,
+  "text": "Регулярно выполняю эту тренировку дома и вижу результат! Спина стала прямее, появилось больше сил и гибкость тоже стала лучше, хотя упражнения довольно простые."
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/14 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
   "grade": 5,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
+  "text": "Ну какой же кайф! Спасибо, крутая программа. С музыкой вообще супер! Действительно, Energy! Буду и дальше заниматься"
 }
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/17 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
 
+{
+  "grade": 5,
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. И чувствовать себя бодрым весть день."
+}
 ###########################################################################################################
 #Аутентификация пользователя
 # @name login
@@ -145,19 +165,8 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "grade": 1,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
-}
-
-###
-# Новый отзыв
-POST http://localhost:4000/fitfriends/reviews/4 HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{AToken}}
-
-{
-  "grade": 2,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
+  "grade": 5,
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. Это очень хорошая тренировка отличного тренера"
 }
 
 ###
@@ -168,8 +177,72 @@ Authorization: Bearer {{AToken}}
 
 {
   "grade": 3,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
+  "text": "Спасибо, классная тренировка! Понятная и интересная, с акцентом на правильную технику, как я люблю. Мне очень понравилось"
 }
+
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/8 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 4,
+  "text": "Хорошая тренировка, но все же не хватило немного динамики. Для меня оказалась слишком легкой. Хочу больше нагрузку."
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/12 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 5,
+  "text": "Регулярно выполняю эту тренировку дома и вижу результат! Спина стала прямее, появилось больше сил и гибкость тоже стала лучше, хотя упражнения довольно простые."
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/15 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 4,
+  "text": "Ну какой же кайф! Спасибо, крутая программа. С музыкой вообще супер! Действительно, Energy! Буду и дальше заниматься"
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/18 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 3,
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. И чувствовать себя бодрым весть день."
+}
+
+###########################################################################################################
+#Аутентификация пользователя
+# @name login
+POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "evgeny@user.com",
+  "password": "123456"
+}
+
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/4 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 4,
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. Это очень хорошая тренировка отличного тренера"
+}
+
 ###
 # Новый отзыв
 POST http://localhost:4000/fitfriends/reviews/6 HTTP/1.1
@@ -178,8 +251,72 @@ Authorization: Bearer {{AToken}}
 
 {
   "grade": 4,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
+  "text": "Спасибо, классная тренировка! Понятная и интересная, с акцентом на правильную технику, как я люблю. Мне очень понравилось"
 }
+
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/9 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 5,
+  "text": "Хорошая тренировка, но все же не хватило немного динамики. Для меня оказалась слишком легкой. Хочу больше нагрузку."
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/13 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 2,
+  "text": "Регулярно выполняю эту тренировку дома и вижу результат! Спина стала прямее, появилось больше сил и гибкость тоже стала лучше, хотя упражнения довольно простые."
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/16 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 3,
+  "text": "Ну какой же кайф! Спасибо, крутая программа. С музыкой вообще супер! Действительно, Energy! Буду и дальше заниматься"
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 4,
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. И чувствовать себя бодрым весть день."
+}
+
+###########################################################################################################
+#Аутентификация пользователя
+# @name login
+POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "valery@user.com",
+  "password": "123456"
+}
+
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/5 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 5,
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. Это очень хорошая тренировка отличного тренера"
+}
+
 ###
 # Новый отзыв
 POST http://localhost:4000/fitfriends/reviews/7 HTTP/1.1
@@ -187,6 +324,121 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
+  "grade": 3,
+  "text": "Спасибо, классная тренировка! Понятная и интересная, с акцентом на правильную технику, как я люблю. Мне очень понравилось"
+}
+
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/10 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 4,
+  "text": "Хорошая тренировка, но все же не хватило немного динамики. Для меня оказалась слишком легкой. Хочу больше нагрузку."
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/14 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 3,
+  "text": "Регулярно выполняю эту тренировку дома и вижу результат! Спина стала прямее, появилось больше сил и гибкость тоже стала лучше, хотя упражнения довольно простые."
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/17 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 2,
+  "text": "Ну какой же кайф! Спасибо, крутая программа. С музыкой вообще супер! Действительно, Energy! Буду и дальше заниматься"
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 4,
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. И чувствовать себя бодрым весть день."
+}
+
+###########################################################################################################
+#Аутентификация пользователя
+# @name login
+POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "mickael@user.com",
+  "password": "123456"
+}
+
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/6 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
   "grade": 5,
-  "text": "Приятно, граждане, наблюдать, как предприниматели в сети интернет неоднозначны и будут объективно рассмотрены соответствующими инстанциями."
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. Это очень хорошая тренировка отличного тренера"
+}
+
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/8 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 4,
+  "text": "Спасибо, классная тренировка! Понятная и интересная, с акцентом на правильную технику, как я люблю. Мне очень понравилось"
+}
+
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/11 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 3,
+  "text": "Хорошая тренировка, но все же не хватило немного динамики. Для меня оказалась слишком легкой. Хочу больше нагрузку."
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/15 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 2,
+  "text": "Регулярно выполняю эту тренировку дома и вижу результат! Спина стала прямее, появилось больше сил и гибкость тоже стала лучше, хотя упражнения довольно простые."
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/16 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 3,
+  "text": "Ну какой же кайф! Спасибо, крутая программа. С музыкой вообще супер! Действительно, Energy! Буду и дальше заниматься"
+}
+###
+# Новый отзыв
+POST http://localhost:4000/fitfriends/reviews/3 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "grade": 5,
+  "text": "Эта тренировка для меня зарядка по утрам, помогает проснуться. И чувствовать себя бодрым весть день."
 }

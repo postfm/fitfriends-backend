@@ -17,7 +17,7 @@ Content-Type: application/json
 ###
 
 # Получиние информации о пользователе по ID
-GET http://localhost:4000/fitfriends/users/6 HTTP/1.1
+GET http://localhost:4000/fitfriends/users/8 HTTP/1.1
  Authorization: Bearer {{AToken}}
 
 ###
@@ -34,6 +34,6 @@ Content-Type: application/json
 ###
 
 # Получение каталога пользователей
-GET  http://localhost:4000/fitfriends/users?sortBy=roles:DESC&filter.location=Удельная HTTP/1.1
+GET  http://localhost:4000/fitfriends/users HTTP/1.1
 Authorization: Bearer {{AToken}}
 Content-Type: application/json

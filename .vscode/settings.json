@@ -6,6 +6,7 @@
     "Mailermodule",
     "rabbitmq",
     "typeorm",
-    "umoney"
+    "umoney",
+    "сидирования"
   ]
 }

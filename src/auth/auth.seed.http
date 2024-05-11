@@ -7,14 +7,14 @@ Content-Type: application/json
 {
   "name": "John",
   "email": "john@user.com",
-  "avatar": "/store/avatar.jpg",
+  "avatar": "img/content/avatars/users/photo-1.png",
   "password": "123456",
   "gender": "мужской",
   "birthday": "2004-08-16",
   "roles": ["пользователь"],
   "description": "Описание пользователя",
   "location": "Звёздная",
-  "image": "store/avatar.jpg",
+  "image": "img/content/avatars/users/photo-1.png",
   "levelOfTrain": "новичок",
   "typeOfTraining": ["стрейчинг","кроссфит"],
   "timeOfTraining": "10-30 мин",
@@ -33,14 +33,14 @@ Content-Type: application/json
 {
   "name": "Shara",
   "email": "shara@user.com",
-  "avatar": "/store/avatar.jpg",
+  "avatar": "img/content/avatars/users/photo-2.png",
   "password": "123456",
   "gender": "женский",
   "birthday": "2000-01-03",
   "roles": ["пользователь"],
   "description": "Описание пользователя",
   "location": "Удельная",
-  "image": "store/avatar.jpg",
+  "image": "img/content/avatars/users/photo-2.png",
   "levelOfTrain": "любитель",
   "typeOfTraining": ["бег"],
   "timeOfTraining": "30-50 мин",
@@ -59,18 +59,96 @@ Content-Type: application/json
 {
   "name": "Mikle",
   "email": "mikle@user.com",
-  "avatar": "/store/avatar.jpg",
+  "avatar": "img/content/thumbnails/friend-01.jpg",
   "password": "123456",
   "gender": "неважно",
   "birthday": "1999-07-09",
   "roles": ["пользователь"],
-  "description": "Описание пользователя",
-  "location": "Спортивная",
-  "image": "store/avatar.jpg",
+  "description": "Привет! Я Mikle и мне 27 лет. Обожаю спорт и все, что с ним связанно. Регулярно хожу на тренировки по кроссфиту.",
+  "location": "Пионерская",
+  "image": "img/content/thumbnails/friend-01.jpg",
   "levelOfTrain": "профессионал",
+  "typeOfTraining": ["кроссфит","пилатес"],
+  "timeOfTraining": "80-100 мин",
+  "caloriesToLose": 3100,
+  "caloriesPerDay": 4700,
+  "readyToTrain": false,
+  "friends":[]
+}
+
+###
+
+# Создание нового пользователя с ролью "Пользователь"
+POST http://localhost:4000/fitfriends/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Евгений",
+  "email": "evgeny@user.com",
+  "avatar": "img/content/thumbnails/friend-01.jpg",
+  "password": "123456",
+  "gender": "мужской",
+  "birthday": "2004-08-16",
+  "roles": ["пользователь"],
+  "description": "Привет! Я Евгений и мне 27 лет. Обожаю спорт и все, что с ним связанно. Регулярно хожу на тренировки по боксу.",
+  "location": "Петроградская",
+  "image": "img/content/thumbnails/friend-01.jpg",
+  "levelOfTrain": "новичок",
+  "typeOfTraining": ["стрейчинг","кроссфит"],
+  "timeOfTraining": "30-50 мин",
+  "caloriesToLose": 1000,
+  "caloriesPerDay": 3200,
+  "readyToTrain": true,
+  "friends":[]
+}
+
+###
+
+# Создание нового пользователя с ролью "Пользователь"
+POST http://localhost:4000/fitfriends/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Валерия",
+  "email": "valery@user.com",
+  "avatar": "img/content/avatars/users/photo-4.png",
+  "password": "123456",
+  "gender": "женский",
+  "birthday": "2000-01-03",
+  "roles": ["пользователь"],
+  "description": "Привет! Я Валерия и мне 27 лет. Обожаю спорт и все, что с ним связанно. Регулярно хожу на тренировки по аэробике.",
+  "location": "Удельная",
+  "image": "img/content/avatars/users/photo-4.png",
+  "levelOfTrain": "профессионал",
+  "typeOfTraining": ["аэробика"],
+  "timeOfTraining": "80-100 мин",
+  "caloriesToLose": 3500,
+  "caloriesPerDay": 5000,
+  "readyToTrain": true,
+  "friends":[]
+}
+
+###
+
+# Создание нового пользователя с ролью "Пользователь"
+POST http://localhost:4000/fitfriends/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Михаил",
+  "email": "mickael@user.com",
+  "avatar": "img/content/thumbnails/friend-06.jpg",
+  "password": "123456",
+  "gender": "неважно",
+  "birthday": "1999-07-09",
+  "roles": ["пользователь"],
+  "description": "Привет! Я Катерина и мне 27 лет. Обожаю спорт и все, что с ним связанно. Регулярно хожу на тренировки по бегу.",
+  "location": "Звёздная",
+  "image": "img/content/thumbnails/friend-06.jpg",
+  "levelOfTrain": "любитель",
   "typeOfTraining": ["бокс"],
-  "timeOfTraining": "10-30 мин",
-  "caloriesToLose": 3000,
+  "timeOfTraining": "50-80 мин",
+  "caloriesToLose": 2000,
   "caloriesPerDay": 4500,
   "readyToTrain": false,
   "friends":[]
@@ -85,17 +163,17 @@ Content-Type: application/json
 {
   "name": "Rob",
   "email": "rob@trainer.com",
-  "avatar": "/store/avatar.jpg",
+  "avatar": "img/content/thumbnails/friend-16.jpg",
   "password": "123456",
   "gender": "неважно",
   "birthday": "2004-10-13",
   "roles": ["тренер"],
-  "description": "Описание пользователя",
-  "location": "Удельная",
-  "image": "store/avatar.jpg",
+  "description": "Персональный тренер и инструктор групповых программ с опытом  более 4х лет. Специализация: пилатес.",
+  "location": "Спортивная",
+  "image": "img/content/thumbnails/friend-16.jpg",
   "levelOfTrain": "профессионал",
-  "typeOfTraining": ["стрейчинг","кроссфит"],
-  "certificates": "/store/certificates.pdf",
+  "typeOfTraining": ["пилатес"],
+  "certificates": "img/content/certificates-and-diplomas/1.pdf",
   "merits": "Мастер спорта",
   "personalTrainings": false,
   "friends":[]
@@ -110,17 +188,17 @@ Content-Type: application/json
 {
   "name": "July",
   "email": "july@trainer.com",
-  "avatar": "/store/avatar.jpg",
+  "avatar": "img/content/avatars/coaches/photo-1.png",
   "password": "123456",
   "gender": "женский",
   "birthday": "2002-05-01",
   "roles": ["тренер"],
-  "description": "Описание пользователя",
-  "location": "Удельная",
-  "image": "store/avatar.jpg",
+  "description": "Персональный тренер и инструктор групповых программ с опытом  более 4х лет. Специализация: аэробика.",
+  "location": "Пионерская",
+  "image": "img/content/avatars/coaches/photo-1.png",
   "levelOfTrain": "профессионал",
-  "typeOfTraining": ["аэробика","пилатес"],
-  "certificates": "/store/certificates.pdf",
+  "typeOfTraining": ["аэробика"],
+  "certificates": "img/content/certificates-and-diplomas/2.pdf",
   "merits": "Чемпионка республики",
   "personalTrainings": true,
   "friends":[]
@@ -135,17 +213,92 @@ Content-Type: application/json
 {
   "name": "Katrin",
   "email": "katrin@trainer.com",
-  "avatar": "/store/avatar.jpg",
+  "avatar": "img/content/thumbnails/friend-15.jpg",
   "password": "123456",
   "gender": "женский",
   "birthday": "2000-04-22",
   "roles": ["тренер"],
-  "description": "Описание пользователя",
-  "location": "Удельная",
-  "image": "store/avatar.jpg",
+  "description": "Персональный тренер и инструктор групповых программ с опытом  более 4х лет. Специализация: бег, пилатес, аэробика.",
+  "location": "Петроградская",
+  "image": "img/content/thumbnails/friend-15.jpg",
   "levelOfTrain": "профессионал",
-  "typeOfTraining": ["бокс","кроссфит"],
-  "certificates": "/store/certificates.pdf",
+  "typeOfTraining": ["бег","пилатес","аэробика"],
+  "certificates": "img/content/certificates-and-diplomas/3.pdf",
+  "merits": "Чемпионка города",
+  "personalTrainings": true,
+    "friends":[]
+}
+
+###
+
+# Создание нового пользователя с ролью "Тренер"
+POST http://localhost:4000/fitfriends/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Анатолий",
+  "email": "anatoly@trainer.com",
+  "avatar": "img/content/thumbnails/friend-18.jpg",
+  "password": "123456",
+  "gender": "неважно",
+  "birthday": "2004-10-13",
+  "roles": ["тренер"],
+  "description": "Персональный тренер и инструктор групповых программ с опытом  более 6х лет. Специализация: бег, бокс.",
+  "location": "Удельная",
+  "image": "img/content/thumbnails/friend-18.jpg",
+  "levelOfTrain": "профессионал",
+  "typeOfTraining": ["бег","бокс"],
+  "certificates": "img/content/certificates-and-diplomas/4.pdf",
+  "merits": "Мастер спорта",
+  "personalTrainings": false,
+  "friends":[]
+}
+
+###
+
+# Создание нового пользователя с ролью "Тренер"
+POST http://localhost:4000/fitfriends/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Елена",
+  "email": "elena@trainer.com",
+  "avatar": "img/content/thumbnails/friend-17.jpg",
+  "password": "123456",
+  "gender": "женский",
+  "birthday": "2002-05-01",
+  "roles": ["тренер"],
+  "description": "Персональный тренер и инструктор групповых программ с опытом  более 3х лет. Специализация: кроссфит, пилатес, аэробика.",
+  "location": "Звёздная",
+  "image": "img/content/thumbnails/friend-17.jpg",
+  "levelOfTrain": "профессионал",
+  "typeOfTraining": ["аэробика","пилатес","кроссфит"],
+  "certificates": "img/content/certificates-and-diplomas/5.pdf",
+  "merits": "Чемпионка республики",
+  "personalTrainings": true,
+  "friends":[]
+}
+
+###
+
+# Создание нового пользователя с ролью "Тренер"
+POST http://localhost:4000/fitfriends/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Мария",
+  "email": "mary@trainer.com",
+  "avatar": "img/content/thumbnails/friend-19.jpg",
+  "password": "123456",
+  "gender": "женский",
+  "birthday": "2000-04-22",
+  "roles": ["тренер"],
+  "description": "Персональный тренер и инструктор групповых программ с опытом  более 4х лет. Специализация: пилатес, аэробика.",
+  "location": "Спортивная",
+  "image": "img/content/thumbnails/friend-19.jpg",
+  "levelOfTrain": "профессионал",
+  "typeOfTraining": ["пилатес","аэробика"],
+  "certificates": "img/content/certificates-and-diplomas/6.pdf",
   "merits": "Чемпионка города",
   "personalTrainings": true,
     "friends":[]

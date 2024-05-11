@@ -31,6 +31,7 @@ $ docker compose -f "docker-compose.dev.yml" up -d --build
 3. reviews.seed.http
 4. orders.seed.http
 5. friends.seed.http
+6. personal.seed.http
 
 # Переменные среды находятся в файле:
 

@@ -2,7 +2,8 @@
 ############################## Сервис тренировок ####################################################
 ####################################################################################################
 #
-#Пользователи с ролью тренер: rob@trainer.com, july@trainer.com, katrin@trainer.com
+#Пользователи с ролью тренер: rob@trainer.com, july@trainer.com, katrin@trainer.com, 
+# anatoly@trainer.com, elena@trainer.com, mary@trainer.com
 #
 #Пароль у всех 123456
 
@@ -29,16 +30,16 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "name": "Утренняя",
-  "image": "store/training.jpg",
+  "name": "CROSSFIT",
+  "image": "img/content/thumbnails/training-01.jpg",
   "level": "новичок",
-  "type": "стретчинг",
+  "type": "кроссфит",
   "duration": "10-30 мин",
   "price": 150,
-  "calories": 1500,
-  "description": "Описание тренировки",
+  "calories": 1200,
+  "description": "Сложный комплекс упражнений для профессиональных атлетов на отработку показателей в классическом стиле.",
   "gender": "для всех",
-  "video": "store/training.avi",
+  "video": "img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -51,16 +52,16 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "name": "Дневная",
-  "image": "store/training.jpg",
-  "level": "новичок",
-  "type": "кроссфит",
+  "name": "ENERGY",
+  "image": "img/content/thumbnails/training-02.jpg",
+  "level": "любитель",
+  "type": "пилатес",
   "duration": "10-30 мин",
   "price": 250,
-  "calories": 2500,
-  "description": "Описание тренировки",
+  "calories": 1320,
+  "description": "Упражнения укрепляют мышечный корсет, делают суставы более гибкими, улучшают осанку и координацию.",
   "gender": "для всех",
-  "video": "store/training.avi",
+  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -73,16 +74,16 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "name": "Вечерняя",
-  "image": "store/training.jpg",
-  "level": "новичок",
-  "type": "кроссфит",
-  "duration": "10-30 мин",
+  "name": "BOXING",
+  "image": "img/content/thumbnails/training-03.jpg",
+  "level": "профессионал",
+  "type": "бокс",
+  "duration": "30-50 мин",
   "price": 100,
-  "calories": 1000,
-  "description": "Описание тренировки",
+  "calories": 1800,
+  "description": "Тренировка на отработку правильных ударов, координации и оптимальной механики защитных движений.",
   "gender": "для женщин",
-  "video": "store/training.avi",
+  "video": "img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -110,16 +111,16 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "name": "Утренняя",
-  "image": "store/training.jpg",
+  "name": "POWER",
+  "image": "img/content/thumbnails/training-04.jpg",
   "level": "любитель",
   "type": "аэробика",
   "duration": "30-50 мин",
   "price": 150,
   "calories": 1500,
-  "description": "Описание тренировки",
+  "description": "Тренировка на отработку правильной техники работы с тяжелыми весами, укрепления мышц кора и спины.",
   "gender": "для всех",
-  "video": "store/training.avi",
+  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -132,38 +133,38 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "name": "Дневная",
-  "image": "store/training.jpg",
-  "level": "любитель",
-  "type": "аэробика",
-  "duration": "30-50 мин",
-  "price": 350,
-  "calories": 3000,
-  "description": "Описание тренировки",
-  "gender": "для женщин",
-  "video": "store/training.avi",
-  "rating": 0,
-  "specialOffer": false
-}
-
-###
-
-# Создание новой тренировки
-POST http://localhost:4000/fitfriends/trainings HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{AToken}}
-
-{
-  "name": "Вечерняя",
-  "image": "store/training.jpg",
+  "name": "ANTISTRESS",
+  "image": "img/content/thumbnails/training-05.jpg",
   "level": "любитель",
   "type": "пилатес",
   "duration": "30-50 мин",
-  "price": 500,
+  "price": 350,
   "calories": 3000,
+  "description": "В основе программы лежит работа с телом и с психо-эмоциональным состоянием. Уберем зажимы тела, избавимся от стресса.",
+  "gender": "для женщин",
+  "video": "img/content/training-video/Video_html_Academy.mov",
+  "rating": 0,
+  "specialOffer": false
+}
+
+###
+
+# Создание новой тренировки
+POST http://localhost:4000/fitfriends/trainings HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "name": "RUN, FORREST",
+  "image": "img/content/thumbnails/training-06.jpg",
+  "level": "любитель",
+  "type": "бег",
+  "duration": "30-50 мин",
+  "price": 500,
+  "calories": 1500,
   "description": "Описание тренировки",
   "gender": "для женщин",
-  "video": "store/training.avi",
+  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -191,16 +192,96 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "name": "Утренняя",
-  "image": "store/training.jpg",
+  "name": "FITBALL",
+  "image": "img/content/thumbnails/training-07.jpg",
+  "level": "любитель",
+  "type": "пилатес",
+  "duration": "30-50 мин",
+  "price": 350,
+  "calories": 1200,
+  "description": "Тренировка на фитболе — отличном тренажере для развития чувства баланса и равновесия, улучшения координации.",
+  "gender": "для всех",
+  "video": "img/content/training-video/Video_html_Academy.mov",
+  "rating": 0,
+  "specialOffer": false
+}
+
+###
+
+# Создание новой тренировки
+POST http://localhost:4000/fitfriends/trainings HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "name": "HATHA",
+  "image": "img/content/thumbnails/training-08.jpg",
+  "level": "любитель",
+  "type": "йога",
+  "duration": "50-80 мин",
+  "price": 650,
+  "calories": 1350,
+  "description": "Упражнения по хатха йоге, направленные на понижение нервной возбудимости и активацию процессов анаболизма.",
+  "gender": "для женщин",
+  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "rating": 0,
+  "specialOffer": false
+}
+
+###
+
+# Создание новой тренировки
+POST http://localhost:4000/fitfriends/trainings HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "name": "BODY STRETCH",
+  "image": "img/content/thumbnails/training-09.jpg",
+  "level": "любитель",
+  "type": "стретчинг",
+  "duration": "30-50 мин",
+  "price": 500,
+  "calories": 1400,
+  "description": "Комплекс упражнений на растяжку всего тела для новичков. Плавное погружение в стретчинг и умеренная нагрузка.",
+  "gender": "для женщин",
+  "video": "img/content/training-video/Video_html_Academy.mov",
+  "rating": 0,
+  "specialOffer": false
+}
+
+###
+
+# Аутентификация пользователя anatoly@trainer.com
+POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "anatoly@trainer.com",
+  "password": "123456"
+}
+
+
+#Тренировки пользователя anatoly@trainer.com
+
+###
+
+# Создание новой тренировки
+POST http://localhost:4000/fitfriends/trainings HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "name": "UPPER BODY",
+  "image": "img/content/thumbnails/training-10.jpg",
   "level": "любитель",
   "type": "бокс",
   "duration": "30-50 мин",
   "price": 350,
-  "calories": 2500,
-  "description": "Описание тренировки",
+  "calories": 1800,
+  "description": "Проработка мышц груди для профи, экспериментируем с уровнем наклона скамьи и различной шириной хвата.",
   "gender": "для всех",
-  "video": "store/training.avi",
+  "video": "img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -213,16 +294,16 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "name": "Дневная",
-  "image": "store/training.jpg",
+  "name": "DEVIL'S CINDY",
+  "image": "img/content/thumbnails/training-11.jpg",
   "level": "любитель",
-  "type": "бокс",
+  "type": "кроссфит",
   "duration": "50-80 мин",
   "price": 650,
-  "calories": 3000,
-  "description": "Описание тренировки",
+  "calories": 1950,
+  "description": "Знаменитый кроссфит комплекс. Синди — универсальная тренировка для развития функциональной силы.",
   "gender": "для женщин",
-  "video": "store/training.avi",
+  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -235,16 +316,176 @@ Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 {
-  "name": "Вечерняя",
-  "image": "store/training.jpg",
+  "name": "FLEKSBEND",
+  "image": "img/content/thumbnails/training-12.jpg",
+  "level": "любитель",
+  "type": "аэробика",
+  "duration": "30-50 мин",
+  "price": 500,
+  "calories": 1450,
+  "description": "Тренируясь с резинкой для фитнеса, вы можете проработать почти все мышечные группы и разнообразить тренировки.",
+  "gender": "для женщин",
+  "video": "img/content/training-video/Video_html_Academy.mov",
+  "rating": 0,
+  "specialOffer": false
+}
+
+###
+
+# Аутентификация пользователя elena@trainer.com
+POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "elena@trainer.com",
+  "password": "123456"
+}
+
+
+#Тренировки пользователя elena@trainer.com
+
+###
+
+# Создание новой тренировки
+POST http://localhost:4000/fitfriends/trainings HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "name": "CROSSFIT",
+  "image": "img/content/thumbnails/training-01.jpg",
   "level": "любитель",
   "type": "кроссфит",
   "duration": "30-50 мин",
-  "price": 500,
-  "calories": 3000,
-  "description": "Описание тренировки",
+  "price": 350,
+  "calories": 1200,
+  "description": "Сложный комплекс упражнений для профессиональных атлетов на отработку показателей в классическом стиле.",
+  "gender": "для всех",
+  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "rating": 0,
+  "specialOffer": false
+}
+
+###
+
+# Создание новой тренировки
+POST http://localhost:4000/fitfriends/trainings HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "name": "ENERGY",
+  "image": "img/content/thumbnails/training-02.jpg",
+  "level": "любитель",
+  "type": "пилатес",
+  "duration": "50-80 мин",
+  "price": 650,
+  "calories": 1320,
+  "description": "Упражнения укрепляют мышечный корсет, делают суставы более гибкими, улучшают осанку и координацию.",
   "gender": "для женщин",
-  "video": "store/training.avi",
+  "video": "img/content/training-video/Video_html_Academy.mov",
+  "rating": 0,
+  "specialOffer": false
+}
+
+###
+
+# Создание новой тренировки
+POST http://localhost:4000/fitfriends/trainings HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "name": "BOXING",
+  "image": "img/content/thumbnails/training-03.jpg",
+  "level": "любитель",
+  "type": "бокс",
+  "duration": "30-50 мин",
+  "price": 500,
+  "calories":1800,
+  "description": "Тренировка на отработку правильных ударов, координации и оптимальной механики защитных движений.",
+  "gender": "для женщин",
+  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "rating": 0,
+  "specialOffer": false
+}
+
+###
+
+# Аутентификация пользователя mary@trainer.com
+POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "mary@trainer.com",
+  "password": "123456"
+}
+
+
+#Тренировки пользователя mary@trainer.com
+
+###
+
+# Создание новой тренировки
+POST http://localhost:4000/fitfriends/trainings HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "name": "POWER",
+  "image": "img/content/thumbnails/training-04.jpg",
+  "level": "любитель",
+  "type": "бокс",
+  "duration": "30-50 мин",
+  "price": 350,
+  "calories": 1600,
+  "description": "Тренировка на отработку правильной техники работы с тяжелыми весами, укрепления мышц кора и спины.",
+  "gender": "для всех",
+  "video": "img/content/training-video/Video_html_Academy.mov",
+  "rating": 0,
+  "specialOffer": false
+}
+
+###
+
+# Создание новой тренировки
+POST http://localhost:4000/fitfriends/trainings HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "name": "ANTISTRESS",
+  "image": "img/content/thumbnails/training-05.jpg",
+  "level": "любитель",
+  "type": "йога",
+  "duration": "50-80 мин",
+  "price": 650,
+  "calories": 1250,
+  "description": "В основе программы лежит работа с телом и с психо-эмоциональным состоянием. Уберем зажимы тела, избавимся от стресса.",
+  "gender": "для женщин",
+  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "rating": 0,
+  "specialOffer": false
+}
+
+###
+
+# Создание новой тренировки
+POST http://localhost:4000/fitfriends/trainings HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+{
+  "name": "FORREST, RUN",
+  "image": "img/content/thumbnails/training-06.jpg",
+  "level": "любитель",
+  "type": "бег",
+  "duration": "30-50 мин",
+  "price": 500,
+  "calories": 1500,
+  "description": "Узнайте правильную технику бега, развивайте выносливость и откройте для себя все секреты длительных пробежек.",
+  "gender": "для женщин",
+  "video": "img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }

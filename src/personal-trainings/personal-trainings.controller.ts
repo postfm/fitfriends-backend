@@ -23,7 +23,7 @@ import {
 } from '@nestjs/swagger';
 import { PersonalTraining } from './dto/personal-training.api';
 
-@ApiTags('personal-training')
+@ApiTags('personal-trainings')
 @ApiBearerAuth()
 @Controller('personal-trainings')
 export class PersonalTrainingsController {

@@ -68,7 +68,7 @@ export class PersonalTrainingsService {
     updatePersonalTrainingDto: UpdatePersonalTrainingDto,
   ) {
     const isExist = await this.personalTrainingRepository.findOneBy({
-      id: id,
+      initiator: id,
       user: user,
     });
 
@@ -99,7 +99,7 @@ export class PersonalTrainingsService {
       .execute();
 
     return this.personalTrainingRepository.update(
-      id,
+      isExist.id,
       updatePersonalTrainingDto,
     );
   }

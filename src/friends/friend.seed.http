@@ -24,13 +24,13 @@ Authorization: Bearer {{AToken}}
 
 ###
 # Добавление нового друга
-POST http://localhost:4000/fitfriends/friends/4 HTTP/1.1
+POST http://localhost:4000/fitfriends/friends/7 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 ###
 # Добавление нового друга
-POST http://localhost:4000/fitfriends/friends/5 HTTP/1.1
+POST http://localhost:4000/fitfriends/friends/8 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
@@ -65,13 +65,13 @@ Authorization: Bearer {{AToken}}
 
 ###
 # Добавление нового друга
-POST http://localhost:4000/fitfriends/friends/4 HTTP/1.1
+POST http://localhost:4000/fitfriends/friends/7 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
 ###
 # Добавление нового друга
-POST http://localhost:4000/fitfriends/friends/5 HTTP/1.1
+POST http://localhost:4000/fitfriends/friends/12 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
@@ -106,6 +106,111 @@ Authorization: Bearer {{AToken}}
 
 ###
 # Добавление нового друга
-POST http://localhost:4000/fitfriends/friends/6 HTTP/1.1
+POST http://localhost:4000/fitfriends/friends/11 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###############################################################################
+# Аутентификация пользователя
+# @name login
+POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "evgeny@user.com",
+  "password": "123456"
+}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/5 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/10 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###############################################################################
+# Аутентификация пользователя
+# @name login
+POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "valery@user.com",
+  "password": "123456"
+}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/4 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/9 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###############################################################################
+# Аутентификация пользователя
+# @name login
+POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "mickael@user.com",
+  "password": "123456"
+}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/5 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+###
+# Добавление нового друга
+POST http://localhost:4000/fitfriends/friends/9 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{AToken}}
