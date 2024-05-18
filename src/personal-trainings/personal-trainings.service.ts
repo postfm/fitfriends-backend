@@ -103,4 +103,8 @@ export class PersonalTrainingsService {
       updatePersonalTrainingDto,
     );
   }
+
+  async findAll() {
+    return this.personalTrainingRepository.find();
+  }
 }

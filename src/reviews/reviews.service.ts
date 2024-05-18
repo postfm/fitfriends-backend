@@ -1,8 +1,8 @@
+import { Review } from 'src/reviews/entities/review.entity';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
-import { Review } from './entities/review.entity';
 import { Training } from 'src/trainings/entities/training.entity';
 import { ReviewError } from 'src/helpers/constants/review.constant';
 

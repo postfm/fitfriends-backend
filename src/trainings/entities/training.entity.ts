@@ -64,7 +64,7 @@ export class Training {
   @Column({ name: 'special_offer' })
   specialOffer: boolean;
 
-  @CreateDateColumn({ name: 'create_at', type: 'timestamp with time zone' })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
   createdAt: Date;
 
   @CreateDateColumn({ name: 'updated_at', type: 'timestamp with time zone' })

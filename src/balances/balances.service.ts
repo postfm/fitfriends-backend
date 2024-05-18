@@ -31,8 +31,11 @@ export class BalancesService {
   }
 
   async findAll(user_id: number) {
-    const isExist = await this.balanceRepository.findOneBy({
-      user: { id: user_id },
+    const isExist = await this.balanceRepository.find({
+      where: { user: { id: user_id } },
+      relations: {
+        user: { trainings: true },
+      },
     });
 
     if (!isExist) {

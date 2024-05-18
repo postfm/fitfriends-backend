@@ -4,8 +4,6 @@ import { UpdateTrainingDto } from './dto/update-training.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Training } from './entities/training.entity';
 import { DataSource, Repository } from 'typeorm';
-import { fillDto } from 'src/helpers/common';
-import { TrainingRdo } from './rdo/training.rdo';
 import { PaginateQuery, Paginated, paginate } from 'nestjs-paginate';
 import { Order } from 'src/orders/entities/order.entity';
 import { TrainingQuery } from 'src/helpers/query/training-query';
@@ -50,7 +48,7 @@ export class TrainingsService {
         duration: true,
       },
       sortableColumns: ['createdAt'],
-      relations: ['orders'],
+      relations: ['orders', 'user', 'reviews'],
     });
   }
 
@@ -94,18 +92,22 @@ export class TrainingsService {
         type: true,
       },
       sortableColumns: ['price'],
+      relations: ['orders', 'user', 'reviews'],
     });
   }
 
   async findOne(training_id: number) {
-    const training = await this.trainingRepository.findOneBy({
-      training_id: training_id,
+    const training = await this.trainingRepository.findOne({
+      where: {
+        training_id: training_id,
+      },
+      relations: { user: true, orders: true },
     });
 
     if (!training) {
       throw new BadRequestException(TrainingError.TrainingNotExists);
     }
-    return fillDto(TrainingRdo, training);
+    return training;
   }
 
   async update(id: number, updateTrainingDto: UpdateTrainingDto) {

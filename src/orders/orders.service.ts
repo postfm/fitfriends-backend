@@ -34,4 +34,13 @@ export class OrdersService {
     };
     return await this.orderRepository.save(newOrder);
   }
+
+  async findAll() {
+    return await this.orderRepository.find({
+      relations: {
+        training: true,
+        user: true,
+      },
+    });
+  }
 }

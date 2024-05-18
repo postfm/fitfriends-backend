@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Param, UseGuards, Req } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Param,
+  UseGuards,
+  Req,
+  Get,
+} from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { Roles } from 'src/auth/roles/roles.decorator';
@@ -35,5 +43,16 @@ export class OrdersController {
       +req.user.sub,
       +training_id,
     );
+  }
+
+  @Get()
+  @Roles(Role.User)
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @ApiOkResponse({
+    type: CreateOrderDto,
+  })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
+  find() {
+    return this.ordersService.findAll();
   }
 }

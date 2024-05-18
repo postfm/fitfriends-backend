@@ -6,6 +6,7 @@ import {
   Param,
   UseGuards,
   Req,
+  Get,
 } from '@nestjs/common';
 import { PersonalTrainingsService } from './personal-trainings.service';
 import { CreatePersonalTrainingDto } from './dto/create-personal-training.dto';
@@ -73,5 +74,10 @@ export class PersonalTrainingsController {
       +req.user.sub,
       updatePersonalTrainingDto,
     );
+  }
+
+  @Get()
+  findAll() {
+    return this.personalTrainingsService.findAll();
   }
 }
