@@ -1,4 +1,12 @@
-import { Controller, Get, Body, Patch, Param, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Body,
+  Patch,
+  Param,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
@@ -55,7 +63,11 @@ export class UsersController {
   @ApiBadRequestResponse({
     description: 'Training with this ID does not exist',
   })
-  update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
+  update(
+    @Req() req,
+    @Param('id') id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return this.usersService.update(id, +req.user.sub, updateUserDto);
   }
 }

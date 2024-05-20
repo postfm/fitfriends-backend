@@ -50,13 +50,17 @@ export class UsersService {
     return fillDto(UserRdo, user);
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  async update(id: number, current_id: number, updateUserDto: UpdateUserDto) {
     const existsUser = await this.userRepository.findOneBy({
       id,
     });
 
     if (!existsUser) {
       throw new BadRequestException(UserError.UserNotFound);
+    }
+    console.log(id, current_id);
+    if (id === current_id) {
+      throw new BadRequestException(UserError.BadUser);
     }
 
     return this.userRepository.update(id, updateUserDto);
