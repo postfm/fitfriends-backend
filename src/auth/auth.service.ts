@@ -62,7 +62,8 @@ export class AuthService {
     const user = await this.usersService.findOneByEmail(data.email);
     const tokens = await this.getTokens(user.id, user.email, user.roles);
     await this.updateRefreshToken(user.id, tokens.refreshToken);
-    return tokens;
+    const currentUser = fillDto(UserRdo, user);
+    return { tokens, currentUser };
   }
 
   async logout(userId: number) {

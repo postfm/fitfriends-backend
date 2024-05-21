@@ -42,5 +42,4 @@ export const DefaultValue = {
 export const UserError = {
   EmailNotFound: 'User with this email not found!',
   UserNotFound: 'User with this id not found!',
-  BadUser: 'You can only edit your account',
 } as const;
