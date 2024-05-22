@@ -37,7 +37,7 @@ export class User {
   @Column('enum', { enum: ['тренер', 'пользователь'] })
   roles: string[];
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
   @Column('enum', {
@@ -45,7 +45,7 @@ export class User {
   })
   location: string;
 
-  @Column()
+  @Column({ nullable: true })
   image: string;
 
   @CreateDateColumn({
@@ -60,10 +60,11 @@ export class User {
   @Column('enum', {
     enum: ['новичок', 'любитель', 'профессионал'],
     name: 'level_of_train',
+    nullable: true,
   })
   levelOfTrain: string;
 
-  @Column('simple-array', { name: 'type_of_training' })
+  @Column('simple-array', { name: 'type_of_training', nullable: true })
   typeOfTraining: string[];
 
   @Column('enum', {

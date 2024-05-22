@@ -99,7 +99,7 @@ export class CreateUserDto {
    * @maximum 140
    */
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @MinLength(LengthParameter.minMessage, {
     message: `Description should not be less than ${LengthParameter.minMessage} characters`,
   })
@@ -122,7 +122,7 @@ export class CreateUserDto {
    * @example 'upload/background-image.jpg
    */
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   image: string;
 
   /**
@@ -131,7 +131,7 @@ export class CreateUserDto {
    */
   @IsString()
   @IsEnum(LevelOfTrain)
-  @IsNotEmpty()
+  @IsOptional()
   levelOfTrain: string;
 
   /**
@@ -139,7 +139,7 @@ export class CreateUserDto {
    * @example ['йога','бег']
    */
   @IsArray()
-  @IsNotEmpty()
+  @IsOptional()
   @ArrayMaxSize(3, {
     message: 'The number of workouts should not be more than 3',
   })

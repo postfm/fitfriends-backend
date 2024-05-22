@@ -71,7 +71,7 @@ import { NotifyModule } from './notify/notify.module';
       useFactory: (configService: ConfigService) => ({
         exchanges: [
           {
-            name: configService.get('RABBIT_QUEUE') as string,
+            name: configService.get('RABBIT_EXCHANGE') as string,
             type: 'direct',
           },
         ],

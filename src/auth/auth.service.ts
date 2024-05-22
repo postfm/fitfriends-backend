@@ -54,8 +54,9 @@ export class AuthService {
       newUser.roles,
     );
     await this.updateRefreshToken(newUser.id, tokens.refreshToken);
+    const currentUser = fillDto(UserRdo, newUser);
 
-    return fillDto(UserRdo, newUser);
+    return { tokens, currentUser };
   }
 
   async login(data: AuthDto) {
