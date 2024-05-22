@@ -59,6 +59,7 @@ export class UsersService {
       throw new BadRequestException(UserError.UserNotFound);
     }
 
-    return this.userRepository.update(id, updateUserDto);
+    await this.userRepository.update(id, updateUserDto);
+    return this.userRepository.findOneBy({ id: id });
   }
 }
