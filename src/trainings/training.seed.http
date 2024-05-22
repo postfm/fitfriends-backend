@@ -8,7 +8,7 @@
 #Пароль у всех 123456
 
 
-@AToken={{login.response.body.accessToken}}
+@AToken={{login.response.body.tokens.accessToken}}
 
 # Аутентификация пользователя rob@trainer.com
 # @name login
@@ -31,7 +31,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "CROSSFIT",
-  "image": "img/content/thumbnails/training-01.jpg",
+  "image": "/img/content/thumbnails/training-01.jpg",
   "level": "новичок",
   "type": "кроссфит",
   "duration": "10-30 мин",
@@ -39,7 +39,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1200,
   "description": "Сложный комплекс упражнений для профессиональных атлетов на отработку показателей в классическом стиле.",
   "gender": "для всех",
-  "video": "img/content/training-video/Video_html_Academy.mov",
+  "video": "/img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -53,7 +53,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "ENERGY",
-  "image": "img/content/thumbnails/training-02.jpg",
+  "image": "/img/content/thumbnails/training-02.jpg",
   "level": "любитель",
   "type": "пилатес",
   "duration": "10-30 мин",
@@ -61,7 +61,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1320,
   "description": "Упражнения укрепляют мышечный корсет, делают суставы более гибкими, улучшают осанку и координацию.",
   "gender": "для всех",
-  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "video": "/img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -75,7 +75,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "BOXING",
-  "image": "img/content/thumbnails/training-03.jpg",
+  "image": "/img/content/thumbnails/training-03.jpg",
   "level": "профессионал",
   "type": "бокс",
   "duration": "30-50 мин",
@@ -83,7 +83,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1800,
   "description": "Тренировка на отработку правильных ударов, координации и оптимальной механики защитных движений.",
   "gender": "для женщин",
-  "video": "img/content/training-video/Video_html_Academy.mov",
+  "video": "/img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -112,7 +112,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "POWER",
-  "image": "img/content/thumbnails/training-04.jpg",
+  "image": "/img/content/thumbnails/training-04.jpg",
   "level": "любитель",
   "type": "аэробика",
   "duration": "30-50 мин",
@@ -120,7 +120,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1500,
   "description": "Тренировка на отработку правильной техники работы с тяжелыми весами, укрепления мышц кора и спины.",
   "gender": "для всех",
-  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "video": "/img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -134,7 +134,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "ANTISTRESS",
-  "image": "img/content/thumbnails/training-05.jpg",
+  "image": "/img/content/thumbnails/training-05.jpg",
   "level": "любитель",
   "type": "пилатес",
   "duration": "30-50 мин",
@@ -142,7 +142,7 @@ Authorization: Bearer {{AToken}}
   "calories": 3000,
   "description": "В основе программы лежит работа с телом и с психо-эмоциональным состоянием. Уберем зажимы тела, избавимся от стресса.",
   "gender": "для женщин",
-  "video": "img/content/training-video/Video_html_Academy.mov",
+  "video": "/img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -156,7 +156,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "RUN, FORREST",
-  "image": "img/content/thumbnails/training-06.jpg",
+  "image": "/img/content/thumbnails/training-06.jpg",
   "level": "любитель",
   "type": "бег",
   "duration": "30-50 мин",
@@ -164,7 +164,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1500,
   "description": "Описание тренировки",
   "gender": "для женщин",
-  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "video": "/img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -193,7 +193,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "FITBALL",
-  "image": "img/content/thumbnails/training-07.jpg",
+  "image": "/img/content/thumbnails/training-07.jpg",
   "level": "любитель",
   "type": "пилатес",
   "duration": "30-50 мин",
@@ -201,7 +201,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1200,
   "description": "Тренировка на фитболе — отличном тренажере для развития чувства баланса и равновесия, улучшения координации.",
   "gender": "для всех",
-  "video": "img/content/training-video/Video_html_Academy.mov",
+  "video": "/img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -215,7 +215,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "HATHA",
-  "image": "img/content/thumbnails/training-08.jpg",
+  "image": "/img/content/thumbnails/training-08.jpg",
   "level": "любитель",
   "type": "йога",
   "duration": "50-80 мин",
@@ -223,7 +223,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1350,
   "description": "Упражнения по хатха йоге, направленные на понижение нервной возбудимости и активацию процессов анаболизма.",
   "gender": "для женщин",
-  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "video": "/img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -237,7 +237,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "BODY STRETCH",
-  "image": "img/content/thumbnails/training-09.jpg",
+  "image": "/img/content/thumbnails/training-09.jpg",
   "level": "любитель",
   "type": "стретчинг",
   "duration": "30-50 мин",
@@ -245,7 +245,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1400,
   "description": "Комплекс упражнений на растяжку всего тела для новичков. Плавное погружение в стретчинг и умеренная нагрузка.",
   "gender": "для женщин",
-  "video": "img/content/training-video/Video_html_Academy.mov",
+  "video": "/img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -273,7 +273,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "UPPER BODY",
-  "image": "img/content/thumbnails/training-10.jpg",
+  "image": "/img/content/thumbnails/training-10.jpg",
   "level": "любитель",
   "type": "бокс",
   "duration": "30-50 мин",
@@ -281,7 +281,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1800,
   "description": "Проработка мышц груди для профи, экспериментируем с уровнем наклона скамьи и различной шириной хвата.",
   "gender": "для всех",
-  "video": "img/content/training-video/Video_html_Academy.mov",
+  "video": "/img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -295,7 +295,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "DEVIL'S CINDY",
-  "image": "img/content/thumbnails/training-11.jpg",
+  "image": "/img/content/thumbnails/training-11.jpg",
   "level": "любитель",
   "type": "кроссфит",
   "duration": "50-80 мин",
@@ -303,7 +303,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1950,
   "description": "Знаменитый кроссфит комплекс. Синди — универсальная тренировка для развития функциональной силы.",
   "gender": "для женщин",
-  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "video": "/img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -317,7 +317,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "FLEKSBEND",
-  "image": "img/content/thumbnails/training-12.jpg",
+  "image": "/img/content/thumbnails/training-12.jpg",
   "level": "любитель",
   "type": "аэробика",
   "duration": "30-50 мин",
@@ -325,7 +325,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1450,
   "description": "Тренируясь с резинкой для фитнеса, вы можете проработать почти все мышечные группы и разнообразить тренировки.",
   "gender": "для женщин",
-  "video": "img/content/training-video/Video_html_Academy.mov",
+  "video": "/img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -353,7 +353,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "CROSSFIT",
-  "image": "img/content/thumbnails/training-01.jpg",
+  "image": "/img/content/thumbnails/training-01.jpg",
   "level": "любитель",
   "type": "кроссфит",
   "duration": "30-50 мин",
@@ -361,7 +361,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1200,
   "description": "Сложный комплекс упражнений для профессиональных атлетов на отработку показателей в классическом стиле.",
   "gender": "для всех",
-  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "video": "/img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -375,7 +375,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "ENERGY",
-  "image": "img/content/thumbnails/training-02.jpg",
+  "image": "/img/content/thumbnails/training-02.jpg",
   "level": "любитель",
   "type": "пилатес",
   "duration": "50-80 мин",
@@ -383,7 +383,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1320,
   "description": "Упражнения укрепляют мышечный корсет, делают суставы более гибкими, улучшают осанку и координацию.",
   "gender": "для женщин",
-  "video": "img/content/training-video/Video_html_Academy.mov",
+  "video": "/img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -397,7 +397,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "BOXING",
-  "image": "img/content/thumbnails/training-03.jpg",
+  "image": "/img/content/thumbnails/training-03.jpg",
   "level": "любитель",
   "type": "бокс",
   "duration": "30-50 мин",
@@ -405,7 +405,7 @@ Authorization: Bearer {{AToken}}
   "calories":1800,
   "description": "Тренировка на отработку правильных ударов, координации и оптимальной механики защитных движений.",
   "gender": "для женщин",
-  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "video": "/img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -433,7 +433,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "POWER",
-  "image": "img/content/thumbnails/training-04.jpg",
+  "image": "/img/content/thumbnails/training-04.jpg",
   "level": "любитель",
   "type": "бокс",
   "duration": "30-50 мин",
@@ -441,7 +441,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1600,
   "description": "Тренировка на отработку правильной техники работы с тяжелыми весами, укрепления мышц кора и спины.",
   "gender": "для всех",
-  "video": "img/content/training-video/Video_html_Academy.mov",
+  "video": "/img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }
@@ -455,7 +455,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "ANTISTRESS",
-  "image": "img/content/thumbnails/training-05.jpg",
+  "image": "/img/content/thumbnails/training-05.jpg",
   "level": "любитель",
   "type": "йога",
   "duration": "50-80 мин",
@@ -463,7 +463,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1250,
   "description": "В основе программы лежит работа с телом и с психо-эмоциональным состоянием. Уберем зажимы тела, избавимся от стресса.",
   "gender": "для женщин",
-  "video": "img/content/training-video/Video_HTML_Academy_1.mp4",
+  "video": "/img/content/training-video/Video_HTML_Academy_1.mp4",
   "rating": 0,
   "specialOffer": false
 }
@@ -477,7 +477,7 @@ Authorization: Bearer {{AToken}}
 
 {
   "name": "FORREST, RUN",
-  "image": "img/content/thumbnails/training-06.jpg",
+  "image": "/img/content/thumbnails/training-06.jpg",
   "level": "любитель",
   "type": "бег",
   "duration": "30-50 мин",
@@ -485,7 +485,7 @@ Authorization: Bearer {{AToken}}
   "calories": 1500,
   "description": "Узнайте правильную технику бега, развивайте выносливость и откройте для себя все секреты длительных пробежек.",
   "gender": "для женщин",
-  "video": "img/content/training-video/Video_html_Academy.mov",
+  "video": "/img/content/training-video/Video_html_Academy.mov",
   "rating": 0,
   "specialOffer": false
 }

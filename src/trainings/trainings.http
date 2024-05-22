@@ -1,7 +1,7 @@
 ####################################################################################################
 ############################## Сервис тренировок ####################################################
 ####################################################################################################
-@AToken={{login.response.body.accessToken}}
+@AToken={{login.response.body.tokens.accessToken}}
 
 # Аутентификация пользователя
 # @name login
@@ -70,7 +70,7 @@ Content-Type: application/json
 
 ###
 # Каталог тренировок
-GET http://localhost:4000/fitfriends/trainings/catalog?sortBy=price:DESC HTTP/1.1
+GET http://localhost:4000/fitfriends/trainings/catalog?sortBy=createdAt:DESC HTTP/1.1
 Authorization: Bearer {{AToken}}
 
 ##########################################################################################
