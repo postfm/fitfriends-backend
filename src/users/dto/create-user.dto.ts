@@ -87,10 +87,10 @@ export class CreateUserDto {
    * Роль пользователя в системе
    * @example 'тренер'
    */
-  @IsArray()
+  @IsString()
   @IsNotEmpty()
   @IsEnum(UserRoles, { each: true })
-  roles: string[];
+  roles: string;
 
   /**
    * Text with general information

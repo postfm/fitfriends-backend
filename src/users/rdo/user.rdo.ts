@@ -28,7 +28,7 @@ export class UserRdo {
 
   @Expose()
   @ApiProperty()
-  roles: string[];
+  roles: string;
 
   @Expose()
   @ApiProperty()

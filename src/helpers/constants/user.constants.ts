@@ -36,7 +36,7 @@ export const DefaultValue = {
   UsersCountLimit: 50,
   SortDirection: SortDirection.Desc,
   PageCount: 1,
-  SortType: 'role',
+  SortType: 'roles',
 };
 
 export const UserError = {

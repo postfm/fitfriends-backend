@@ -35,7 +35,7 @@ export class User {
   birthday: Date;
 
   @Column('enum', { enum: ['тренер', 'пользователь'] })
-  roles: string[];
+  roles: string;
 
   @Column({ nullable: true })
   description: string;
