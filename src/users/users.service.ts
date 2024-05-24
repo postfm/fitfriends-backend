@@ -27,8 +27,11 @@ export class UsersService {
   }
 
   async findOneByEmail(email: string) {
-    const existsUser = await this.userRepository.findOneBy({
-      email: email,
+    const existsUser = await this.userRepository.findOne({
+      where: {
+        email: email,
+      },
+      relations: ['trainings', 'orders', 'reviews', 'balance'],
     });
 
     if (!existsUser) {
