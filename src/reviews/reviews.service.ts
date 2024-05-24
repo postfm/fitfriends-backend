@@ -58,7 +58,7 @@ export class ReviewsService {
 
   async findAll(training_id: number) {
     const isExist = await this.reviewRepository.findOneBy({
-      id: training_id,
+      training: { training_id: training_id },
     });
 
     if (!isExist) {
@@ -68,6 +68,7 @@ export class ReviewsService {
       .getRepository(Review)
       .createQueryBuilder('review')
       .where('review.training=:training_id', { training_id: training_id })
+      .orderBy('created_at', 'DESC')
       .getMany();
 
     return reviews;

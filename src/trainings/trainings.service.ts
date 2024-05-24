@@ -101,7 +101,7 @@ export class TrainingsService {
       where: {
         training_id: training_id,
       },
-      relations: { user: true, orders: true },
+      relations: { user: true, orders: true, reviews: true },
     });
 
     if (!training) {

@@ -1,9 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Order } from './entities/order.entity';
 import { Repository } from 'typeorm';
-import { ORDER_ALREADY_EXISTS } from 'src/helpers/constants/order.constants';
+import { OrderError } from 'src/helpers/constants/order.constants';
+import { Order } from './entities/order.entity';
+import { UpdateOrderDto } from './dto/update-order.dto';
 
 @Injectable()
 export class OrdersService {
@@ -17,14 +18,6 @@ export class OrdersService {
     id: number,
     training_id: number,
   ) {
-    const isExist = await this.orderRepository.findBy({
-      user: { id },
-      training: { training_id },
-    });
-
-    if (isExist.length) {
-      throw new BadRequestException(ORDER_ALREADY_EXISTS);
-    }
     const sum = createOrderDto.amount * createOrderDto.price;
     const newOrder = {
       ...createOrderDto,
@@ -35,12 +28,28 @@ export class OrdersService {
     return await this.orderRepository.save(newOrder);
   }
 
-  async findAll() {
+  async findAll(id: number) {
     return await this.orderRepository.find({
       relations: {
         training: true,
         user: true,
       },
+      where: { user: { id: id } },
     });
+  }
+
+  async update(id: number, updateOrderDto: UpdateOrderDto) {
+    const isExist = await this.orderRepository.findOneBy({
+      id: id,
+    });
+
+    if (!isExist) {
+      throw new BadRequestException(OrderError.OrderNotExists);
+    }
+    const updateOrder = {
+      ...isExist,
+      amount: updateOrderDto.amount,
+    };
+    return this.orderRepository.update(id, updateOrder);
   }
 }

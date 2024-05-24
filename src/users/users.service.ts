@@ -60,6 +60,7 @@ export class UsersService {
     }
 
     await this.userRepository.update(id, updateUserDto);
-    return this.userRepository.findOneBy({ id: id });
+    const user = this.userRepository.findOneBy({ id: id });
+    return fillDto(UserRdo, user);
   }
 }

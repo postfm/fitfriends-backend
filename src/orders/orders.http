@@ -2,7 +2,7 @@
 ############################## Сервис заказов пользователя ##########################################
 ####################################################################################################
 
-@AToken={{login.response.body.accessToken}}
+@AToken={{login.response.body.tokens.accessToken}}
 
 # Аутентификация пользователя
 # @name login
@@ -16,7 +16,7 @@ Content-Type: application/json
 
 ###
 # Создание нового заказа
-POST http://localhost:4000/fitfriends/orders/2 HTTP/1.1
+POST http://localhost:4000/fitfriends/orders/7 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
@@ -32,3 +32,13 @@ Authorization: Bearer {{AToken}}
 GET http://localhost:4000/fitfriends/orders HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{AToken}}
+
+###
+#Изменение заказа
+GET http://localhost:4000/fitfriends/orders/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AToken}}
+
+  {
+  "amount": 2
+}

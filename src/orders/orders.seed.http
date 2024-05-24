@@ -9,7 +9,7 @@
 #training_id  1,2,3,4,5,6,7,8,9
 
 
-@AToken={{login.response.body.accessToken}}
+@AToken={{login.response.body.tokens.accessToken}}
 
 ####################################################################################################
 # Аутентификация пользователя john@user.com
@@ -31,7 +31,7 @@ Authorization: Bearer {{AToken}}
 {
   "type": "абонемент",
   "price": 150,
-  "amount": 5,
+  "amount": 15,
   "pay": "mir"
 }
 
@@ -45,7 +45,7 @@ Authorization: Bearer {{AToken}}
 {
   "type": "абонемент",
   "price": 150,
-  "amount": 3,
+  "amount": 15,
   "pay": "mir"
 }
 
@@ -59,7 +59,7 @@ Authorization: Bearer {{AToken}}
 {
   "type": "абонемент",
   "price": 500,
-  "amount": 1,
+  "amount": 15,
   "pay": "mir"
 }
 
