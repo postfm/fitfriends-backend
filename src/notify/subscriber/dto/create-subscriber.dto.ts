@@ -7,5 +7,5 @@ export class CreateSubscriberDto {
    */
   @IsEmail()
   @IsNotEmpty()
-  subscriber_email: string;
+  email: string;
 }

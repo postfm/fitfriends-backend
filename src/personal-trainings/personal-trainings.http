@@ -2,7 +2,7 @@
 ############################## Сервис персональных тренировок #######################################
 ####################################################################################################
 
-@AToken={{login.response.body.accessToken}}
+@AToken={{login.response.body.tokens.accessToken}}
 
 # Аутентификация пользователя
 # @name login
@@ -10,13 +10,13 @@ POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "mickael@user.com",
+  "email": "john@user.com",
   "password": "123456"
 }
 
 ###
 # Заявка на персональную тренировку
-POST http://localhost:4000/fitfriends/personal-trainings/8 HTTP/1.1
+POST http://localhost:4000/fitfriends/personal-trainings/2 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{AToken}}
 
@@ -32,7 +32,7 @@ POST http://localhost:4000/fitfriends/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "shara@user.com",
+  "email": "rob@user.com",
   "password": "123456"
 }
 

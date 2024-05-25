@@ -39,16 +39,14 @@ export class TrainingsService {
     return await this.trainingRepository.save(newTraining);
   }
 
-  async findAll(query: PaginateQuery): Promise<Paginated<Training>> {
-    return paginate(query, this.trainingRepository, {
-      filterableColumns: {
-        price: true,
-        calories: true,
-        rating: true,
-        duration: true,
+  async findAll(id: number) {
+    return this.trainingRepository.find({
+      relations: { user: true },
+      where: {
+        user: {
+          id: id,
+        },
       },
-      sortableColumns: ['createdAt'],
-      relations: ['orders', 'user', 'reviews'],
     });
   }
 

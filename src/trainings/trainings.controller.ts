@@ -42,17 +42,14 @@ export class TrainingsController {
     return this.trainingsService.getMyOrders(+req.user.sub, query);
   }
 
-  @Get()
-  @Roles(Role.Admin)
-  @UseGuards(AccessTokenGuard, RolesGuard)
+  @Get('coach/:id')
+  @UseGuards(AccessTokenGuard)
   @ApiOkResponse({
     type: TrainingRdo,
   })
   @ApiForbiddenResponse({ description: 'Forbidden.' })
-  async findAll(
-    @Paginate() query: PaginateQuery,
-  ): Promise<Paginated<Training>> {
-    return this.trainingsService.findAll(query);
+  async findAll(@Param('id') id: string) {
+    return this.trainingsService.findAll(+id);
   }
 
   @Get('catalog')

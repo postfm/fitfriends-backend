@@ -24,8 +24,10 @@ export class SubscriberService {
       throw new BadRequestException('You are already subscribed!');
     }
 
+    console.log(createSubscriberDto);
+
     const newSubscriber = {
-      ...createSubscriberDto,
+      subscriber_email: createSubscriberDto.email,
       subscriber_id,
       trainer_id,
     };
@@ -34,13 +36,13 @@ export class SubscriberService {
   }
 
   async findAll(trainer_id: number) {
-    const isExist = await this.subscriberRepository.findBy({
-      trainer_id: trainer_id,
-    });
+    // const isExist = await this.subscriberRepository.findBy({
+    //   trainer_id: trainer_id,
+    // });
 
-    if (!isExist.length) {
-      throw new BadRequestException('You have no subscribers');
-    }
+    // if (!isExist.length) {
+    //   throw new BadRequestException('You have no subscribers');
+    // }
 
     return this.subscriberRepository.findBy({
       trainer_id: trainer_id,
