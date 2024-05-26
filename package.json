@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "copy-assets": "cp -r ./src/notify/assets ./dist/notify/assets",
+    "copy-assets": "cp -r ./src/assets ./dist",
     "build": "nest build && npm run copy-assets",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start && npm run copy-assets",
