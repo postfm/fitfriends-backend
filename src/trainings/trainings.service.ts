@@ -35,8 +35,9 @@ export class TrainingsService {
       ...createTrainingDto,
       user: { id },
     };
+    const training = await this.trainingRepository.save(newTraining);
 
-    return await this.trainingRepository.save(newTraining);
+    return this.findOne(training.training_id);
   }
 
   async findAll(id: number) {
@@ -99,7 +100,6 @@ export class TrainingsService {
       where: {
         training_id: training_id,
       },
-      relations: { user: true, orders: true, reviews: true },
     });
 
     if (!training) {
@@ -116,6 +116,8 @@ export class TrainingsService {
     if (!isExist) {
       throw new BadRequestException(TrainingError.TrainingNotExists);
     }
-    return this.trainingRepository.update(id, updateTrainingDto);
+    this.trainingRepository.update(id, updateTrainingDto);
+
+    return this.findOne(id);
   }
 }
