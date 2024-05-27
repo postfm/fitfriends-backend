@@ -9,7 +9,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     ServeStaticModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        const rootPath = configService.get<string>('STORE_DIRECTORY_PATH');
+        const rootPath = configService.get<string>('UPLOAD_DIRECTORY_PATH');
         const staticRoot = configService.get<string>('STATIC_ROOT');
 
         return [

@@ -20,6 +20,8 @@ import { MailModule } from './notify/mail/mail.module';
 import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
 import { getRabbitmqConnectionString } from './helpers/common';
 import { NotifyModule } from './notify/notify.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -98,7 +100,9 @@ import { NotifyModule } from './notify/notify.module';
     MailModule,
     NotifyModule,
   ],
+  controllers: [AppController],
   providers: [
+    AppService,
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
