@@ -4,9 +4,22 @@ services:
     build: .
     container_name: fitfriends.backend-app
     ports:
-      - 4000:80
+      - 4000:4000
     networks:
       - fitfriends
+    environment:
+      - POSTGRES_HOST=fitfriends.postgres
+      - MAIL_SMTP_HOST=fitfriends.notify.fakesmtp
+      - RABBIT_HOST=fitfriends.notify.rabbitmq
+    depends_on:
+      - fitfriends.postgres
+      - fitfriends.notify.fakesmtp
+      - fitfriends.notify.rabbitmq
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 30s
+        max_attempts: 20
 
   fitfriends.postgres:
     image: postgres:latest
@@ -27,7 +40,6 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
-
     networks:
       - fitfriends
 
@@ -47,29 +59,29 @@ services:
 
   fitfriends.notify.fakesmtp:
     image: gessnerfl/fake-smtp-server:latest
-    container_name: 'fitfriends.notify.fakesmtp'
-    hostname: 'fitfriends.notify.fakesmtp'
+    container_name: fitfriends.notify.fakesmtp
     ports:
-      - '8025:8025'
-      - '1083:8080'
+      - 8025:8025
+      - 1083:8080
+    networks:
+      - fitfriends
 
   fitfriends.notify.rabbitmq:
     image: rabbitmq:3.13-management
     container_name: fitfriends.notify.rabbitmq
-
     ports:
-      - '1088:15672'
-      - '5672:5672'
-
+      - 1088:15672
+      - 5672:5672
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBIT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBIT_PASSWORD}
-
     healthcheck:
       test: rabbitmq-diagnostics -q ping
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - fitfriends
 
 volumes:
   fitfriends.publication:
