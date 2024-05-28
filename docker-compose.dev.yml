@@ -1,5 +1,13 @@
 version: '3.9'
 services:
+  fitfriends.backend:
+    build: .
+    container_name: fitfriends.backend-app
+    ports:
+      - 4000:80
+    networks:
+      - fitfriends
+
   fitfriends.postgres:
     image: postgres:latest
     container_name: fitfriends.postgres
