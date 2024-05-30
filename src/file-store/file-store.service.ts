@@ -17,7 +17,7 @@ export class FileStoreService {
     const [year, month] = dayjs().format('YYYY MM').split(' ');
     const staticDirectory = this.configService.get('STATIC_ROOT');
 
-    return join(staticDirectory, year, month, '\\');
+    return join(staticDirectory, year, month, '/');
   }
 
   private getDestinationFilePath(filename: string): string {

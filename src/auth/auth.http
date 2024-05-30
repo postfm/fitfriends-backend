@@ -11,7 +11,7 @@ Content-Type: application/json
   "password": "123456",
   "gender": "неважно",
   "birthday": "2024-11-03",
-  "roles": ["пользователь"],
+  "roles": "пользователь",
   "location": "Удельная",
   "image": "/img/content/thumbnails/friend-19.jpg",
   "levelOfTrain": "новичок",
