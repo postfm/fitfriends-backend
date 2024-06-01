@@ -61,6 +61,9 @@ export class AuthService {
 
   async login(data: AuthDto) {
     const user = await this.usersService.findOneByEmail(data.email);
+
+    await verifyHash(data.password, user.password);
+
     const tokens = await this.getTokens(user.id, user.email, user.roles);
     await this.updateRefreshToken(user.id, tokens.refreshToken);
     const currentUser = fillDto(UserRdo, user);

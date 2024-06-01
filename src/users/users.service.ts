@@ -31,12 +31,13 @@ export class UsersService {
       where: {
         email: email,
       },
-      relations: ['trainings', 'orders', 'reviews', 'balance'],
+      relations: ['trainings', 'orders', 'reviews'],
     });
 
     if (!existsUser) {
       throw new BadRequestException(UserError.EmailNotFound);
     }
+
     return existsUser;
   }
 
