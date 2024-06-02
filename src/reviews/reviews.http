@@ -30,5 +30,5 @@ Content-Type: application/json
 ###
 
 # Получение списка отзывов для тренировки
-GET  http://localhost:4000/fitfriends/reviews/1 HTTP/1.1
+GET  http://localhost:4000/fitfriends/reviews/3 HTTP/1.1
 Authorization: Bearer {{AToken}}

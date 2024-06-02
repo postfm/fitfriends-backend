@@ -1,4 +1,4 @@
-@AToken={{login.response.body.accessToken}}
+@AToken={{login.response.body.tokens.accessToken}}
 
 # Аутентификация пользователя
 # @name login

@@ -65,10 +65,10 @@ export class ReviewsService {
       throw new BadRequestException(ReviewError.TrainingNotFound);
     }
     const reviews = await this.dataSource
-      .getRepository(Review)
-      .createQueryBuilder('review')
+      .createQueryBuilder(Review, 'review')
+      .leftJoinAndSelect('review.user', 'user')
       .where('review.training=:training_id', { training_id: training_id })
-      .orderBy('created_at', 'DESC')
+      .orderBy('review.created_at', 'DESC')
       .getMany();
 
     return reviews;
